@@ -3,6 +3,15 @@
    Подключается на всех страницах. Тёмная тема, палитра сайта.
    ========================================================= */
 
+/* ===== Премиум-типографика и воздух (ближе к awwwards) ===== */
+.hero-text h1, .hero .wrap h1 { font-size: clamp(2.7rem, 6.2vw, 4.8rem) !important; letter-spacing: -.04em !important; line-height: 1.04 !important; }
+.hero-text .lead, .hero .lead { font-size: clamp(1.05rem, 1.7vw, 1.25rem) !important; max-width: 600px; }
+.section-head h2 { font-size: clamp(2rem, 4.6vw, 3.4rem) !important; letter-spacing: -.03em !important; line-height: 1.06 !important; }
+.section-head { margin-bottom: 70px !important; max-width: 820px; margin-left: auto; margin-right: auto; }
+.section { padding: 116px 0 !important; }
+.overline { letter-spacing: 3px !important; font-size: 12px !important; text-transform: uppercase; opacity: .9; }
+@media (max-width: 760px) { .section { padding: 76px 0 !important; } .section-head { margin-bottom: 44px !important; } }
+
 /* ===== Анимации иконок направлений и карточек ===== */
 /* Иконка раздела «дышит» и слегка парит */
 .dir-icon { animation: e-icon-float 5s ease-in-out infinite; }
