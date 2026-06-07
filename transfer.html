@@ -325,6 +325,22 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
   </div>
 </section>
 
+<!-- 3D PREVIEW -->
+<div class="section-divider"></div>
+<section class="section" id="car3d-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="overline reveal">3D-превью</div>
+      <h2 class="reveal">Рассмотрите автомобиль в 3D</h2>
+      <p class="reveal">Покрутите модель мышкой, приблизьте — как в автоконфигураторе</p>
+    </div>
+    <div class="car3d reveal">
+      <model-viewer src="assets/models/car.glb" alt="3D-модель автомобиля" auto-rotate rotation-per-second="20deg" camera-controls touch-action="pan-y" shadow-intensity="1" exposure="1.1" interaction-prompt="auto" ar="false"></model-viewer>
+      <div class="car3d-note">Демонстрационная 3D-модель. Точные модели Mercedes S-Class, Maybach и V-Class добавим отдельно.</div>
+    </div>
+  </div>
+</section>
+
 <!-- ONLINE BOOKING -->
 <div class="section-divider"></div>
 <section class="section section-alt" id="booking">
@@ -727,5 +743,6 @@ window.addEventListener('load', function () {
   });
 });
 </script>
+<script type="module" src="lib/model-viewer.min.js"></script>
 </body>
 </html>

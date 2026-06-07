@@ -238,6 +238,12 @@ html.lenis, html.lenis body { height: auto; }
 .car-book { border: none; }
 @media (max-width: 860px) { .car-config { grid-template-columns: 1fr; } }
 
+/* ===== 3D-превью автомобиля (model-viewer) ===== */
+.car3d { max-width: 940px; margin: 0 auto; }
+.car3d model-viewer { width: 100%; height: 480px; display: block; border-radius: 22px;
+  border: 1px solid var(--e-line); background: radial-gradient(ellipse 70% 70% at 50% 60%, rgba(59,130,246,.12), transparent 70%), #0a1030; }
+.car3d-note { text-align: center; color: #64748B; font-size: 13px; margin-top: 14px; }
+
 /* ===== Онлайн-заказ (бронирование) ===== */
 .booking { background: linear-gradient(180deg, var(--e-card-2), var(--e-card)); border: 1px solid var(--e-line);
   border-radius: 22px; padding: 36px; max-width: 880px; margin: 0 auto; }
