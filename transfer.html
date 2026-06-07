@@ -288,6 +288,70 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
   </div>
 </section>
 
+<!-- CONFIGURATOR -->
+<div class="section-divider"></div>
+<section class="section" id="configurator">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="overline reveal">Конфигуратор</div>
+      <h2 class="reveal">Выберите автомобиль</h2>
+      <p class="reveal">Реальные авто нашего автопарка — выберите класс и забронируйте</p>
+    </div>
+    <div class="car-config reveal">
+      <div class="car-stage">
+        <div class="car-turntable"></div>
+        <div class="car-badge" id="carBadge">Бизнес-класс</div>
+        <img class="car-photo" id="carPhoto" data-tilt src="assets/img/car-sclass.jpg" alt="Mercedes S-Class">
+      </div>
+      <div class="car-panel">
+        <div class="car-tabs">
+          <button data-car="sclass" class="active">S-Class</button>
+          <button data-car="maybach">Maybach</button>
+          <button data-car="vclass">V-Class</button>
+          <button data-car="eclass">E-Class</button>
+          <button data-car="jet">Бизнес-джет</button>
+        </div>
+        <h3 class="car-name" id="carName">Mercedes-Benz S-Class</h3>
+        <p class="car-desc" id="carDesc">Флагманский седан представительского класса — для деловых поездок и встреч. Максимальный комфорт и презентабельность.</p>
+        <ul class="car-specs" id="carSpecs">
+          <li>👤 до 3</li><li>🧳 3 места</li><li>★ Бизнес</li>
+        </ul>
+        <button class="btn-primary car-book" id="carBook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Забронировать этот автомобиль
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONLINE BOOKING -->
+<div class="section-divider"></div>
+<section class="section section-alt" id="booking">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="overline reveal">Онлайн-заказ</div>
+      <h2 class="reveal">Забронировать трансфер</h2>
+      <p class="reveal">Заполните — рассчитаем стоимость и подтвердим автомобиль</p>
+    </div>
+    <form class="booking reveal" id="bookingForm" novalidate>
+      <div class="booking-grid">
+        <div class="booking-field"><label>Откуда</label><input name="from" placeholder="Город, адрес или аэропорт"></div>
+        <div class="booking-field"><label>Куда</label><input name="to" placeholder="Город, адрес или аэропорт"></div>
+        <div class="booking-field"><label>Дата</label><input name="date" type="date"></div>
+        <div class="booking-field"><label>Время</label><input name="time" type="time"></div>
+        <div class="booking-field"><label>Класс автомобиля</label>
+          <select name="car"><option>Mercedes S-Class</option><option>Mercedes-Maybach</option><option>Mercedes V-Class</option><option>Mercedes E-Class</option><option>Бизнес-джет</option></select></div>
+        <div class="booking-field"><label>Пассажиров</label><input name="pax" type="number" min="1" max="20" value="1"></div>
+        <div class="booking-field"><label>Ваше имя</label><input name="name" placeholder="Как к вам обращаться"></div>
+        <div class="booking-field"><label>Телефон или Telegram</label><input name="contact" placeholder="+359… / @username"></div>
+      </div>
+      <button type="submit" class="e-submit">Отправить заявку на трансфер</button>
+      <div class="booking-msg" id="bookingMsg"></div>
+    </form>
+  </div>
+</section>
+
 <!-- SOFTWARE -->
 <div class="section-divider"></div>
 <section class="section section-alt" id="software">
@@ -613,5 +677,55 @@ reveals.forEach(el=>revealObserver.observe(el));
 </script>
 <script src="enhance.js" defer></script>
 <script src="i18n.js" defer></script>
+<script>
+window.addEventListener('load', function () {
+  var CARS = {
+    sclass:  { name: "Mercedes-Benz S-Class", desc: "Флагманский седан представительского класса — для деловых поездок и встреч. Максимальный комфорт и презентабельность.", img: "assets/img/car-sclass.jpg", badge: "Бизнес-класс", specs: ["👤 до 3", "🧳 3 места", "★ Бизнес"] },
+    maybach: { name: "Mercedes-Maybach", desc: "Высший уровень роскоши и приватности. Идеален для VIP-гостей и особых случаев.", img: "assets/img/car-maybach.jpg", badge: "VIP", specs: ["👤 до 2", "🧳 2 места", "★ VIP"] },
+    vclass:  { name: "Mercedes V-Class", desc: "Просторный минивэн для групп, семей и поездок с багажом. Комфортная посадка.", img: "assets/img/car-vclass.jpg", badge: "Минивэн", specs: ["👤 до 7", "🧳 7 мест", "★ Комфорт"] },
+    eclass:  { name: "Mercedes E-Class", desc: "Бизнес-седан для города и трансферов. Оптимальное сочетание комфорта и цены.", img: "assets/img/car-eclass.jpg", badge: "Комфорт", specs: ["👤 до 3", "🧳 3 места", "★ Комфорт"] },
+    jet:     { name: "Бизнес-джет", desc: "Частная авиация для срочных и дальних перелётов. Организуем перелёт и трансфер «от двери до двери».", img: "assets/img/car-jet.jpg", badge: "Авиа", specs: ["✈ чартер", "👤 по запросу", "★ Премиум"] },
+  };
+  var photo = document.getElementById('carPhoto'), name = document.getElementById('carName'),
+      desc = document.getElementById('carDesc'), specs = document.getElementById('carSpecs'),
+      badge = document.getElementById('carBadge'), current = 'sclass';
+  function sel(k) {
+    var c = CARS[k]; if (!c) return; current = k;
+    photo.style.opacity = 0;
+    setTimeout(function () { photo.src = c.img; photo.alt = c.name; photo.style.opacity = 1; }, 200);
+    name.textContent = c.name; desc.textContent = c.desc; badge.textContent = c.badge;
+    specs.innerHTML = c.specs.map(function (s) { return '<li>' + s + '</li>'; }).join('');
+    document.querySelectorAll('.car-tabs button').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-car') === k);
+    });
+  }
+  document.querySelectorAll('.car-tabs button').forEach(function (b) {
+    b.addEventListener('click', function () { sel(b.getAttribute('data-car')); });
+  });
+  var book = document.getElementById('carBook');
+  if (book) book.addEventListener('click', function () {
+    var c = CARS[current];
+    if (window.euroOpenForm) window.euroOpenForm({ message: "Интересует трансфер на " + c.name + "." });
+  });
+
+  var bf = document.getElementById('bookingForm'), bm = document.getElementById('bookingMsg');
+  if (bf) bf.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var d = Object.fromEntries(new FormData(bf));
+    var msg = "Заявка на трансфер\nОткуда: " + (d.from || '—') + "\nКуда: " + (d.to || '—') +
+              "\nДата: " + (d.date || '—') + " " + (d.time || '') + "\nАвто: " + (d.car || '—') +
+              "\nПассажиров: " + (d.pax || '—');
+    var btn = bf.querySelector('.e-submit'); var ot = btn.textContent;
+    btn.disabled = true; btn.textContent = "Отправляем…"; bm.className = "booking-msg";
+    try {
+      if (!window.euroSendLead) throw new Error('no sender');
+      await window.euroSendLead({ name: d.name || '—', contact: d.contact || '—', direction: 'Premium-трансфер', message: msg });
+      bf.reset(); bm.className = "booking-msg ok"; bm.textContent = "✓ Заявка отправлена! Свяжемся для подтверждения.";
+    } catch (err) {
+      bm.className = "booking-msg err"; bm.textContent = "Не удалось отправить. Напишите нам в Telegram или WhatsApp.";
+    } finally { btn.disabled = false; btn.textContent = ot; }
+  });
+});
+</script>
 </body>
 </html>

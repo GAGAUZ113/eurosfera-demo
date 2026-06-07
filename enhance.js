@@ -298,6 +298,15 @@ const EURO_CONFIG = {
     });
   }
 
+  // Открываем отправку заявок для страничных форм (напр. онлайн-заказ трансфера)
+  window.euroSendLead = sendLead;
+  window.euroOpenForm = function (preset) {
+    if (preset && preset.message) {
+      const ta = modal.querySelector('[name="message"]'); if (ta) ta.value = preset.message;
+    }
+    openForm();
+  };
+
   /* ---------- 8. Премиум-полировка: прогресс, аврора, магнитные кнопки ---------- */
   // Индикатор прокрутки
   const prog = document.createElement("div");

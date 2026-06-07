@@ -58,6 +58,49 @@
 /* ===== «Магнитные» кнопки ===== */
 .btn-primary, .btn-cta, .cta-btn, .e-submit { will-change: transform; }
 
+/* ===== Конфигуратор авто (страница трансфера) ===== */
+.car-config { display: grid; grid-template-columns: 1.3fr .9fr; gap: 36px; align-items: center; }
+.car-stage { position: relative; border-radius: 22px; overflow: hidden; min-height: 340px;
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(59,130,246,.12), transparent 70%), #0a1030;
+  border: 1px solid var(--e-line); display: flex; align-items: center; justify-content: center; padding: 24px; }
+.car-turntable { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  width: 78%; height: 60px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(99,102,241,.35), transparent 70%); filter: blur(6px);
+  animation: car-spin 6s linear infinite; }
+@keyframes car-spin { 0%{ transform: translateX(-50%) rotate(0) scaleY(.35); } 100%{ transform: translateX(-50%) rotate(360deg) scaleY(.35); } }
+.car-photo { width: 100%; max-width: 560px; border-radius: 14px; transition: opacity .35s; will-change: transform; position: relative; z-index: 1; }
+.car-badge { position: absolute; top: 16px; left: 16px; z-index: 2; background: rgba(13,18,51,.8); backdrop-filter: blur(8px);
+  border: 1px solid var(--e-line); border-radius: 100px; padding: 7px 14px; font-size: 12px; font-weight: 600; color: var(--e-teal); }
+.car-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.car-tabs button { background: rgba(255,255,255,.04); border: 1px solid var(--e-line); color: #94A3B8;
+  padding: 9px 14px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter',sans-serif; transition: all .2s; }
+.car-tabs button:hover { color: #fff; border-color: rgba(59,130,246,.4); }
+.car-tabs button.active { background: linear-gradient(135deg, var(--e-blue), var(--e-indigo)); color: #fff; border-color: transparent; }
+.car-name { font-family: 'Space Grotesk','Inter',sans-serif; font-size: clamp(1.5rem,3vw,2rem); margin-bottom: 10px; }
+.car-desc { color: #94A3B8; line-height: 1.7; margin-bottom: 18px; }
+.car-specs { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 24px; padding: 0; }
+.car-specs li { background: rgba(255,255,255,.04); border: 1px solid var(--e-line); border-radius: 10px;
+  padding: 8px 14px; font-size: 13px; color: #CBD5E1; display: flex; align-items: center; gap: 8px; }
+.car-book { border: none; }
+@media (max-width: 860px) { .car-config { grid-template-columns: 1fr; } }
+
+/* ===== Онлайн-заказ (бронирование) ===== */
+.booking { background: linear-gradient(180deg, var(--e-card-2), var(--e-card)); border: 1px solid var(--e-line);
+  border-radius: 22px; padding: 36px; max-width: 880px; margin: 0 auto; }
+.booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.booking-field { display: flex; flex-direction: column; gap: 6px; }
+.booking-field.full { grid-column: 1 / -1; }
+.booking-field label { font-size: 13px; color: #CBD5E1; }
+.booking-field input, .booking-field select { padding: 12px 14px; border-radius: 10px; border: 1px solid var(--e-line);
+  background: rgba(255,255,255,.04); color: #fff; font-size: 15px; font-family: inherit; }
+.booking-field input:focus, .booking-field select:focus { outline: none; border-color: var(--e-blue); background: rgba(59,130,246,.07); }
+.booking-field select option { background: #0d1233; }
+.booking .e-submit { margin-top: 8px; }
+.booking-msg { display: none; text-align: center; padding: 14px; border-radius: 10px; margin-top: 14px; font-size: 14px; }
+.booking-msg.ok { display: block; background: rgba(20,184,166,.12); color: #5eead4; border: 1px solid rgba(20,184,166,.3); }
+.booking-msg.err { display: block; background: rgba(239,68,68,.12); color: #fca5a5; border: 1px solid rgba(239,68,68,.3); }
+@media (max-width: 620px) { .booking-grid { grid-template-columns: 1fr; } }
+
 /* ===== Отзывы / кейсы (карусель) ===== */
 .e-carousel { position: relative; overflow: hidden; max-width: 860px; margin: 0 auto; }
 .e-track { display: flex; transition: transform .55s cubic-bezier(.2,.8,.2,1); }
