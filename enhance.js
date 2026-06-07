@@ -190,7 +190,11 @@ const EURO_CONFIG = {
       if (!j.success) throw new Error(j.message || "web3forms");
       return true;
     }
-    throw new Error("not-configured");
+    // 4) запасной вариант без настройки — открыть почтовый клиент с заполненным письмом
+    const subject = encodeURIComponent("Заявка с сайта EUROSFERA");
+    const body = encodeURIComponent(leadText(data));
+    window.location.href = "mailto:" + C.email + "?subject=" + subject + "&body=" + body;
+    return true;
   }
 
   formEl.addEventListener("submit", async e => {
@@ -199,12 +203,6 @@ const EURO_CONFIG = {
     const btn = formEl.querySelector(".e-submit");
     const data = Object.fromEntries(new FormData(formEl));
     if (data.botcheck) return; // honeypot
-    const C = EURO_CONFIG;
-    if (!C.lead_webhook && !(C.telegram_bot_token && C.telegram_chat_id) && !C.web3forms_key) {
-      formMsg.className = "e-form-msg err";
-      formMsg.textContent = "⚠ Форма ещё не настроена: укажите lead_webhook (Telegram-бот) в enhance.js";
-      return;
-    }
     btn.disabled = true; btn.textContent = "Отправляем…";
     try {
       await sendLead(data);
