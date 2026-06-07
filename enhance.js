@@ -332,6 +332,26 @@ const EURO_CONFIG = {
     });
   }
 
+  /* ---------- 9. Лайтбокс для галереи ---------- */
+  const lb = document.createElement("div");
+  lb.className = "e-lb";
+  lb.innerHTML = '<button class="e-lb-close" aria-label="Закрыть">' + ICON.x + '</button><figure><img alt=""><figcaption></figcaption></figure>';
+  document.body.appendChild(lb);
+  const lbImg = lb.querySelector("img"), lbCap = lb.querySelector("figcaption");
+  function closeLb() { lb.classList.remove("open"); document.body.style.overflow = ""; }
+  lb.querySelector(".e-lb-close").addEventListener("click", closeLb);
+  lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+  addEventListener("keydown", e => { if (e.key === "Escape") closeLb(); });
+  document.addEventListener("click", e => {
+    const a = e.target.closest("[data-lightbox]");
+    if (!a) return;
+    e.preventDefault();
+    lbImg.src = a.getAttribute("href");
+    const cap = a.querySelector(".e-gallery-cap");
+    lbCap.textContent = cap ? cap.textContent : "";
+    lb.classList.add("open"); document.body.style.overflow = "hidden";
+  });
+
   loadScript("lib/gsap.min.js")
     .then(() => loadScript("lib/ScrollTrigger.min.js"))
     .then(initGSAP).catch(() => {});
