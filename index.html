@@ -954,6 +954,7 @@ body::before {
       </div>
     </div>
     <div class="globe-wrap">
+      <div id="globe3d" style="position:absolute;inset:-10%;z-index:2;"></div>
       <div class="globe-center">EURO<br>SFERA</div>
       <div class="route-line" style="transform:rotate(0deg)"></div>
       <div class="route-line" style="transform:rotate(72deg)"></div>
@@ -1420,5 +1421,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 reveals.forEach(el => revealObserver.observe(el));
 </script>
 <script src="enhance.js" defer></script>
+<script src="lib/three.min.js"></script>
+<script src="globe.js"></script>
 </body>
 </html>

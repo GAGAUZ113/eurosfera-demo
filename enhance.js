@@ -298,9 +298,9 @@ const EURO_CONFIG = {
     });
   }
 
-  loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js")
-    .then(() => loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"))
+  loadScript("lib/gsap.min.js")
+    .then(() => loadScript("lib/ScrollTrigger.min.js"))
     .then(initGSAP).catch(() => {});
-  loadScript("https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js").then(initTilt).catch(() => {});
-  loadScript("https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js").then(initTyped).catch(() => {});
+  loadScript("lib/vanilla-tilt.min.js").then(initTilt).catch(() => {});
+  loadScript("lib/typed.umd.js").then(initTyped).catch(() => {});
 })();
