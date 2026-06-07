@@ -120,6 +120,14 @@
 .routemap-svg .lbl-sm { fill: #64748B; font-family: 'Inter',sans-serif; font-size: 12px; }
 @media (prefers-reduced-motion: reduce) { .routemap-svg .route, .routemap-svg .node-ring { animation: none; } }
 
+/* ===== Скрываем служебный UI Google Translate ===== */
+.goog-te-banner-frame, .goog-te-gadget-icon, iframe.skiptranslate { display: none !important; visibility: hidden !important; }
+body { top: 0 !important; }
+.goog-te-gadget { font-size: 0 !important; color: transparent !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }
+#goog-gt-tt, .goog-tooltip, .goog-tooltip:hover { display: none !important; }
+#google_translate_element { position: absolute !important; left: -9999px !important; top: -9999px !important; }
+
 /* ===== Lenis (плавная прокрутка) ===== */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
