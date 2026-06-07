@@ -3,6 +3,47 @@
    Подключается на всех страницах. Тёмная тема, палитра сайта.
    ========================================================= */
 
+/* ===== Анимации иконок направлений и карточек ===== */
+/* Иконка раздела «дышит» и слегка парит */
+.dir-icon { animation: e-icon-float 5s ease-in-out infinite; }
+.dir-card:nth-child(2) .dir-icon { animation-delay: -1.2s; }
+.dir-card:nth-child(3) .dir-icon { animation-delay: -2.4s; }
+.dir-card:nth-child(4) .dir-icon { animation-delay: -.6s; }
+.dir-card:nth-child(5) .dir-icon { animation-delay: -1.8s; }
+.dir-card:nth-child(6) .dir-icon { animation-delay: -3s; }
+@keyframes e-icon-float { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-6px); } }
+/* При наведении иконка оживает — лёгкий «pop» и свечение */
+.dir-card:hover .dir-icon { animation-play-state: paused; transform: translateY(-4px) scale(1.08); transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.dir-card .dir-icon svg { transition: filter .35s; }
+.dir-card:hover .dir-icon svg { filter: drop-shadow(0 0 10px rgba(99,102,241,.6)); }
+
+/* Бегущий блик по карточке направления при наведении */
+.dir-card { position: relative; overflow: hidden; }
+.dir-card::after {
+  content: ''; position: absolute; top: 0; left: -120%; width: 80%; height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255,255,255,.06), transparent);
+  transform: skewX(-18deg); transition: left .7s ease; pointer-events: none;
+}
+.dir-card:hover::after { left: 130%; }
+
+/* Подсветка ссылки «Подробнее» — стрелка едет */
+.dir-link { display: inline-flex; align-items: center; gap: 6px; transition: gap .25s; }
+.dir-card:hover .dir-link { gap: 12px; }
+
+/* Курсор печатающегося текста (Typed.js) */
+.typed-cursor { color: var(--e-blue); font-weight: 400; }
+#typed-roles { background: linear-gradient(135deg, var(--e-blue), var(--e-indigo), var(--e-teal)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Vanilla-tilt: плавность и блик */
+.dir-card, .sw-card, .price-card, .why-card { transform-style: preserve-3d; will-change: transform; }
+.js-tilt-glare { border-radius: inherit; }
+
+/* Уважение к настройке «меньше движения» */
+@media (prefers-reduced-motion: reduce) {
+  .dir-icon, .dir-card::after { animation: none !important; transition: none !important; }
+}
+
+
 :root {
   --e-blue: #3B82F6;
   --e-indigo: #6366F1;

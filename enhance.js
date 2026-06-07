@@ -248,4 +248,59 @@ const EURO_CONFIG = {
       localStorage.setItem("euro_consent", "denied"); bar.remove();
     });
   }
+
+  /* ---------- 7. Анимации: GSAP, 3D-наклон, печатающийся текст ---------- */
+  const reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function loadScript(src) {
+    return new Promise((res, rej) => {
+      const s = document.createElement("script");
+      s.src = src; s.async = true; s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  }
+
+  // GSAP — кинематографичное появление шапки + лёгкий параллакс
+  function initGSAP() {
+    if (!window.gsap || reduceMotion) return;
+    gsap.from(".hero .hero-badge, .hero h1, .hero .lead, .hero p, .hero .hero-btns, .hero .hero-vendors", {
+      y: 26, opacity: 0, duration: .8, stagger: .12, ease: "power3.out",
+    });
+    if (window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.to("#particles", {
+        yPercent: 18, ease: "none",
+        scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: true },
+      });
+      // плавный въезд заголовков секций
+      document.querySelectorAll(".section-head h2, .about h2").forEach(el => {
+        gsap.from(el, { y: 30, opacity: 0, duration: .7, ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 85%" } });
+      });
+    }
+  }
+
+  // Vanilla-tilt — карточки наклоняются за курсором (сбалансированно)
+  function initTilt() {
+    if (!window.VanillaTilt || reduceMotion) return;
+    const cards = document.querySelectorAll(".dir-card, .sw-card, .price-card, .why-card");
+    if (cards.length) VanillaTilt.init(cards, { max: 6, speed: 500, scale: 1.02, glare: true, "max-glare": 0.12 });
+  }
+
+  // Typed.js — печатающийся список направлений (если на странице есть #typed-roles)
+  function initTyped() {
+    const el = document.getElementById("typed-roles");
+    if (!el || !window.Typed) return;
+    el.textContent = "";
+    new Typed("#typed-roles", {
+      strings: ["Товары", "Логистику", "IT и лицензии", "Открытие компании", "Удобрения", "Premium-трансфер"],
+      typeSpeed: 70, backSpeed: 35, backDelay: 1600, startDelay: 400, loop: true, smartBackspace: true,
+    });
+  }
+
+  loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js")
+    .then(() => loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"))
+    .then(initGSAP).catch(() => {});
+  loadScript("https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js").then(initTilt).catch(() => {});
+  loadScript("https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js").then(initTyped).catch(() => {});
 })();
