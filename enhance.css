@@ -58,6 +58,25 @@
 /* ===== «Магнитные» кнопки ===== */
 .btn-primary, .btn-cta, .cta-btn, .e-submit { will-change: transform; }
 
+/* ===== Bento-витрина (товары) ===== */
+.bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 175px; gap: 16px; grid-auto-flow: dense; }
+.bento-item { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,.08);
+  padding: 22px; display: flex; flex-direction: column; justify-content: flex-end;
+  background: linear-gradient(160deg, var(--e-card-2), var(--e-card)); transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s; }
+.bento-item:hover { transform: translateY(-5px); box-shadow: 0 18px 50px rgba(0,0,0,.45); border-color: rgba(59,130,246,.4); }
+.bento-item.big { grid-column: span 2; grid-row: span 2; }
+.bento-item.wide { grid-column: span 2; }
+.bento-photo::before { content: ''; position: absolute; inset: 0; background: var(--bg) center/cover; opacity: .55; z-index: 0; transition: opacity .35s, transform .5s; }
+.bento-item.bento-photo:hover::before { opacity: .7; transform: scale(1.05); }
+.bento-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(6,10,30,.9)); z-index: 0; }
+.bento-ic { position: relative; z-index: 1; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+  background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.25); margin-bottom: auto; }
+.bento-ic svg { width: 22px; height: 22px; stroke: var(--e-blue); fill: none; stroke-width: 1.8; }
+.bento-item h4 { position: relative; z-index: 1; font-family: 'Space Grotesk','Inter',sans-serif; font-size: 18px; margin-bottom: 4px; }
+.bento-item.big h4 { font-size: 26px; }
+.bento-item p { position: relative; z-index: 1; color: #94A3B8; font-size: 13px; line-height: 1.5; }
+@media (max-width: 760px) { .bento { grid-template-columns: 1fr 1fr; } .bento-item.big { grid-column: span 2; grid-row: span 1; } }
+
 /* ===== Карта маршрутов (логистика) ===== */
 .routemap { position: relative; }
 .routemap-svg { width: 100%; height: auto; display: block; max-width: 1100px; margin: 0 auto;
