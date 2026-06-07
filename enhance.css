@@ -58,6 +58,21 @@
 /* ===== «Магнитные» кнопки ===== */
 .btn-primary, .btn-cta, .cta-btn, .e-submit { will-change: transform; }
 
+/* ===== Премиум 3D-блок (в стиле AIR) ===== */
+.premium3d { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden;
+  background: radial-gradient(ellipse 80% 70% at 50% 45%, rgba(59,130,246,.10), transparent 70%), #070b1e; }
+.premium3d-canvas { position: absolute; inset: 0; z-index: 1; }
+.premium3d-word { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  font-family: 'Space Grotesk','Inter',sans-serif; font-weight: 800; font-size: 30vw; line-height: 1;
+  letter-spacing: -.05em; color: rgba(255,255,255,.035); white-space: nowrap; z-index: 0; pointer-events: none;
+  user-select: none; }
+.premium3d-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 0 32px; width: 100%; }
+.premium3d-eyebrow { font-family: 'Space Grotesk',sans-serif; font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--e-blue); margin-bottom: 18px; }
+.premium3d h2 { font-family: 'Space Grotesk','Inter',sans-serif; font-size: clamp(2.2rem,6vw,4.6rem); line-height: 1.02; letter-spacing: -.03em; max-width: 12ch; margin-bottom: 22px; }
+.premium3d h2 .ac { background: linear-gradient(135deg,#3B82F6,#6366F1,#14B8A6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.premium3d p { color: #94A3B8; font-size: clamp(1rem,1.6vw,1.2rem); line-height: 1.8; max-width: 460px; }
+.premium3d .hero-btns { margin-top: 32px; }
+
 /* ===== Конфигуратор авто (страница трансфера) ===== */
 .car-config { display: grid; grid-template-columns: 1.3fr .9fr; gap: 36px; align-items: center; }
 .car-stage { position: relative; border-radius: 22px; overflow: hidden; min-height: 340px;
