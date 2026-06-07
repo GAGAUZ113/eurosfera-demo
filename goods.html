@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Товары и оборудование из ЕС — EUROSFERA</title>
+<meta name="description" content="Закупка товаров и оборудования у европейских поставщиков. Оплата в евро от EU-юрлица, консолидация на складах в Болгарии, Польше и Литве, экспорт в Казахстан, Таджикистан, Узбекистан, Киргизию.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a0f2c;
+  --navy-deep: #060a1e;
+  --navy-light: #111640;
+  --navy-card: #0d1233;
+  --white: #FFFFFF;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #718096;
+  --gray-600: #64748B;
+  --blue: #3B82F6;
+  --blue-dark: #2563EB;
+  --indigo: #6366F1;
+  --teal: #14B8A6;
+  --accent-gradient: linear-gradient(135deg, var(--blue), var(--teal));
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--white);background:var(--navy);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3,h4,h5{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;letter-spacing:-0.02em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+
+/* CANVAS + NOISE */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35}
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.5'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 0;background:rgba(6,10,30,.92);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);box-shadow:0 1px 0 rgba(255,255,255,.05),0 4px 30px rgba(0,0,0,.3)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{width:36px;height:36px;background:var(--accent-gradient);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:white;box-shadow:0 2px 12px rgba(59,130,246,.3)}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:3px;text-transform:uppercase;background:linear-gradient(135deg,#fff 60%,rgba(255,255,255,.7));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav{display:flex;align-items:center;gap:32px}
+.nav a{font-size:14px;font-weight:500;color:rgba(255,255,255,.55);transition:color .3s;letter-spacing:.3px;position:relative}
+.nav a:not(.btn-cta)::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1.5px;background:var(--accent-gradient);transform:scaleX(0);transition:transform .3s cubic-bezier(.22,1,.36,1);transform-origin:right}
+.nav a:not(.btn-cta):hover{color:var(--white)}
+.nav a:not(.btn-cta):hover::after{transform:scaleX(1);transform-origin:left}
+.nav .btn-cta{background:var(--accent-gradient);color:var(--white);padding:10px 24px;border-radius:10px;font-weight:600;font-size:14px;transition:all .3s cubic-bezier(.22,1,.36,1);box-shadow:0 2px 12px rgba(59,130,246,.2)}
+.nav .btn-cta:hover{box-shadow:0 4px 24px rgba(59,130,246,.4);transform:translateY(-1px)}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.burger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;margin:5px 0;transition:.3s}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--navy-deep);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--white);font-size:1.3rem;font-weight:500}
+.mobile-close{position:absolute;top:22px;right:28px;background:none;border:none;cursor:pointer}
+.mobile-close svg{width:28px;height:28px;stroke:var(--white);stroke-width:2}
+
+/* HERO */
+.hero{padding:160px 0 100px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 30% 40%,rgba(59,130,246,.08) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 80% 60%,rgba(20,184,166,.05) 0%,transparent 50%)}
+.hero-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.06) 0%,transparent 70%);top:5%;right:10%;animation:float 20s ease-in-out infinite;pointer-events:none}
+@keyframes float{0%,100%{transform:translate(0,0)}33%{transform:translate(30px,-20px)}66%{transform:translate(-20px,15px)}}
+.hero .wrap{position:relative;z-index:2;max-width:800px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:100px;padding:6px 16px 6px 8px;font-size:13px;font-weight:500;color:var(--blue);margin-bottom:28px}
+.hero-badge-dot{width:8px;height:8px;background:var(--teal);border-radius:50%;animation:pulse-badge 2s ease-in-out infinite}
+@keyframes pulse-badge{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-text h1{font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:800;margin-bottom:24px;letter-spacing:-0.03em;line-height:1.08}
+.hero-text h1 .accent{background:linear-gradient(135deg,var(--blue) 0%,var(--teal) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-text .lead{font-size:clamp(1rem,1.6vw,1.1rem);color:var(--gray-400);margin-bottom:36px;max-width:560px;line-height:1.8}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--accent-gradient);color:var(--white);padding:16px 36px;border-radius:12px;font-weight:600;font-size:15px;border:none;cursor:pointer;transition:all .3s cubic-bezier(.22,1,.36,1);box-shadow:0 4px 20px rgba(59,130,246,.25);position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1),transparent);opacity:0;transition:opacity .3s}
+.btn-primary:hover{box-shadow:0 8px 32px rgba(59,130,246,.4);transform:translateY(-2px)}
+.btn-primary:hover::before{opacity:1}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--white);padding:16px 36px;border-radius:12px;font-weight:600;font-size:15px;border:1.5px solid rgba(255,255,255,.15);cursor:pointer;transition:all .3s cubic-bezier(.22,1,.36,1)}
+.btn-outline:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.04);transform:translateY(-2px)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:480px}
+.hero-stat{padding:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;text-align:center;transition:all .3s}
+.hero-stat:hover{border-color:rgba(59,130,246,.15);transform:translateY(-2px)}
+.hero-stat .num{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2}
+.hero-stat .lbl{font-size:12px;color:var(--gray-400);margin-top:4px;font-weight:500}
+
+/* SECTION COMMON */
+.section{padding:100px 0;position:relative}
+.section-alt{background:var(--navy-deep)}
+.section-divider{height:1px;background:linear-gradient(90deg,transparent 5%,rgba(59,130,246,.12) 30%,rgba(20,184,166,.12) 70%,transparent 95%)}
+.section-head{text-align:center;margin-bottom:64px}
+.section-head .overline{display:inline-block;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.section-head h2{font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:14px;font-weight:700}
+.section-head p{color:var(--gray-400);font-size:16px;max-width:540px;margin:0 auto;line-height:1.7}
+
+/* CATEGORIES */
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cat-item{background:var(--navy-card);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:36px 28px;transition:all .5s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden}
+.cat-item::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent-gradient);opacity:0;transition:opacity .4s}
+.cat-item::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(59,130,246,.02) 0%,transparent 50%);opacity:0;transition:opacity .4s}
+.cat-item:hover{border-color:rgba(59,130,246,.15);transform:translateY(-6px);box-shadow:0 20px 56px rgba(0,0,0,.2)}
+.cat-item:hover::before{opacity:1}
+.cat-item:hover::after{opacity:1}
+.cat-icon{position:relative;z-index:1;font-size:36px;margin-bottom:16px}
+.cat-item h4{position:relative;z-index:1;font-size:17px;margin-bottom:10px;font-weight:700}
+.cat-item p{position:relative;z-index:1;font-size:14px;color:var(--gray-400);margin-bottom:12px;line-height:1.75}
+.cat-brands{position:relative;z-index:1;font-size:12px;color:var(--blue);font-weight:600;letter-spacing:.3px}
+
+/* PROCESS */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.proc-card{text-align:center;position:relative;padding:28px 16px}
+.proc-num{width:64px;height:64px;border-radius:50%;background:var(--accent-gradient);color:var(--white);font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 24px rgba(59,130,246,.25);transition:all .3s}
+.proc-card:hover .proc-num{box-shadow:0 8px 36px rgba(59,130,246,.4);transform:scale(1.05)}
+.proc-card h4{font-size:16px;margin-bottom:8px;font-weight:700}
+.proc-card p{font-size:14px;color:var(--gray-400);max-width:200px;margin:0 auto;line-height:1.6}
+
+/* ADVANTAGES */
+.adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.adv{padding:36px 28px;background:var(--navy-card);border:1px solid rgba(255,255,255,.06);border-radius:20px;transition:all .4s cubic-bezier(.22,1,.36,1)}
+.adv:hover{border-color:rgba(59,130,246,.15);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.15)}
+.adv-icon{width:56px;height:56px;border-radius:14px;background:rgba(59,130,246,.08);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.adv-icon svg{width:26px;height:26px;stroke:var(--blue);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.adv h4{font-size:16px;margin-bottom:10px;font-weight:700}
+.adv p{font-size:14px;color:var(--gray-400);line-height:1.75}
+
+/* CASE STUDY */
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.case-card{background:var(--navy-card);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:36px;transition:all .4s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden}
+.case-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent-gradient);opacity:.5}
+.case-card:hover{border-color:rgba(59,130,246,.15);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.15)}
+.case-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);background:rgba(59,130,246,.08);padding:5px 12px;border-radius:8px;margin-bottom:14px}
+.case-card h4{font-size:18px;margin-bottom:14px;font-weight:700}
+.case-card>p{font-size:14px;color:var(--gray-400);margin-bottom:20px;line-height:1.75}
+.case-details{display:flex;gap:28px}
+.case-detail{font-size:13px;color:var(--gray-400)}
+.case-detail strong{color:var(--white);display:block;font-size:18px;font-family:'Space Grotesk',sans-serif;margin-bottom:2px}
+
+/* COUNTRIES */
+.countries-wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:40px}
+.country-tag{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px 20px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:all .3s cubic-bezier(.22,1,.36,1);display:flex;align-items:center;gap:8px}
+.country-tag:hover{border-color:rgba(59,130,246,.2);color:var(--white);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+
+/* STATS BAR */
+.stats-bar{padding:64px 0;background:var(--accent-gradient);position:relative;overflow:hidden}
+.stats-bar::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,.02) 40px,rgba(255,255,255,.02) 80px)}
+.stats-bar::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,transparent 50%,rgba(0,0,0,.05) 100%)}
+.stats-bar .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:1}
+.stat{text-align:center}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;line-height:1}
+.stat-label{font-size:14px;opacity:.8;margin-top:8px;font-weight:500}
+
+/* FAQ */
+.faq-list{max-width:800px;margin:0 auto}
+.faq-item{border:1px solid rgba(255,255,255,.06);border-radius:14px;margin-bottom:12px;overflow:hidden;transition:all .3s;background:rgba(255,255,255,.01)}
+.faq-item:hover{border-color:rgba(59,130,246,.15)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;cursor:pointer;font-weight:600;font-size:15px;background:rgba(255,255,255,.02);transition:background .2s;user-select:none}
+.faq-q:hover{background:rgba(255,255,255,.04)}
+.faq-q svg{width:20px;height:20px;stroke:var(--gray-400);stroke-width:2;fill:none;transition:transform .4s cubic-bezier(.22,1,.36,1);flex-shrink:0;margin-left:16px}
+.faq-item.open .faq-q svg{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.22,1,.36,1)}
+.faq-item.open .faq-a{max-height:400px}
+.faq-a-inner{padding:0 28px 24px;font-size:14px;color:var(--gray-400);line-height:1.8}
+
+/* CTA */
+.cta{padding:100px 0;background:var(--accent-gradient);text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,.015) 40px,rgba(255,255,255,.015) 80px)}
+.cta .wrap{max-width:720px;position:relative;z-index:2}
+.cta h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:14px;font-weight:700}
+.cta>div>p{color:rgba(255,255,255,.85);font-size:16px;margin-bottom:40px;line-height:1.7}
+.cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.cta-btn{padding:16px 32px;border-radius:12px;font-weight:600;font-size:15px;transition:all .3s cubic-bezier(.22,1,.36,1);display:inline-flex;align-items:center;gap:10px}
+.cta-wa{background:#25D366;color:var(--white)}
+.cta-tg{background:#0088CC;color:var(--white)}
+.cta-mail{background:rgba(255,255,255,.12);color:var(--white);border:1.5px solid rgba(255,255,255,.25)}
+.cta-wa:hover,.cta-tg:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.cta-mail:hover{background:rgba(255,255,255,.2);transform:translateY(-3px)}
+.cta-phone{font-size:20px;font-weight:600;margin-top:8px}
+.cta-phone a{color:rgba(255,255,255,.9);transition:color .2s}
+.cta-phone a:hover{color:var(--white)}
+
+/* FOOTER */
+.footer{background:var(--navy-deep);padding:48px 0 32px;position:relative}
+.footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,.1),transparent)}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-about .footer-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:2px;margin-bottom:14px}
+.footer-about p{font-size:13px;color:var(--gray-500);line-height:1.7;max-width:280px}
+.footer-col h5{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px}
+.footer-col a{display:block;font-size:14px;color:var(--gray-400);padding:4px 0;transition:color .2s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{padding-top:24px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-legal{font-size:12px;color:var(--gray-600);line-height:1.6}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .wrap{padding:0 24px}
+  .cat-grid,.adv-grid{grid-template-columns:1fr 1fr}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:768px){
+  .nav{display:none}.burger{display:block}
+  .cat-grid,.adv-grid,.case-grid,.process-grid{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:repeat(3,1fr)}
+  .stats-bar .wrap{grid-template-columns:repeat(2,1fr);gap:32px}
+  .stat-num{font-size:36px}
+  .section-head h2{font-size:1.6rem}
+  .footer-top{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{justify-content:center;text-align:center}
+  .hero{padding:130px 0 80px}
+}
+@media(max-width:480px){
+  .hero-stats{grid-template-columns:1fr}
+  .cta-buttons{flex-direction:column;align-items:center}
+}
+</style>
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="stylesheet" href="enhance.css">
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="wrap">
+    <a href="index.html" class="logo"><div class="logo-mark">E</div><span class="logo-text">Eurosfera</span></a>
+    <nav class="nav">
+      <a href="index.html">Главная</a>
+      <a href="logistics.html">Логистика</a>
+      <a href="it.html">IT и ПО</a>
+      <a href="#contact" class="btn-cta">Связаться</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="index.html">Главная</a>
+  <a href="logistics.html">Логистика</a>
+  <a href="it.html">IT и ПО</a>
+  <a href="#contact">Связаться</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Goods &middot; EU-юрлицо
+      </div>
+      <h1>Закупка <span class="accent">товаров и оборудования</span> в Европе</h1>
+      <p class="lead">Находим поставщика, оплачиваем инвойс от EU-юрлица в евро, принимаем товар на склад в ЕС и&nbsp;отправляем получателю в Казахстан, Таджикистан, Узбекистан, Киргизию, Монголию.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
+          Запросить расчёт
+        </a>
+        <a href="#how" class="btn-outline">Как работаем &darr;</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">15+</div><div class="lbl">стран-поставщиков</div></div>
+        <div class="hero-stat"><div class="num">3</div><div class="lbl">склада в ЕС</div></div>
+        <div class="hero-stat"><div class="num">1 день</div><div class="lbl">оплата инвойса</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<div class="section-divider"></div>
+<section class="section section-alt" id="categories">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="overline reveal">Каталог</div>
+      <h2 class="reveal">Категории товаров</h2>
+      <p class="reveal">Работаем с любыми европейскими поставщиками — от фабрик до дистрибьюторов</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-item reveal">
+        <div class="cat-icon">🏗</div>
+        <h4>Строительные материалы</h4>
+        <p>Керамогранит, плитка, мозаика, сантехника, смесители, душевые системы, инженерная сантехника. Прямые поставки от фабрик.</p>
+        <div class="cat-brands">Испания &middot; Италия &middot; Португалия &middot; Польша &middot; Германия</div>
+      </div>
+      <div class="cat-item reveal reveal-delay-1">
+        <div class="cat-icon">⚙️</div>
+        <h4>Промышленное оборудование</h4>
+        <p>Станки, компрессоры, измерительные приборы, промышленный инструмент, запчасти к европейскому оборудованию.</p>
+        <div class="cat-brands">Германия &middot; Чехия &middot; Австрия &middot; Швейцария</div>
+      </div>
+      <div class="cat-item reveal reveal-delay-2">
+        <div class="cat-icon">🏠</div>
+        <h4>Мебель и интерьер</h4>
+        <p>Мебель для HoReCa и дома, освещение, декор, отделочные материалы, текстиль. Контракты с фабриками и шоурумами.</p>
+        <div class="cat-brands">Италия &middot; Франция &middot; Нидерланды &middot; Скандинавия</div>
+      </div>
+      <div class="cat-item reveal">
+        <div class="cat-icon">🧪</div>
+        <h4>Химия и сырьё</h4>
+        <p>Строительная химия, клеи, герметики, лакокрасочные материалы, промышленные компоненты для производственных линий.</p>
+        <div class="cat-brands">Германия &middot; Бельгия &middot; Нидерланды &middot; Финляндия</div>
+      </div>
+      <div class="cat-item reveal reveal-delay-1">
+        <div class="cat-icon">🔌</div>
+        <h4>Электрика и автоматика</h4>
+        <p>Кабельная продукция, электрокомпоненты, промышленная автоматика, системы безопасности и контроля доступа.</p>
+        <div class="cat-brands">Германия &middot; Франция &middot; Австрия &middot; Швеция</div>
+      </div>
+      <div class="cat-item reveal reveal-delay-2">
+        <div class="cat-icon">📦</div>
+        <h4>Любой товар под запрос</h4>
+        <p>Не нашли категорию? Пришлите спецификацию — найдём поставщика, запросим цены и организуем полный цикл закупки и доставки.</p>
+        <div class="cat-brands">Любая страна ЕС &middot; Великобритания &middot; Турция</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="section-divider"></div>
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="overline reveal">Процесс</div>
+      <h2 class="reveal">Как проходит закупка</h2>
+      <p class="reveal">Прозрачный процесс: от вашей заявки до получения товара</p>
+    </div>
+    <div class="process-grid">
+      <div class="proc-card reveal">
+        <div class="proc-num">1</div>
+        <h4>Заявка</h4>
+        <p>Вы описываете что нужно: товар, количество, желаемого поставщика или бюджет. Если поставщик неизвестен — подберём сами.</p>
+      </div>
+      <div class="proc-card reveal reveal-delay-1">
+        <div class="proc-num">2</div>
+        <h4>Расчёт</h4>
+        <p>Запрашиваем цены у поставщиков, рассчитываем логистику, таможню и наше вознаграждение. Присылаем калькуляцию.</p>
+      </div>
+      <div class="proc-card reveal reveal-delay-2">
+        <div class="proc-num">3</div>
+        <h4>Закупка</h4>
+        <p>Оплачиваем поставщику в евро от нашего EU-юрлица. Принимаем товар на склад в Болгарии, Польше или Литве.</p>
+      </div>
+      <div class="proc-card reveal reveal-delay-3">
+        <div class="proc-num">4</div>
+        <h4>Доставка</h4>
+        <p>Консолидируем заказы, оформляем экспорт, отправляем — авто, авиа, морем или ж/д. Трекинг на каждом этапе.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="wrap">
+    <div class="stat"><div class="stat-num">15+</div><div class="stat-label">стран-поставщиков</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">склада в ЕС</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">банка в Европе</div></div>
+    <div class="stat"><div class="stat-num">1 день</div><div class="stat-label">оплата инвойса</div></div>
+  </div>
+</div>
+
+<!-- ADVANTAGES -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="overline reveal">Преимущества</div>
+      <h2 class="reveal">Почему через Eurosfera</h2>
+      <p class="reveal">Ваш закупочный офис в Европе с собственной инфраструктурой</p>
+    </div>
+    <div class="adv-grid">
+      <div class="adv reveal">
+        <div class="adv-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Действующее EU-юрлицо</h4>
+        <p>Болгарская компания EUROSFERA LTD. Полноценный участник европейского рынка — работаем с любыми вендорами и фабриками напрямую.</p>
+      </div>
+      <div class="adv reveal reveal-delay-1">
+        <div class="adv-icon">
+          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h4>Оплата инвойсов за 1 день</h4>
+        <p>EUR-счета в двух европейских банках — United Bulgarian Bank и Eurobank Bulgaria. Инвойсы оплачиваем в течение рабочего дня, без задержек.</p>
+      </div>
+      <div class="adv reveal reveal-delay-2">
+        <div class="adv-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h4>Склады в 3 странах ЕС</h4>
+        <p>Болгария, Польша, Литва. Приёмка, хранение, консолидация заказов от нескольких поставщиков на одном складе перед отправкой.</p>
+      </div>
+      <div class="adv reveal">
+        <div class="adv-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h4>Полный документооборот</h4>
+        <p>Инвойсы, CMR, экспортные декларации, сертификаты происхождения, EUR.1 — полный пакет документов для таможни получателя.</p>
+      </div>
+      <div class="adv reveal reveal-delay-1">
+        <div class="adv-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h4>Работаем по всей Европе</h4>
+        <p>Поставщики в 15+ странах: от Португалии до Финляндии, от Великобритании до Греции. Турция — по запросу.</p>
+      </div>
+      <div class="adv reveal reveal-delay-2">
+        <div class="adv-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h4>Прозрачная калькуляция</h4>
+        <p>Вы видите цену поставщика, стоимость логистики и наше вознаграждение. Без скрытых комиссий и наценок. Каждая цифра обоснована.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<div class="section-divider"></div>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="overline reveal">Кейсы</div>
+      <h2 class="reveal">Примеры закупок</h2>
+      <p class="reveal">Реальные кейсы — как это работает на практике</p>
+    </div>
+    <div class="case-grid">
+      <div class="case-card reveal">
+        <div class="case-tag">Строительные материалы</div>
+        <h4>Керамогранит из Испании в Казахстан</h4>
+        <p>Закупка 3 контейнеров керамогранита от фабрики в Кастельон-де-ла-Плана. Оплата в евро, консолидация на складе в Болгарии, отправка морем через Клайпеду.</p>
+        <div class="case-details">
+          <div class="case-detail"><strong>21 день</strong>от заявки до получения</div>
+          <div class="case-detail"><strong>3 &times; 40'</strong>контейнера</div>
+          <div class="case-detail"><strong>100%</strong>документов</div>
+        </div>
+      </div>
+      <div class="case-card reveal reveal-delay-1">
+        <div class="case-tag">Промышленное оборудование</div>
+        <h4>Компрессоры из Германии в Узбекистан</h4>
+        <p>Закупка 12 промышленных компрессоров у немецкого производителя. Приёмка на склад в Польше, упаковка на паллеты, автоперевозка до Ташкента.</p>
+        <div class="case-details">
+          <div class="case-detail"><strong>14 дней</strong>от заявки до получения</div>
+          <div class="case-detail"><strong>12 ед.</strong>оборудования</div>
+          <div class="case-detail"><strong>EUR.1</strong>сертификат</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTRIES -->
+<div class="section-divider"></div>
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="overline reveal">География</div>
+      <h2 class="reveal">Страны-поставщики</h2>
+      <p class="reveal">Работаем с фабриками и дистрибьюторами по всей Европе — закупаем напрямую, без посредников</p>
+    </div>
+    <div class="countries-wrap reveal">
+      <span class="country-tag">🇩🇪 Германия</span>
+      <span class="country-tag">🇪🇸 Испания</span>
+      <span class="country-tag">🇮🇹 Италия</span>
+      <span class="country-tag">🇵🇹 Португалия</span>
+      <span class="country-tag">🇵🇱 Польша</span>
+      <span class="country-tag">🇨🇿 Чехия</span>
+      <span class="country-tag">🇦🇹 Австрия</span>
+      <span class="country-tag">🇫🇷 Франция</span>
+      <span class="country-tag">🇳🇱 Нидерланды</span>
+      <span class="country-tag">🇧🇬 Болгария</span>
+      <span class="country-tag">🇱🇹 Литва</span>
+      <span class="country-tag">🇱🇻 Латвия</span>
+      <span class="country-tag">🇫🇮 Финляндия</span>
+      <span class="country-tag">🇸🇪 Швеция</span>
+      <span class="country-tag">🇭🇺 Венгрия</span>
+      <span class="country-tag">🇬🇷 Греция</span>
+      <span class="country-tag">🇧🇪 Бельгия</span>
+      <span class="country-tag">🇩🇰 Дания</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="section-divider"></div>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="overline reveal">FAQ</div>
+      <h2 class="reveal">Частые вопросы</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Какой минимальный объём закупки?</span>
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Минимального порога нет — работаем с заказами от одной паллеты до контейнерных партий. Стоимость логистики за единицу товара снижается при увеличении объёма, поэтому мы рекомендуем консолидировать заказы.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>В какой валюте проходит расчёт?</span>
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Мы оплачиваем поставщикам в евро (EUR) от нашего EU-юрлица. С вами можем работать в EUR, USD — зависит от удобства. Все платежи проходят через европейские банки с полным документальным подтверждением.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Сколько времени занимает закупка?</span>
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Типичные сроки: расчёт — 1-2 дня, оплата поставщику — 1 день, производство (если под заказ) — от 2 до 6 недель, доставка — от 5 до 21 дня в зависимости от маршрута и вида транспорта. Складской товар отгружаем за 3-7 дней.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Можно ли закупить у конкретного поставщика?</span>
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Да. Если у вас есть контакт поставщика или каталожный номер — мы свяжемся с ним от нашего юрлица, запросим цены и условия. Если поставщик неизвестен — подберём оптимальный вариант из нашей базы контактов в 15+ странах ЕС.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Какие документы я получу?</span>
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Полный пакет: инвойс от EUROSFERA LTD, CMR (товарно-транспортная накладная), экспортная декларация, при необходимости — сертификат EUR.1, фитосанитарные сертификаты, декларации соответствия. Всё что нужно для таможенного оформления на стороне получателя.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <h2 class="reveal">Нужен товар из Европы?</h2>
+    <p class="reveal">Опишите задачу — мы подготовим расчёт стоимости и сроков в течение рабочего дня</p>
+    <div class="cta-buttons reveal">
+      <a href="https://wa.me/359892098460" target="_blank" class="cta-btn cta-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://t.me/gagauz13" target="_blank" class="cta-btn cta-tg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Telegram
+      </a>
+      <a href="mailto:logist@euro.s.bg" class="cta-btn cta-mail">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        logist@euro.s.bg
+      </a>
+    </div>
+    <div class="cta-phone reveal"><a href="tel:+359892098460">+359 89 209 84 60</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-about">
+        <div class="footer-brand">EUROSFERA</div>
+        <p>Болгарская компания — торговый мост между Европой и Центральной Азией. Товары, логистика, IT&nbsp;&mdash;&nbsp;полный цикл от EU&#8209;юрлица.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Направления</h5>
+        <a href="logistics.html">Логистика</a>
+        <a href="it.html">IT и ПО</a>
+        <a href="company.html">Открытие компании</a>
+        <a href="agro.html">Удобрения / Агро</a>
+        <a href="transfer.html">Premium-трансфер</a>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <a href="mailto:logist@euro.s.bg">logist@euro.s.bg</a>
+        <a href="tel:+359892098460">+359 89 209 84 60</a>
+        <a href="https://wa.me/359892098460" target="_blank">WhatsApp</a>
+        <a href="https://t.me/gagauz13" target="_blank">Telegram</a>
+      </div>
+      <div class="footer-col">
+        <h5>Компания</h5>
+        <a href="index.html#about">О нас</a>
+        <a href="#how">Как работаем</a>
+        <a href="#contact">Связаться</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        &copy; 2026 EUROSFERA LTD<br>
+        Bulgaria, Sofia &middot; logist@euro.s.bg
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Particle network
+(function(){
+  const c=document.getElementById('particles'),ctx=c.getContext('2d');
+  let w,h,particles=[],mouse={x:null,y:null};
+  function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+  resize();addEventListener('resize',resize);
+  addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+  addEventListener('mouseout',()=>{mouse.x=null;mouse.y=null});
+  class P{constructor(){this.reset()}
+    reset(){this.x=Math.random()*w;this.y=Math.random()*h;this.vx=(Math.random()-.5)*.2;this.vy=(Math.random()-.5)*.2;this.r=Math.random()*1.5+.3;this.o=Math.random()*.2+.05}
+    update(){if(mouse.x!==null){const dx=this.x-mouse.x,dy=this.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);if(d<200){this.vx+=dx/d*.02;this.vy+=dy/d*.02}}this.vx*=.99;this.vy*=.99;this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>w||this.y<0||this.y>h)this.reset()}
+    draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(59,130,246,${this.o})`;ctx.fill()}}
+  const count=Math.min(50,Math.floor(w*h/25000));
+  for(let i=0;i<count;i++)particles.push(new P());
+  function lines(){for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<160){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(59,130,246,${.04*(1-d/160)})`;ctx.lineWidth=.5;ctx.stroke()}}}
+  function loop(){ctx.clearRect(0,0,w,h);particles.forEach(p=>{p.update();p.draw()});lines();requestAnimationFrame(loop)}
+  loop();
+})();
+
+// Mobile menu
+const burgerBtn=document.getElementById('burgerBtn'),mobileMenu=document.getElementById('mobileMenu'),mobileClose=document.getElementById('mobileClose');
+burgerBtn.addEventListener('click',()=>mobileMenu.classList.add('open'));
+mobileClose.addEventListener('click',()=>mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})});
+});
+
+// Scroll reveal
+const reveals=document.querySelectorAll('.reveal');
+const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach(el=>revealObserver.observe(el));
+</script>
+<script src="enhance.js" defer></script>
+</body>
+</html>
