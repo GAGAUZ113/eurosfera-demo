@@ -58,6 +58,24 @@
 /* ===== «Магнитные» кнопки ===== */
 .btn-primary, .btn-cta, .cta-btn, .e-submit { will-change: transform; }
 
+/* ===== 3D scroll-сцена ===== */
+.scene3d { position: relative; height: 280vh; z-index: 2; }
+.scene3d-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; }
+.scene3d-canvas { position: absolute; inset: 0; z-index: 0; }
+.scene3d-inner { position: relative; z-index: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+.scene3d-eyebrow { font-family: 'Space Grotesk','Inter',sans-serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--e-blue); margin-bottom: 14px; }
+.scene3d-steps { position: relative; min-height: 220px; max-width: 560px; }
+.scene3d-step { position: absolute; inset: 0; opacity: 0; transform: translateY(24px); transition: opacity .5s, transform .5s; pointer-events: none; }
+.scene3d-step.active { opacity: 1; transform: translateY(0); }
+.scene3d-step .num { font-family: 'Space Grotesk','Inter',sans-serif; font-size: 15px; font-weight: 700; color: var(--e-teal); margin-bottom: 10px; }
+.scene3d-step h3 { font-family: 'Space Grotesk','Inter',sans-serif; font-size: clamp(1.8rem,4vw,2.8rem); line-height: 1.1; margin-bottom: 14px; letter-spacing: -.02em; }
+.scene3d-step p { color: #94A3B8; font-size: clamp(1rem,1.6vw,1.15rem); line-height: 1.8; }
+.scene3d-progress { display: flex; gap: 8px; margin-top: 30px; }
+.scene3d-progress span { width: 34px; height: 4px; border-radius: 4px; background: rgba(255,255,255,.12); transition: background .4s; }
+.scene3d-progress span.on { background: linear-gradient(90deg, var(--e-blue), var(--e-teal)); }
+@media (max-width: 760px) { .scene3d { height: 360vh; } .scene3d-canvas { opacity: .5; } }
+
 /* ===== Переключатель языков ===== */
 #euro-lang { position: relative; z-index: 120; }
 .euro-lang-btn { display: inline-flex; align-items: center; gap: 6px; cursor: pointer;

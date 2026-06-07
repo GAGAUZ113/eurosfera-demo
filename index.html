@@ -1152,6 +1152,39 @@ body::before {
   </div>
 </section>
 
+<!-- 3D SCROLL SCENE -->
+<section class="scene3d" id="scene3d">
+  <div class="scene3d-sticky">
+    <div class="scene3d-canvas" id="scene3d-canvas"></div>
+    <div class="scene3d-inner">
+      <div class="scene3d-eyebrow">Полный цикл</div>
+      <div class="scene3d-steps">
+        <div class="scene3d-step" data-step="0">
+          <div class="num">01 — Закупка</div>
+          <h3>Находим и закупаем в ЕС</h3>
+          <p>Подбираем поставщика в Европе и закупаем товар, ПО или оборудование от имени нашей EU-компании.</p>
+        </div>
+        <div class="scene3d-step" data-step="1">
+          <div class="num">02 — Оплата</div>
+          <h3>Оплачиваем в евро</h3>
+          <p>Оплачиваем инвойс в EUR за один рабочий день. Вы получаете полный пакет документов.</p>
+        </div>
+        <div class="scene3d-step" data-step="2">
+          <div class="num">03 — Склад</div>
+          <h3>Консолидируем на складе</h3>
+          <p>Принимаем и собираем груз на складах в Болгарии, Польше и Литве. Таможенное оформление EORI/VAT.</p>
+        </div>
+        <div class="scene3d-step" data-step="3">
+          <div class="num">04 — Доставка</div>
+          <h3>Доставляем получателю</h3>
+          <p>Отправляем по оптимальному маршруту — авто, ж/д, море — до двери в Центральной Азии.</p>
+        </div>
+      </div>
+      <div class="scene3d-progress"><span></span><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</section>
+
 <!-- GEOGRAPHY -->
 <div class="section-divider"></div>
 <section class="geo" id="geo">
@@ -1468,5 +1501,6 @@ reveals.forEach(el => revealObserver.observe(el));
 <script src="i18n.js" defer></script>
 <script src="lib/three.min.js"></script>
 <script src="globe.js"></script>
+<script src="scene3d.js"></script>
 </body>
 </html>
