@@ -40,6 +40,11 @@
 .dir-card .dir-icon svg { transition: filter .35s; }
 .dir-card:hover .dir-icon svg { filter: drop-shadow(0 0 10px rgba(99,102,241,.6)); }
 
+/* Фоновое тематическое фото в карточке направления */
+.dir-card[style*="--cardbg"] { background-image: linear-gradient(160deg, rgba(10,15,44,.90), rgba(10,15,44,.96)), var(--cardbg) !important;
+  background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; transition: background-image .4s, transform .35s, box-shadow .35s, border-color .35s; }
+.dir-card[style*="--cardbg"]:hover { background-image: linear-gradient(160deg, rgba(10,15,44,.78), rgba(10,15,44,.9)), var(--cardbg) !important; }
+
 /* Бегущий блик по карточке направления при наведении */
 .dir-card { position: relative; overflow: hidden; }
 .dir-card::after {
