@@ -58,6 +58,31 @@
 /* ===== «Магнитные» кнопки ===== */
 .btn-primary, .btn-cta, .cta-btn, .e-submit { will-change: transform; }
 
+/* ===== Премиум стат-банд (открытие фирмы — доверие) ===== */
+.e-statband { position: relative; z-index: 2; padding: 58px 0;
+  background: linear-gradient(135deg, rgba(20,184,166,.14), rgba(99,102,241,.12));
+  border-top: 1px solid var(--e-line); border-bottom: 1px solid var(--e-line); }
+.e-statband .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+.e-statband .num { font-family: 'Space Grotesk','Inter',sans-serif; font-size: clamp(2rem,5vw,3.2rem); font-weight: 800; letter-spacing: -.02em;
+  background: linear-gradient(135deg, var(--e-teal), var(--e-indigo)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.e-statband .lbl { color: #94A3B8; font-size: 14px; margin-top: 8px; }
+@media (max-width: 760px) { .e-statband .wrap { grid-template-columns: 1fr 1fr; gap: 32px 16px; } }
+
+/* ===== Органик-банд (агро) ===== */
+.e-organic { position: relative; z-index: 2; background: linear-gradient(160deg, rgba(16,185,129,.12), rgba(20,184,166,.06)); padding: 0 0 80px; }
+.e-wave { display: block; width: 100%; height: 90px; }
+.e-organic .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center; padding-top: 30px; }
+.e-organic .o-photo { border-radius: 22px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); aspect-ratio: 16/11; }
+.e-organic .o-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
+.e-organic .o-photo:hover img { transform: scale(1.05); }
+.e-organic h2 { font-family: 'Space Grotesk','Inter',sans-serif; font-size: clamp(1.8rem,4vw,2.6rem); margin-bottom: 16px; letter-spacing: -.02em; }
+.e-organic h2 .ac { color: #34d399; }
+.e-organic p { color: #94A3B8; line-height: 1.8; margin-bottom: 12px; }
+.e-leaf { display: inline-grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; margin-bottom: 18px;
+  background: rgba(52,211,153,.15); border: 1px solid rgba(52,211,153,.3); }
+.e-leaf svg { width: 28px; height: 28px; stroke: #34d399; fill: none; stroke-width: 1.7; }
+@media (max-width: 760px) { .e-organic .wrap { grid-template-columns: 1fr; } }
+
 /* ===== Bento-витрина (товары) ===== */
 .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 175px; gap: 16px; grid-auto-flow: dense; }
 .bento-item { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,.08);
