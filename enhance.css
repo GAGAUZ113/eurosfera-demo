@@ -147,6 +147,28 @@ html.lenis, html.lenis body { height: auto; }
     transform: translate(-50%,-50%); pointer-events: none; z-index: 10000; }
 }
 
+/* ===== Крупные чередующиеся блоки (стиль dongwon) ===== */
+.e-showcase { display: flex; flex-direction: column; gap: 80px; }
+.e-show-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.e-show-row:nth-child(even) .e-show-media { order: 2; }
+.e-show-media { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 4/3;
+  border: 1px solid rgba(255,255,255,.08); box-shadow: 0 24px 60px rgba(0,0,0,.4); }
+.e-show-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+.e-show-row:hover .e-show-media img { transform: scale(1.06); }
+.e-show-media .e-show-num { position: absolute; top: 18px; left: 20px; font-family: 'Space Grotesk','Inter',sans-serif;
+  font-size: 56px; font-weight: 800; color: rgba(255,255,255,.85); line-height: 1; text-shadow: 0 4px 20px rgba(0,0,0,.5); }
+.e-show-text .overline { margin-bottom: 14px; }
+.e-show-text h3 { font-family: 'Space Grotesk','Inter',sans-serif; font-size: clamp(1.6rem,3vw,2.3rem); margin-bottom: 16px; letter-spacing: -.02em; }
+.e-show-text p { color: #94A3B8; line-height: 1.8; margin-bottom: 18px; }
+.e-show-text ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.e-show-text li { display: flex; align-items: flex-start; gap: 10px; color: #CBD5E1; font-size: 15px; }
+.e-show-text li::before { content: ''; flex-shrink: 0; width: 18px; height: 18px; margin-top: 3px; border-radius: 6px;
+  background: linear-gradient(135deg, var(--e-blue), var(--e-indigo)); box-shadow: 0 0 12px rgba(59,130,246,.4); }
+@media (max-width: 860px) {
+  .e-show-row { grid-template-columns: 1fr; gap: 24px; }
+  .e-show-row:nth-child(even) .e-show-media { order: 0; }
+}
+
 /* ===== Сертификаты / доверие (в стиле liquidtechnology) ===== */
 .e-certs { position: relative; z-index: 2; }
 .e-certs-grid { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
