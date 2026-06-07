@@ -147,6 +147,34 @@ html.lenis, html.lenis body { height: auto; }
     transform: translate(-50%,-50%); pointer-events: none; z-index: 10000; }
 }
 
+/* ===== Сертификаты / доверие (в стиле liquidtechnology) ===== */
+.e-certs { position: relative; z-index: 2; }
+.e-certs-grid { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.e-cert { display: flex; align-items: center; gap: 12px; padding: 16px 22px; border-radius: 14px;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); transition: all .3s; min-width: 200px; }
+.e-cert:hover { border-color: rgba(59,130,246,.4); transform: translateY(-3px); background: rgba(59,130,246,.06); }
+.e-cert-ic { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(59,130,246,.18), rgba(99,102,241,.18)); }
+.e-cert-ic svg { width: 22px; height: 22px; stroke: var(--e-blue); fill: none; stroke-width: 1.8; }
+.e-cert b { display: block; font-family: 'Space Grotesk','Inter',sans-serif; font-size: 15px; }
+.e-cert span { font-size: 12px; color: #94A3B8; }
+
+/* ===== Решения (3 карточки, liquidtechnology) ===== */
+.e-solutions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.e-sol { position: relative; overflow: hidden; padding: 32px 28px; border-radius: 18px;
+  background: linear-gradient(165deg, var(--e-card-2), var(--e-card)); border: 1px solid rgba(255,255,255,.08);
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s; }
+.e-sol:hover { transform: translateY(-6px); box-shadow: 0 20px 55px rgba(0,0,0,.45); border-color: rgba(59,130,246,.4); }
+.e-sol-ic { width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--e-blue), var(--e-indigo)); box-shadow: 0 8px 24px rgba(59,130,246,.3); }
+.e-sol-ic svg { width: 28px; height: 28px; stroke: #fff; fill: none; stroke-width: 1.8; }
+.e-sol h3 { font-family: 'Space Grotesk','Inter',sans-serif; font-size: 20px; margin-bottom: 10px; }
+.e-sol p { color: #94A3B8; line-height: 1.7; font-size: 14px; }
+.e-sol::after { content: ''; position: absolute; right: -40px; top: -40px; width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,102,241,.15), transparent 70%); opacity: 0; transition: opacity .35s; }
+.e-sol:hover::after { opacity: 1; }
+@media (max-width: 860px) { .e-solutions { grid-template-columns: 1fr; } }
+
 /* ===== Премиум 3D-блок (в стиле AIR) ===== */
 .premium3d { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden;
   background: radial-gradient(ellipse 80% 70% at 50% 45%, rgba(59,130,246,.10), transparent 70%), #070b1e; }
