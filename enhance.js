@@ -307,6 +307,24 @@ const EURO_CONFIG = {
     openForm();
   };
 
+  /* ---------- 7b. Плавный переход между страницами ---------- */
+  const pageFade = document.createElement("div");
+  pageFade.className = "e-pagefade";
+  document.body.appendChild(pageFade);
+  document.addEventListener("click", e => {
+    const a = e.target.closest && e.target.closest("a");
+    if (!a) return;
+    const href = a.getAttribute("href");
+    if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return;
+    if (a.target === "_blank" || a.hasAttribute("download") || a.hasAttribute("data-lightbox") || a.hasAttribute("data-open-form")) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    if (/^https?:\/\//i.test(href) && href.indexOf(location.host) === -1) return; // внешняя ссылка
+    if (!/\.html(\?|#|$)/.test(href)) return; // только переходы на наши страницы
+    e.preventDefault();
+    pageFade.classList.add("show");
+    setTimeout(() => { location.href = href; }, 430);
+  }, true);
+
   /* ---------- 8. Премиум-полировка: прогресс, аврора, магнитные кнопки ---------- */
   // Индикатор прокрутки
   const prog = document.createElement("div");

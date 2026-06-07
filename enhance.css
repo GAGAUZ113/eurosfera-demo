@@ -3,6 +3,11 @@
    Подключается на всех страницах. Тёмная тема, палитра сайта.
    ========================================================= */
 
+/* ===== Плавный переход между страницами ===== */
+.e-pagefade { position: fixed; inset: 0; z-index: 10800; background: #070b1e; opacity: 0; visibility: hidden;
+  transition: opacity .45s ease, visibility .45s; pointer-events: none; }
+.e-pagefade.show { opacity: 1; visibility: visible; }
+
 /* ===== Прелоадер (заставка при загрузке) ===== */
 #e-preload { position: fixed; inset: 0; z-index: 11000; background: #070b1e; display: grid; place-items: center;
   transition: opacity .7s ease, visibility .7s; }
