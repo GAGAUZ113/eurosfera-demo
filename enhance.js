@@ -395,6 +395,31 @@ const EURO_CONFIG = {
     });
   });
 
+  /* ---------- 11. Кастомный курсор ---------- */
+  if (matchMedia("(hover: hover) and (pointer: fine)").matches && !reduceMotion) {
+    const ring = document.createElement("div"); ring.className = "e-cur";
+    const dot = document.createElement("div"); dot.className = "e-cur-dot";
+    document.body.appendChild(ring); document.body.appendChild(dot);
+    document.body.classList.add("e-has-cursor");
+    let cx = innerWidth / 2, cy = innerHeight / 2, rx = cx, ry = cy;
+    addEventListener("mousemove", e => { cx = e.clientX; cy = e.clientY; dot.style.left = cx + "px"; dot.style.top = cy + "px"; }, { passive: true });
+    (function loop() { rx += (cx - rx) * 0.2; ry += (cy - ry) * 0.2; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(loop); })();
+    const hot = "a, button, [data-open-form], .dir-card, [data-tilt], .car-tabs button, .e-c-btn, input, select, textarea, .faq-q, [data-lightbox]";
+    document.addEventListener("mouseover", e => { if (e.target.closest && e.target.closest(hot)) ring.classList.add("hot"); });
+    document.addEventListener("mouseout", e => { if (e.target.closest && e.target.closest(hot)) ring.classList.remove("hot"); });
+  }
+
+  /* ---------- 12. Lenis — плавная инерционная прокрутка ---------- */
+  function initLenis() {
+    if (!window.Lenis || reduceMotion) return;
+    const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    window.__lenis = lenis;
+    if (window.ScrollTrigger) lenis.on("scroll", () => ScrollTrigger.update());
+  }
+  loadScript("lib/lenis.min.js").then(initLenis).catch(() => {});
+
   loadScript("lib/gsap.min.js")
     .then(() => loadScript("lib/ScrollTrigger.min.js"))
     .then(initGSAP).catch(() => {});

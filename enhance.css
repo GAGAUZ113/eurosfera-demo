@@ -58,6 +58,25 @@
 /* ===== «Магнитные» кнопки ===== */
 .btn-primary, .btn-cta, .cta-btn, .e-submit { will-change: transform; }
 
+/* ===== Lenis (плавная прокрутка) ===== */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ===== Кастомный курсор ===== */
+@media (hover: hover) and (pointer: fine) {
+  body.e-has-cursor { cursor: none; }
+  body.e-has-cursor a, body.e-has-cursor button, body.e-has-cursor input,
+  body.e-has-cursor select, body.e-has-cursor textarea, body.e-has-cursor [onclick] { cursor: none; }
+  .e-cur { position: fixed; top: 0; left: 0; width: 30px; height: 30px; border: 1.5px solid rgba(99,102,241,.8);
+    border-radius: 50%; transform: translate(-50%,-50%); pointer-events: none; z-index: 10000;
+    transition: width .22s, height .22s, background .22s, border-color .22s; mix-blend-mode: difference; }
+  .e-cur.hot { width: 56px; height: 56px; background: rgba(99,102,241,.18); border-color: rgba(99,102,241,1); }
+  .e-cur-dot { position: fixed; top: 0; left: 0; width: 6px; height: 6px; background: #fff; border-radius: 50%;
+    transform: translate(-50%,-50%); pointer-events: none; z-index: 10000; }
+}
+
 /* ===== Премиум 3D-блок (в стиле AIR) ===== */
 .premium3d { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden;
   background: radial-gradient(ellipse 80% 70% at 50% 45%, rgba(59,130,246,.10), transparent 70%), #070b1e; }
