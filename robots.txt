@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Карта сайта добавится после выбора домена:
+# Sitemap: https://ВАШ-ДОМЕН/sitemap.xml

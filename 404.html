@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Страница не найдена — EUROSFERA</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="img/logo.png">
+<link href="lib/fonts.css" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:#0a0f2c;color:#fff;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+    overflow:hidden;position:relative}
+  .bg{position:fixed;inset:0;z-index:0;
+    background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(59,130,246,.12),transparent 60%)}
+  .wrap{position:relative;z-index:1;padding:24px;max-width:560px}
+  .code{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(5rem,18vw,9rem);font-weight:700;
+    line-height:1;letter-spacing:-.04em;
+    background:linear-gradient(135deg,#3B82F6,#6366F1,#14B8A6);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  h1{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(1.4rem,4vw,2rem);margin:8px 0 14px}
+  p{color:#94A3B8;font-size:16px;line-height:1.7;margin-bottom:32px}
+  .btn{display:inline-flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg,#3B82F6,#6366F1);color:#fff;
+    padding:15px 34px;border-radius:12px;font-weight:600;font-size:15px;text-decoration:none;
+    box-shadow:0 8px 30px rgba(59,130,246,.35);transition:transform .25s,box-shadow .25s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(59,130,246,.5)}
+  .links{margin-top:26px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-size:14px}
+  .links a{color:#94A3B8;text-decoration:none;transition:color .2s}
+  .links a:hover{color:#fff}
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="code">404</div>
+    <h1>Страница не найдена</h1>
+    <p>Похоже, такой страницы не существует или она была перемещена.<br>Вернитесь на главную или выберите направление.</p>
+    <a href="index.html" class="btn">← На главную</a>
+    <div class="links">
+      <a href="goods.html">Товары</a>
+      <a href="logistics.html">Логистика</a>
+      <a href="it.html">IT и ПО</a>
+      <a href="company.html">Компания в Болгарии</a>
+      <a href="agro.html">Удобрения</a>
+      <a href="transfer.html">Трансфер</a>
+    </div>
+  </div>
+</body>
+</html>
