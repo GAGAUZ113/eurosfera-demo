@@ -352,6 +352,40 @@ const EURO_CONFIG = {
     lb.classList.add("open"); document.body.style.overflow = "hidden";
   });
 
+  /* ---------- 10. Карусель (отзывы) ---------- */
+  document.querySelectorAll("[data-carousel]").forEach(car => {
+    const track = car.querySelector(".e-track");
+    const slides = track ? [...track.children] : [];
+    const dotsBox = car.querySelector(".e-c-dots");
+    if (!track || !slides.length) return;
+    let i = 0;
+    slides.forEach((_, k) => {
+      const b = document.createElement("b");
+      if (!k) b.className = "on";
+      b.addEventListener("click", () => { go(k); rest(); });
+      dotsBox && dotsBox.appendChild(b);
+    });
+    const dots = dotsBox ? [...dotsBox.children] : [];
+    function go(n) {
+      i = (n + slides.length) % slides.length;
+      track.style.transform = "translateX(" + (-i * 100) + "%)";
+      dots.forEach((d, k) => d.classList.toggle("on", k === i));
+    }
+    const prev = car.querySelector(".e-c-prev"), next = car.querySelector(".e-c-next");
+    prev && prev.addEventListener("click", () => { go(i - 1); rest(); });
+    next && next.addEventListener("click", () => { go(i + 1); rest(); });
+    let timer = reduceMotion ? null : setInterval(() => go(i + 1), 5500);
+    function rest() { if (timer) { clearInterval(timer); timer = setInterval(() => go(i + 1), 5500); } }
+    let sx = null;
+    car.addEventListener("touchstart", e => sx = e.touches[0].clientX, { passive: true });
+    car.addEventListener("touchend", e => {
+      if (sx == null) return;
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) { go(dx < 0 ? i + 1 : i - 1); rest(); }
+      sx = null;
+    });
+  });
+
   loadScript("lib/gsap.min.js")
     .then(() => loadScript("lib/ScrollTrigger.min.js"))
     .then(initGSAP).catch(() => {});

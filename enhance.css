@@ -58,6 +58,29 @@
 /* ===== «Магнитные» кнопки ===== */
 .btn-primary, .btn-cta, .cta-btn, .e-submit { will-change: transform; }
 
+/* ===== Отзывы / кейсы (карусель) ===== */
+.e-carousel { position: relative; overflow: hidden; max-width: 860px; margin: 0 auto; }
+.e-track { display: flex; transition: transform .55s cubic-bezier(.2,.8,.2,1); }
+.e-slide { min-width: 100%; box-sizing: border-box; padding: 4px; }
+.review-card { background: linear-gradient(180deg, var(--e-card-2), var(--e-card)); border: 1px solid var(--e-line);
+  border-radius: 22px; padding: 40px; position: relative; }
+.review-card .q { font-size: 56px; line-height: .6; color: var(--e-indigo); opacity: .5; font-family: Georgia, serif; }
+.review-quote { font-family: 'Space Grotesk','Inter',sans-serif; font-size: clamp(1.05rem,1.9vw,1.3rem); line-height: 1.65;
+  color: #E2E8F0; margin: 12px 0 24px; }
+.review-author { display: flex; align-items: center; gap: 14px; }
+.review-ava { width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center;
+  font-family: 'Space Grotesk',sans-serif; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--e-blue), var(--e-indigo)); }
+.review-meta strong { display: block; font-size: 15px; }
+.review-meta span { font-size: 13px; color: #94A3B8; }
+.e-c-nav { display: flex; justify-content: center; gap: 10px; margin-top: 26px; align-items: center; }
+.e-c-btn { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--e-line); background: rgba(255,255,255,.04);
+  color: #fff; cursor: pointer; display: grid; place-items: center; transition: all .2s; }
+.e-c-btn:hover { border-color: var(--e-blue); background: rgba(59,130,246,.12); }
+.e-c-btn svg { width: 20px; height: 20px; }
+.e-c-dots { display: flex; gap: 8px; margin: 0 8px; }
+.e-c-dots b { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.2); cursor: pointer; transition: all .25s; }
+.e-c-dots b.on { background: linear-gradient(90deg, var(--e-blue), var(--e-teal)); width: 26px; border-radius: 5px; }
+
 /* ===== 3D scroll-сцена ===== */
 .scene3d { position: relative; height: 280vh; z-index: 2; }
 .scene3d-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; }
