@@ -42,7 +42,7 @@ const EURO_CONFIG = {
   function animateCounter(el) {
     const raw = el.textContent.trim();
     // делим на: префикс (€, и т.п.) + число + суффикс (+, K, " день", "ч"…)
-    const m = raw.match(/^(\D*?)(\d[\d\s.,]*)(.*)$/s);
+    const m = raw.match(/^(\D*?)(\d[\d.,]*)(.*)$/s);
     if (!m) return;
     const prefix = m[1] || "";
     const target = parseInt(m[2].replace(/[\s.,]/g, ""), 10);
@@ -295,6 +295,40 @@ const EURO_CONFIG = {
     new Typed("#typed-roles", {
       strings: ["Товары", "Логистику", "IT и лицензии", "Открытие компании", "Удобрения", "Premium-трансфер"],
       typeSpeed: 70, backSpeed: 35, backDelay: 1600, startDelay: 400, loop: true, smartBackspace: true,
+    });
+  }
+
+  /* ---------- 8. Премиум-полировка: прогресс, аврора, магнитные кнопки ---------- */
+  // Индикатор прокрутки
+  const prog = document.createElement("div");
+  prog.className = "e-progress";
+  document.body.appendChild(prog);
+  function updateProgress() {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    prog.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+  }
+  addEventListener("scroll", updateProgress, { passive: true });
+  updateProgress();
+
+  // Аврора-фон (под контентом)
+  if (!reduceMotion) {
+    const aur = document.createElement("div");
+    aur.className = "e-aurora";
+    aur.innerHTML = '<span class="a1"></span><span class="a2"></span><span class="a3"></span>';
+    document.body.insertBefore(aur, document.body.firstChild);
+  }
+
+  // Магнитные кнопки — лёгкое притяжение к курсору
+  if (!reduceMotion && !matchMedia("(pointer: coarse)").matches) {
+    document.querySelectorAll(".btn-primary, .btn-cta, .cta-btn").forEach(btn => {
+      btn.addEventListener("mousemove", e => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = "translate(" + x * 0.18 + "px," + y * 0.28 + "px)";
+      });
+      btn.addEventListener("mouseleave", () => { btn.style.transform = ""; });
     });
   }
 

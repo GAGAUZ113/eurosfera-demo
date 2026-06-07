@@ -38,9 +38,28 @@
 .dir-card, .sw-card, .price-card, .why-card { transform-style: preserve-3d; will-change: transform; }
 .js-tilt-glare { border-radius: inherit; }
 
-/* Уважение к настройке «меньше движения» */
+/* ===== Индикатор прокрутки (тонкая линия сверху) ===== */
+.e-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0;
+  background: linear-gradient(90deg, var(--e-blue), var(--e-indigo), var(--e-teal));
+  z-index: 9800; box-shadow: 0 0 12px rgba(59,130,246,.6); transition: width .08s linear; }
+
+/* ===== Аврора — живой градиентный фон (очень мягкий) ===== */
+.e-aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.e-aurora span { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .14; }
+.e-aurora .a1 { width: 50vw; height: 50vw; background: #3B82F6; top: -10%; left: -10%; animation: e-aur 26s ease-in-out infinite; }
+.e-aurora .a2 { width: 45vw; height: 45vw; background: #6366F1; bottom: -15%; right: -10%; animation: e-aur 32s ease-in-out infinite reverse; }
+.e-aurora .a3 { width: 35vw; height: 35vw; background: #14B8A6; top: 40%; left: 50%; animation: e-aur 38s ease-in-out infinite; }
+@keyframes e-aur {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(8vw,-6vh) scale(1.15); }
+  66% { transform: translate(-6vw,8vh) scale(.9); }
+}
+
+/* ===== «Магнитные» кнопки ===== */
+.btn-primary, .btn-cta, .cta-btn, .e-submit { will-change: transform; }
+
 @media (prefers-reduced-motion: reduce) {
-  .dir-icon, .dir-card::after { animation: none !important; transition: none !important; }
+  .dir-icon, .dir-card::after, .e-aurora span { animation: none !important; transition: none !important; }
 }
 
 
