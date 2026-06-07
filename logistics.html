@@ -293,6 +293,53 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
   </div>
 </section>
 
+<!-- ROUTE MAP -->
+<div class="section-divider"></div>
+<section class="section routemap" id="routemap">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="overline reveal">Карта маршрутов</div>
+      <h2 class="reveal">Из Европы — в Центральную Азию</h2>
+      <p class="reveal">Грузы идут с наших складов в ЕС по оптимальным маршрутам</p>
+    </div>
+    <div class="reveal">
+    <svg class="routemap-svg" viewBox="0 0 1000 520" role="img" aria-label="Карта маршрутов из ЕС в Центральную Азию">
+      <defs>
+        <linearGradient id="routeGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#14B8A6"/>
+        </linearGradient>
+      </defs>
+      <ellipse class="land" cx="245" cy="220" rx="200" ry="160"/>
+      <ellipse class="land" cx="790" cy="245" rx="180" ry="150"/>
+      <!-- маршруты -->
+      <path id="r1" class="route" d="M180 170 Q500 40 820 300"/>
+      <path id="r2" class="route" d="M260 130 Q560 30 860 240"/>
+      <path id="r3" class="route" d="M310 110 Q550 20 790 150"/>
+      <path id="r4" class="route" d="M220 310 Q500 210 760 330"/>
+      <path id="r5" class="route" d="M220 310 Q540 160 860 240"/>
+      <!-- грузы -->
+      <circle class="cargo" r="5"><animateMotion dur="5s" repeatCount="indefinite" rotate="auto"><mpath xlink:href="#r1" href="#r1"/></animateMotion></circle>
+      <circle class="cargo" r="5"><animateMotion dur="6s" begin="1s" repeatCount="indefinite" rotate="auto"><mpath xlink:href="#r2" href="#r2"/></animateMotion></circle>
+      <circle class="cargo" r="5"><animateMotion dur="5.5s" begin="2s" repeatCount="indefinite" rotate="auto"><mpath xlink:href="#r3" href="#r3"/></animateMotion></circle>
+      <circle class="cargo" r="5"><animateMotion dur="6.5s" begin="0.5s" repeatCount="indefinite" rotate="auto"><mpath xlink:href="#r4" href="#r4"/></animateMotion></circle>
+      <circle class="cargo" r="5"><animateMotion dur="7s" begin="2.5s" repeatCount="indefinite" rotate="auto"><mpath xlink:href="#r5" href="#r5"/></animateMotion></circle>
+      <!-- узлы ЕС (хабы) -->
+      <g><circle class="node-ring" cx="180" cy="170"/><circle class="hub" cx="180" cy="170" r="6"/><text class="lbl" x="150" y="195">Берлин</text></g>
+      <g><circle class="node-ring" cx="260" cy="130"/><circle class="hub" cx="260" cy="130" r="6"/><text class="lbl" x="232" y="120">Варшава</text></g>
+      <g><circle class="node-ring" cx="310" cy="110"/><circle class="hub" cx="310" cy="110" r="6"/><text class="lbl" x="284" y="100">Вильнюс</text></g>
+      <g><circle class="node-ring" cx="220" cy="310"/><circle class="hub" cx="220" cy="310" r="6"/><text class="lbl" x="196" y="335">София</text></g>
+      <!-- узлы Центральной Азии -->
+      <g><circle class="node-ring" cx="790" cy="150"/><circle class="node" cx="790" cy="150" r="6"/><text class="lbl" x="806" y="155">Астана</text></g>
+      <g><circle class="node-ring" cx="860" cy="240"/><circle class="node" cx="860" cy="240" r="6"/><text class="lbl" x="876" y="245">Алматы</text></g>
+      <g><circle class="node-ring" cx="820" cy="300"/><circle class="node" cx="820" cy="300" r="6"/><text class="lbl" x="836" y="305">Бишкек</text></g>
+      <g><circle class="node-ring" cx="760" cy="330"/><circle class="node" cx="760" cy="330" r="6"/><text class="lbl" x="776" y="350">Ташкент</text></g>
+      <text class="lbl-sm" x="170" y="420">Склады ЕС: Болгария · Польша · Литва</text>
+      <text class="lbl-sm" x="720" y="420">Доставка: авто · ж/д · авиа · море</text>
+    </svg>
+    </div>
+  </div>
+</section>
+
 <!-- WAREHOUSES -->
 <div class="section-divider"></div>
 <section class="section section-alt" id="warehouses">

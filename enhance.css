@@ -58,6 +58,24 @@
 /* ===== «Магнитные» кнопки ===== */
 .btn-primary, .btn-cta, .cta-btn, .e-submit { will-change: transform; }
 
+/* ===== Карта маршрутов (логистика) ===== */
+.routemap { position: relative; }
+.routemap-svg { width: 100%; height: auto; display: block; max-width: 1100px; margin: 0 auto;
+  filter: drop-shadow(0 20px 60px rgba(0,0,0,.4)); }
+.routemap-svg .land { fill: rgba(99,102,241,.06); }
+.routemap-svg .route { fill: none; stroke: url(#routeGrad); stroke-width: 2.2; stroke-linecap: round;
+  stroke-dasharray: 7 11; animation: rm-flow 1s linear infinite; opacity: .9; }
+@keyframes rm-flow { to { stroke-dashoffset: -18; } }
+.routemap-svg .node { fill: #14B8A6; }
+.routemap-svg .node-ring { fill: none; stroke: #14B8A6; stroke-width: 1.5; transform-origin: center;
+  animation: rm-pulse 2.4s ease-out infinite; }
+@keyframes rm-pulse { 0% { r: 6; opacity: .9; } 100% { r: 22; opacity: 0; } }
+.routemap-svg .hub { fill: #3B82F6; }
+.routemap-svg .cargo { fill: #a5f3fc; filter: drop-shadow(0 0 6px rgba(165,243,252,.9)); }
+.routemap-svg .lbl { fill: #CBD5E1; font-family: 'Inter',sans-serif; font-size: 15px; font-weight: 600; }
+.routemap-svg .lbl-sm { fill: #64748B; font-family: 'Inter',sans-serif; font-size: 12px; }
+@media (prefers-reduced-motion: reduce) { .routemap-svg .route, .routemap-svg .node-ring { animation: none; } }
+
 /* ===== Lenis (плавная прокрутка) ===== */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
