@@ -326,7 +326,9 @@ html.lenis, html.lenis body { height: auto; }
   user-select: none; }
 .premium3d-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 0 32px; width: 100%; }
 .premium3d-eyebrow { font-family: 'Space Grotesk',sans-serif; font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--e-blue); margin-bottom: 18px; }
-.premium3d h2 { font-family: 'Space Grotesk','Inter',sans-serif; font-size: clamp(2.2rem,6vw,4.6rem); line-height: 1.02; letter-spacing: -.03em; max-width: 12ch; margin-bottom: 22px; }
+.premium3d { padding-top: 90px; }
+.premium3d h2, .premium3d-h1 { font-family: 'Space Grotesk','Inter',sans-serif; font-size: clamp(2.6rem,6.5vw,5rem); line-height: 1.0; letter-spacing: -.035em; max-width: 13ch; margin-bottom: 22px; }
+.premium3d-h1 .ac { background: linear-gradient(135deg,#3B82F6,#6366F1,#14B8A6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .premium3d h2 .ac { background: linear-gradient(135deg,#3B82F6,#6366F1,#14B8A6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .premium3d p { color: #94A3B8; font-size: clamp(1rem,1.6vw,1.2rem); line-height: 1.8; max-width: 460px; }
 .premium3d .hero-btns { margin-top: 32px; }
