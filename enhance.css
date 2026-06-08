@@ -247,6 +247,34 @@ html.lenis, html.lenis body { height: auto; }
   .e-show-row:nth-child(even) .e-show-media { order: 0; }
 }
 
+/* ===== Поисковый каталог ПО (масштабируемый, IT) ===== */
+.swcat-tools { max-width: 820px; margin: 0 auto 28px; }
+.swcat-search { position: relative; margin-bottom: 16px; }
+.swcat-search input { width: 100%; padding: 16px 18px 16px 48px; border-radius: 14px; border: 1px solid var(--e-line);
+  background: rgba(255,255,255,.04); color: #fff; font-size: 16px; font-family: inherit; transition: border-color .2s, background .2s; }
+.swcat-search input:focus { outline: none; border-color: var(--e-blue); background: rgba(59,130,246,.07); }
+.swcat-search svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; stroke: #64748B; fill: none; stroke-width: 2; }
+.swcat-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.swcat-chip { padding: 8px 16px; border-radius: 100px; border: 1px solid var(--e-line); background: rgba(255,255,255,.03);
+  color: #94A3B8; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; }
+.swcat-chip:hover { color: #fff; border-color: rgba(59,130,246,.4); }
+.swcat-chip.active { background: linear-gradient(135deg, var(--e-blue), var(--e-indigo)); color: #fff; border-color: transparent; }
+.swcat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.swcat-item { display: flex; flex-direction: column; padding: 22px; border-radius: 16px; border: 1px solid var(--e-line);
+  background: linear-gradient(180deg, var(--e-card-2), var(--e-card)); transition: transform .25s, box-shadow .25s, border-color .25s; }
+.swcat-item:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.4); border-color: rgba(59,130,246,.4); }
+.swcat-vendor { font-size: 12px; color: var(--e-blue); font-weight: 600; margin-bottom: 6px; letter-spacing: .3px; }
+.swcat-name { font-family: 'Space Grotesk','Inter',sans-serif; font-size: 18px; margin-bottom: 6px; }
+.swcat-desc { color: #94A3B8; font-size: 13px; line-height: 1.55; margin-bottom: 16px; flex: 1; }
+.swcat-req { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 10px;
+  border: none; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; color: #fff;
+  background: linear-gradient(135deg, var(--e-blue), var(--e-indigo)); transition: transform .2s, box-shadow .2s; }
+.swcat-req:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59,130,246,.35); }
+.swcat-empty { text-align: center; color: #64748B; padding: 30px; grid-column: 1/-1; display: none; }
+.swcat-count { text-align: center; color: #64748B; font-size: 13px; margin-top: 18px; }
+@media (max-width: 860px) { .swcat-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .swcat-grid { grid-template-columns: 1fr; } }
+
 /* ===== Сертификаты / доверие (в стиле liquidtechnology) ===== */
 .e-certs { position: relative; z-index: 2; }
 .e-certs-grid { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }

@@ -305,42 +305,47 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
 <section class="section section-alt" id="software">
   <div class="wrap">
     <div class="section-head">
-      <div class="overline reveal">Каталог</div>
-      <h2 class="reveal">Программное обеспечение</h2>
-      <p class="reveal">Лицензии от ведущих вендоров через авторизованных дистрибьюторов ЕС</p>
+      <div class="overline reveal">Каталог ПО</div>
+      <h2 class="reveal">Найдите нужную программу</h2>
+      <p class="reveal">Поиск по каталогу или запрос конкретной лицензии — поставим любое ПО через авторизованные каналы ЕС</p>
     </div>
-    <div class="sw-grid">
-      <div class="sw-card reveal">
-        <div class="sw-brand">Microsoft</div>
-        <p>Windows 10/11, Office 365, Windows Server, SQL Server, Azure, Dynamics 365. Программы лицензирования CSP, Open License, Enterprise Agreement.</p>
-        <div class="sw-products">Desktop, Server, Cloud, Productivity</div>
+    <div class="swcat-tools reveal">
+      <div class="swcat-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="swcatSearch" type="search" placeholder="Поиск: Windows, Photoshop, AutoCAD, Kaspersky…" autocomplete="off">
       </div>
-      <div class="sw-card reveal reveal-delay-1">
-        <div class="sw-brand">Adobe</div>
-        <p>Creative Cloud (Photoshop, Illustrator, InDesign, Premiere Pro), Acrobat Pro DC, Document Cloud. Командные и корпоративные подписки.</p>
-        <div class="sw-products">Creative, Document, Publishing</div>
-      </div>
-      <div class="sw-card reveal reveal-delay-2">
-        <div class="sw-brand">AnyDesk</div>
-        <p>Удалённый доступ для бизнеса. Прямой контракт с вендором, моментальная активация. Лицензии Standard, Advanced, Enterprise.</p>
-        <div class="sw-products">Remote Access, IT Management</div>
-      </div>
-      <div class="sw-card reveal">
-        <div class="sw-brand">ZWCAD</div>
-        <p>Профессиональное CAD-решение — полная альтернатива AutoCAD с совместимостью DWG. Бессрочные лицензии и подписки.</p>
-        <div class="sw-products">CAD, Engineering, Architecture</div>
-      </div>
-      <div class="sw-card reveal reveal-delay-1">
-        <div class="sw-brand">Corel / Alludo</div>
-        <p>CorelDRAW Graphics Suite, WinZip Enterprise, Parallels Desktop для Mac. Корпоративные лицензии с объёмными скидками.</p>
-        <div class="sw-products">Graphics, Utilities, Virtualization</div>
-      </div>
-      <div class="sw-card reveal reveal-delay-2">
-        <div class="sw-brand">Другие вендоры</div>
-        <p>MDaemon (почтовый сервер), Vamsoft ORF (антиспам), JetBrains (IDE), Autodesk, Kaspersky. Закупаем любое ПО под запрос через дистрибьюторов ЕС.</p>
-        <div class="sw-products">Любой вендор под запрос</div>
+      <div class="swcat-chips">
+        <button class="swcat-chip active" data-cat="all">Все</button>
+        <button class="swcat-chip" data-cat="microsoft">Microsoft</button>
+        <button class="swcat-chip" data-cat="adobe">Adobe</button>
+        <button class="swcat-chip" data-cat="cad">CAD / Инженерия</button>
+        <button class="swcat-chip" data-cat="security">Безопасность</button>
+        <button class="swcat-chip" data-cat="dev">Разработка</button>
+        <button class="swcat-chip" data-cat="other">Другое</button>
       </div>
     </div>
+    <div class="swcat-grid reveal" id="swcatGrid">
+      <div class="swcat-item" data-cat="microsoft" data-name="windows 11 pro os операционная система"><div class="swcat-vendor">Microsoft</div><div class="swcat-name">Windows 11 Pro</div><div class="swcat-desc">ОС для бизнеса. OEM, Retail и корпоративные лицензии.</div><button class="swcat-req" data-sw="Windows 11 Pro">Запросить →</button></div>
+      <div class="swcat-item" data-cat="microsoft" data-name="microsoft 365 office word excel"><div class="swcat-vendor">Microsoft</div><div class="swcat-name">Microsoft 365</div><div class="swcat-desc">Office-приложения и облако. Business, Apps, E3/E5.</div><button class="swcat-req" data-sw="Microsoft 365">Запросить →</button></div>
+      <div class="swcat-item" data-cat="microsoft" data-name="windows server"><div class="swcat-vendor">Microsoft</div><div class="swcat-name">Windows Server</div><div class="swcat-desc">Standard/Datacenter, CAL. Серверная инфраструктура.</div><button class="swcat-req" data-sw="Windows Server">Запросить →</button></div>
+      <div class="swcat-item" data-cat="microsoft" data-name="sql server база данных"><div class="swcat-vendor">Microsoft</div><div class="swcat-name">SQL Server</div><div class="swcat-desc">СУБД для бизнес-приложений. Standard/Enterprise.</div><button class="swcat-req" data-sw="SQL Server">Запросить →</button></div>
+      <div class="swcat-item" data-cat="adobe" data-name="adobe creative cloud photoshop illustrator"><div class="swcat-vendor">Adobe</div><div class="swcat-name">Creative Cloud</div><div class="swcat-desc">Photoshop, Illustrator, InDesign, Premiere — все приложения.</div><button class="swcat-req" data-sw="Adobe Creative Cloud">Запросить →</button></div>
+      <div class="swcat-item" data-cat="adobe" data-name="adobe acrobat pro pdf"><div class="swcat-vendor">Adobe</div><div class="swcat-name">Acrobat Pro</div><div class="swcat-desc">Работа с PDF, Document Cloud. Команды и компании.</div><button class="swcat-req" data-sw="Adobe Acrobat Pro">Запросить →</button></div>
+      <div class="swcat-item" data-cat="cad" data-name="autocad autodesk чертежи"><div class="swcat-vendor">Autodesk</div><div class="swcat-name">AutoCAD</div><div class="swcat-desc">Профессиональное проектирование и черчение. Подписка.</div><button class="swcat-req" data-sw="AutoCAD">Запросить →</button></div>
+      <div class="swcat-item" data-cat="cad" data-name="autodesk revit bim"><div class="swcat-vendor">Autodesk</div><div class="swcat-name">Revit</div><div class="swcat-desc">BIM-проектирование зданий и инженерных систем.</div><button class="swcat-req" data-sw="Autodesk Revit">Запросить →</button></div>
+      <div class="swcat-item" data-cat="cad" data-name="zwcad autocad альтернатива dwg"><div class="swcat-vendor">ZWSOFT</div><div class="swcat-name">ZWCAD</div><div class="swcat-desc">Альтернатива AutoCAD с совместимостью DWG. Бессрочно.</div><button class="swcat-req" data-sw="ZWCAD">Запросить →</button></div>
+      <div class="swcat-item" data-cat="security" data-name="kaspersky антивирус безопасность"><div class="swcat-vendor">Kaspersky</div><div class="swcat-name">Kaspersky Endpoint</div><div class="swcat-desc">Защита рабочих станций и серверов для бизнеса.</div><button class="swcat-req" data-sw="Kaspersky Endpoint Security">Запросить →</button></div>
+      <div class="swcat-item" data-cat="security" data-name="eset nod32 антивирус"><div class="swcat-vendor">ESET</div><div class="swcat-name">ESET PROTECT</div><div class="swcat-desc">Корпоративная антивирусная защита и управление.</div><button class="swcat-req" data-sw="ESET PROTECT">Запросить →</button></div>
+      <div class="swcat-item" data-cat="security" data-name="bitdefender gravityzone"><div class="swcat-vendor">Bitdefender</div><div class="swcat-name">GravityZone</div><div class="swcat-desc">Облачная защита конечных точек для предприятий.</div><button class="swcat-req" data-sw="Bitdefender GravityZone">Запросить →</button></div>
+      <div class="swcat-item" data-cat="dev" data-name="jetbrains intellij idea ide"><div class="swcat-vendor">JetBrains</div><div class="swcat-name">JetBrains (All Products)</div><div class="swcat-desc">IntelliJ IDEA, PyCharm, Rider и др. Командные подписки.</div><button class="swcat-req" data-sw="JetBrains All Products Pack">Запросить →</button></div>
+      <div class="swcat-item" data-cat="dev" data-name="microsoft visual studio"><div class="swcat-vendor">Microsoft</div><div class="swcat-name">Visual Studio</div><div class="swcat-desc">Professional/Enterprise для разработки.</div><button class="swcat-req" data-sw="Visual Studio">Запросить →</button></div>
+      <div class="swcat-item" data-cat="other" data-name="anydesk удалённый доступ"><div class="swcat-vendor">AnyDesk</div><div class="swcat-name">AnyDesk</div><div class="swcat-desc">Удалённый доступ для бизнеса. Моментальная активация.</div><button class="swcat-req" data-sw="AnyDesk">Запросить →</button></div>
+      <div class="swcat-item" data-cat="other" data-name="coreldraw графика"><div class="swcat-vendor">Corel</div><div class="swcat-name">CorelDRAW</div><div class="swcat-desc">Graphics Suite. Корпоративные лицензии со скидками.</div><button class="swcat-req" data-sw="CorelDRAW Graphics Suite">Запросить →</button></div>
+      <div class="swcat-item" data-cat="other" data-name="parallels desktop mac"><div class="swcat-vendor">Alludo</div><div class="swcat-name">Parallels Desktop</div><div class="swcat-desc">Запуск Windows на Mac. Бизнес-лицензии.</div><button class="swcat-req" data-sw="Parallels Desktop">Запросить →</button></div>
+      <div class="swcat-item" data-cat="other" data-name="vmware виртуализация"><div class="swcat-vendor">VMware</div><div class="swcat-name">VMware</div><div class="swcat-desc">Виртуализация серверов и рабочих столов.</div><button class="swcat-req" data-sw="VMware">Запросить →</button></div>
+      <div class="swcat-empty" id="swcatEmpty">Ничего не найдено. Напишите нам — поставим любое ПО под запрос.</div>
+    </div>
+    <div class="swcat-count" id="swcatCount"></div>
   </div>
 </section>
 
@@ -684,5 +689,44 @@ reveals.forEach(el=>revealObserver.observe(el));
 <script src="i18n.js" defer></script>
 <script src="lib/three.min.js"></script>
 <script src="ribbon.js"></script>
+<script>
+window.addEventListener('load', function () {
+  var search = document.getElementById('swcatSearch');
+  if (!search) return;
+  var chips = document.querySelectorAll('.swcat-chip');
+  var items = document.querySelectorAll('.swcat-item');
+  var empty = document.getElementById('swcatEmpty');
+  var count = document.getElementById('swcatCount');
+  var cat = 'all';
+  function apply() {
+    var q = (search.value || '').toLowerCase().trim(), n = 0;
+    items.forEach(function (it) {
+      var okC = cat === 'all' || it.getAttribute('data-cat') === cat;
+      var hay = (it.getAttribute('data-name') + ' ' + it.textContent).toLowerCase();
+      var okQ = !q || hay.indexOf(q) > -1;
+      var show = okC && okQ;
+      it.style.display = show ? '' : 'none';
+      if (show) n++;
+    });
+    if (empty) empty.style.display = n ? 'none' : 'block';
+    if (count) count.textContent = 'Показано: ' + n + ' из ' + items.length + ' — не нашли нужное? Напишите, поставим под запрос';
+  }
+  search.addEventListener('input', apply);
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (x) { x.classList.remove('active'); });
+      c.classList.add('active'); cat = c.getAttribute('data-cat'); apply();
+    });
+  });
+  document.querySelectorAll('.swcat-req').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var sw = b.getAttribute('data-sw');
+      if (window.euroOpenForm) window.euroOpenForm({ message: 'Интересует лицензия: ' + sw });
+      else if (window.euroSendLead) location.href = '#contact';
+    });
+  });
+  apply();
+});
+</script>
 </body>
 </html>
