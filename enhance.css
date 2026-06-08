@@ -3,10 +3,25 @@
    Подключается на всех страницах. Тёмная тема, палитра сайта.
    ========================================================= */
 
-/* ===== Плавный переход между страницами ===== */
-.e-pagefade { position: fixed; inset: 0; z-index: 10800; background: #070b1e; opacity: 0; visibility: hidden;
-  transition: opacity .45s ease, visibility .45s; pointer-events: none; }
-.e-pagefade.show { opacity: 1; visibility: visible; }
+/* ===== Переходы между страницами — РАЗНЫЕ по направлениям ===== */
+.e-pagefade { position: fixed; inset: 0; z-index: 10800; pointer-events: none; visibility: hidden; --pf: #070b1e; }
+.e-pagefade.go { visibility: visible; }
+.e-pf-cover { position: absolute; inset: 0; background: var(--pf); opacity: 0; }
+.e-pf-bars { position: absolute; inset: 0; display: flex; }
+.e-pf-bars i { flex: 1; background: var(--pf); transform: scaleY(0); transform-origin: top; }
+/* варианты */
+.go.t-fade  .e-pf-cover { animation: pf-fade .5s ease forwards; }
+@keyframes pf-fade { to { opacity: 1; } }
+.go.t-right .e-pf-cover { opacity: 1; transform: translateX(-100%); animation: pf-right .55s cubic-bezier(.7,0,.25,1) forwards; }
+@keyframes pf-right { to { transform: translateX(0); } }
+.go.t-up    .e-pf-cover { opacity: 1; transform: translateY(100%); animation: pf-up .55s cubic-bezier(.7,0,.25,1) forwards; }
+@keyframes pf-up { to { transform: translateY(0); } }
+.go.t-iris  .e-pf-cover { opacity: 1; clip-path: circle(0% at 50% 50%); animation: pf-iris .6s ease-in forwards; }
+@keyframes pf-iris { to { clip-path: circle(150% at 50% 50%); } }
+.go.t-bars  .e-pf-bars i { animation: pf-bar .5s cubic-bezier(.7,0,.25,1) forwards; }
+.go.t-bars  .e-pf-bars i:nth-child(2){ animation-delay:.06s } .go.t-bars .e-pf-bars i:nth-child(3){ animation-delay:.12s }
+.go.t-bars  .e-pf-bars i:nth-child(4){ animation-delay:.18s } .go.t-bars .e-pf-bars i:nth-child(5){ animation-delay:.24s }
+@keyframes pf-bar { to { transform: scaleY(1); } }
 
 /* ===== Прелоадер (заставка при загрузке) ===== */
 #e-preload { position: fixed; inset: 0; z-index: 11000; background: #070b1e; display: grid; place-items: center;

@@ -310,7 +310,19 @@ const EURO_CONFIG = {
   /* ---------- 7b. Плавный переход между страницами ---------- */
   const pageFade = document.createElement("div");
   pageFade.className = "e-pagefade";
+  pageFade.innerHTML = '<div class="e-pf-cover"></div><div class="e-pf-bars"><i></i><i></i><i></i><i></i><i></i></div>';
   document.body.appendChild(pageFade);
+  // Разные анимации перехода по направлениям: [вариант, цвет]
+  const PF = {
+    "goods.html":     ["t-right", "#2563EB"],
+    "logistics.html": ["t-up",    "#4F46E5"],
+    "it.html":        ["t-bars",  "#0e7490"],
+    "company.html":   ["t-fade",  "#0D9488"],
+    "agro.html":      ["t-iris",  "#15803d"],
+    "transfer.html":  ["t-iris",  "#0369a1"],
+    "music.html":     ["t-bars",  "#6d28d9"],
+    "index.html":     ["t-fade",  "#0a0f2c"],
+  };
   document.addEventListener("click", e => {
     const a = e.target.closest && e.target.closest("a");
     if (!a) return;
@@ -321,8 +333,11 @@ const EURO_CONFIG = {
     if (/^https?:\/\//i.test(href) && href.indexOf(location.host) === -1) return; // внешняя ссылка
     if (!/\.html(\?|#|$)/.test(href)) return; // только переходы на наши страницы
     e.preventDefault();
-    pageFade.classList.add("show");
-    setTimeout(() => { location.href = href; }, 430);
+    const key = ((href.match(/([a-z0-9-]+)\.html/) || [])[0]) || "index.html";
+    const v = PF[key] || ["t-fade", "#0a0f2c"];
+    pageFade.style.setProperty("--pf", v[1]);
+    pageFade.className = "e-pagefade go " + v[0];
+    setTimeout(() => { location.href = href; }, 560);
   }, true);
 
   /* ---------- 8. Премиум-полировка: прогресс, аврора, магнитные кнопки ---------- */
