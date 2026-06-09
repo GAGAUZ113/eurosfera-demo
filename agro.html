@@ -310,6 +310,23 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
   </div>
 </section>
 
+<!-- WOW-3D: молекула/состав удобрения, разлетается на скролле -->
+<section class="scene3d" id="wow3d" data-scene="molecule">
+  <div class="scene3d-sticky">
+    <div class="scene3d-canvas" id="wow3d-canvas"></div>
+    <div class="scene3d-inner wrap">
+      <div class="scene3d-eyebrow">Наука питания растений</div>
+      <div class="scene3d-steps">
+        <div class="scene3d-step"><div class="num">01 / Состав</div><h3>Точная формула NPK</h3><p>Азот, фосфор, калий и микроэлементы в выверенных пропорциях — основа урожая.</p></div>
+        <div class="scene3d-step"><div class="num">02 / Подбор</div><h3>Под вашу культуру и почву</h3><p>Подбираем удобрение под конкретную задачу: рост, цветение, плодоношение, раскисление.</p></div>
+        <div class="scene3d-step"><div class="num">03 / Качество ЕС</div><h3>Европейские стандарты</h3><p>Сертифицированные производители, стабильное качество и чистота состава.</p></div>
+        <div class="scene3d-step"><div class="num">04 / Результат</div><h3>Здоровое поле</h3><p>Сбалансированное питание — выше урожайность и устойчивость растений.</p></div>
+      </div>
+      <div class="scene3d-progress"><span></span><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</section>
+
 <!-- SOFTWARE -->
 <div class="section-divider"></div>
 <section class="section section-alt" id="software">
@@ -635,5 +652,7 @@ reveals.forEach(el=>revealObserver.observe(el));
 </script>
 <script src="enhance.js?v=0609l" defer></script>
 <script src="i18n.js?v=0609l" defer></script>
+<script src="lib/three.min.js"></script>
+<script src="wow3d.js?v=0609l"></script>
 </body>
 </html>
