@@ -749,8 +749,6 @@ img, svg, video, canvas, model-viewer, iframe { max-width: 100%; }
 @media (max-width: 760px) {
   /* лёгкая аврора (тяжёлый blur — дорого на телефоне) */
   .e-aurora span { filter: blur(60px); opacity: .12; }
-  /* длинные секции рендерим по мере подхода — меньше работы браузеру */
-  .section { content-visibility: auto; contain-intrinsic-size: 1px 1200px; }
   /* 3D-канвасы: глобус/лента приглушаем (если всё же рисуются) */
   .premium3d-canvas { opacity: .85; }
 }
@@ -767,6 +765,12 @@ html.euro-lite .scene3d-steps { min-height: 0; max-width: 100%; }
 html.euro-lite .scene3d-step { position: static; inset: auto; opacity: 1; transform: none; pointer-events: auto; margin-bottom: 30px; }
 html.euro-lite .scene3d-canvas { display: none; }
 html.euro-lite .scene3d-progress { display: none; }
+
+/* ---- 5b. Софит за курсором (десктоп) — мягкая подсветка цвета направления ---- */
+.e-spotlight { position: fixed; top: 0; left: 0; width: 600px; height: 600px; border-radius: 50%;
+  pointer-events: none; z-index: 0; opacity: .34; mix-blend-mode: screen; will-change: transform;
+  background: radial-gradient(circle, var(--e-blue) 0%, transparent 62%); }
+@media (hover: none), (prefers-reduced-motion: reduce) { .e-spotlight { display: none; } }
 
 /* ---- 6. Тач: убираем hover-«залипания», крупнее основные кнопки ---- */
 @media (hover: none) {

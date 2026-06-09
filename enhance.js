@@ -454,11 +454,16 @@ const EURO_CONFIG = {
   if (matchMedia("(hover: hover) and (pointer: fine)").matches && !reduceMotion) {
     const ring = document.createElement("div"); ring.className = "e-cur";
     const dot = document.createElement("div"); dot.className = "e-cur-dot";
-    document.body.appendChild(ring); document.body.appendChild(dot);
+    const spot = document.createElement("div"); spot.className = "e-spotlight"; // мягкая подсветка за курсором (цвет направления)
+    document.body.appendChild(spot); document.body.appendChild(ring); document.body.appendChild(dot);
     document.body.classList.add("e-has-cursor");
-    let cx = innerWidth / 2, cy = innerHeight / 2, rx = cx, ry = cy;
+    let cx = innerWidth / 2, cy = innerHeight / 2, rx = cx, ry = cy, sx2 = cx, sy2 = cy;
     addEventListener("mousemove", e => { cx = e.clientX; cy = e.clientY; dot.style.left = cx + "px"; dot.style.top = cy + "px"; }, { passive: true });
-    (function loop() { rx += (cx - rx) * 0.2; ry += (cy - ry) * 0.2; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(loop); })();
+    (function loop() {
+      rx += (cx - rx) * 0.2; ry += (cy - ry) * 0.2; ring.style.left = rx + "px"; ring.style.top = ry + "px";
+      sx2 += (cx - sx2) * 0.08; sy2 += (cy - sy2) * 0.08; spot.style.transform = "translate(" + (sx2 - 300) + "px," + (sy2 - 300) + "px)";
+      requestAnimationFrame(loop);
+    })();
     const hot = "a, button, [data-open-form], .dir-card, [data-tilt], .car-tabs button, .e-c-btn, input, select, textarea, .faq-q, [data-lightbox]";
     document.addEventListener("mouseover", e => { if (e.target.closest && e.target.closest(hot)) ring.classList.add("hot"); });
     document.addEventListener("mouseout", e => { if (e.target.closest && e.target.closest(hot)) ring.classList.remove("hot"); });
