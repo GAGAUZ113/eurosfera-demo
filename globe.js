@@ -8,6 +8,10 @@
   "use strict";
   const host = document.getElementById("globe3d");
   if (!host || !window.THREE) return;
+  // LITE: на телефоне/слабом устройстве не грузим тяжёлый WebGL-глобус — остаётся лёгкий CSS-глобус.
+  const _lite = (Math.min(innerWidth, innerHeight) < 760) || ((navigator.hardwareConcurrency || 8) < 4)
+    || ((navigator.deviceMemory || 8) < 4) || (navigator.connection && navigator.connection.saveData);
+  if (_lite) { document.documentElement.classList.add("euro-lite"); return; }
 
   const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   const R = 1.6;

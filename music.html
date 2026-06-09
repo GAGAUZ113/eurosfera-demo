@@ -225,7 +225,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
 }
 </style>
 <link rel="icon" type="image/png" href="img/logo.png">
-<link rel="stylesheet" href="enhance.css">
+<link rel="stylesheet" href="enhance.css?v=0609d">
 <!--seo-->
 <meta name="keywords" content="музыкальная дистрибуция, разместить релиз на Spotify Apple Music, дистрибьютор артистов, цифровая дистрибуция музыки, роялти, питчинг плейлисты">
 <meta name="robots" content="index, follow">
@@ -234,7 +234,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"EUROSFERA LTD","url":"https://gagauz113.github.io/eurosfera-demo/","logo":"https://gagauz113.github.io/eurosfera-demo/assets/eurosfera-logo.jpg","description":"Торговый мост между Европой и Центральной Азией: закупки и товары из ЕС, логистика и склады, IT и лицензии ПО, открытие компании в Болгарии, удобрения, премиум-трансфер, музыкальная дистрибуция.","areaServed":["EU","Central Asia"],"address":{"@type":"PostalAddress","addressCountry":"BG","addressLocality":"Sofia"},"contactPoint":{"@type":"ContactPoint","email":"a.tukan@euro.s.bg","telephone":"+359892098460","contactType":"sales"},"sameAs":["https://t.me/gagauz13"]}</script>
 </head>
 <body>
-<script>(function(){var p=document.createElement("div");p.id="e-preload";p.innerHTML='<div style="text-align:center"><div class="e-preload-logo">EUROSFERA</div><div class="e-preload-bar"><span></span></div></div>';(document.body||document.documentElement).appendChild(p);var t=Date.now();function h(){var w=Math.max(0,650-(Date.now()-t));setTimeout(function(){p.classList.add("done");setTimeout(function(){p.remove();},750);},w);}if(document.readyState==="complete")h();else window.addEventListener("load",h);})();</script>
+<script>(function(){var A={goods:"#2563EB",logistics:"#4F46E5",it:"#0891b2",company:"#0D9488",agro:"#16a34a",transfer:"#0369a1",music:"#7c3aed",index:"#3B82F6"};var key=(location.pathname.match(/([a-z0-9-]+)\.html/)||[])[1]||"index";var acc=A[key]||"#3B82F6";var p=document.createElement("div");p.id="e-preload";p.style.setProperty("--pre-accent",acc);p.innerHTML='<div class="e-pre2"><div class="e-pre2-mark">EUROSFERA</div><div class="e-pre2-sub">Ваше представительство в&nbsp;ЕС</div><div class="e-pre2-track"><span class="e-pre2-fill"></span></div><div class="e-pre2-count">0</div></div>';(document.body||document.documentElement).appendChild(p);var fill=p.querySelector(".e-pre2-fill"),cnt=p.querySelector(".e-pre2-count");var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;var mobile=Math.min(innerWidth,innerHeight)<700;var minMs=mobile?700:1100,hard=4500,t0=Date.now(),loaded=false,val=0;window.addEventListener("load",function(){loaded=true;});function done(){p.classList.add("done");document.documentElement.classList.add("e-ready");setTimeout(function(){p.remove();},950);}if(reduce){if(document.readyState==="complete")done();else window.addEventListener("load",done);return;}(function tick(){var el=Date.now()-t0;var done100=(loaded||el>hard)&&el>=minMs;var target=done100?100:Math.min(90,(el/minMs)*90);val+=(target-val)*0.18;var s=Math.round(val);if(done100&&s>=99)s=100;fill.style.width=s+"%";cnt.textContent=s;if(s>=100){setTimeout(done,170);return;}requestAnimationFrame(tick);})();})();</script>
 
 <canvas id="particles"></canvas>
 
@@ -631,9 +631,9 @@ const reveals=document.querySelectorAll('.reveal');
 const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
 reveals.forEach(el=>revealObserver.observe(el));
 </script>
-<script src="enhance.js" defer></script>
-<script src="i18n.js" defer></script>
+<script src="enhance.js?v=0609d" defer></script>
+<script src="i18n.js?v=0609d" defer></script>
 <script src="lib/three.min.js"></script>
-<script src="ribbon.js"></script>
+<script src="ribbon.js?v=0609d"></script>
 </body>
 </html>

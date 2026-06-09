@@ -7,6 +7,15 @@
   const host = document.getElementById("scene3d-canvas");
   const section = document.getElementById("scene3d");
   if (!host || !section || !window.THREE) return;
+  // LITE: на телефоне/слабом устройстве WebGL не запускаем; секция превращается в чистый
+  // стек шагов (см. CSS html.euro-lite .scene3d / @media). Тяжёлой scroll-сцены нет.
+  const _lite = (Math.min(innerWidth, innerHeight) < 760) || ((navigator.hardwareConcurrency || 8) < 4)
+    || ((navigator.deviceMemory || 8) < 4) || (navigator.connection && navigator.connection.saveData);
+  if (_lite) {
+    document.documentElement.classList.add("euro-lite");
+    section.querySelectorAll(".scene3d-step").forEach(s => s.classList.add("active"));
+    return;
+  }
   const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const scene = new THREE.Scene();

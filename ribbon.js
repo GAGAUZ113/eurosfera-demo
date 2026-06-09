@@ -7,6 +7,10 @@
   "use strict";
   const host = document.getElementById("premium3d-canvas");
   if (!host || !window.THREE) return;
+  // LITE: на телефоне/слабом устройстве — статичный градиентный фон вместо тяжёлого WebGL (см. html.euro-lite .premium3d).
+  const _lite = (Math.min(innerWidth, innerHeight) < 760) || ((navigator.hardwareConcurrency || 8) < 4)
+    || ((navigator.deviceMemory || 8) < 4) || (navigator.connection && navigator.connection.saveData);
+  if (_lite) { document.documentElement.classList.add("euro-lite"); return; }
   const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const scene = new THREE.Scene();

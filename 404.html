@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="img/logo.png">
 <link href="lib/fonts.css" rel="stylesheet">
-<link href="enhance.css" rel="stylesheet">
+<link href="enhance.css?v=0609d" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'Inter',system-ui,sans-serif;background:#0a0f2c;color:#fff;
@@ -33,7 +33,7 @@
 </style>
 </head>
 <body>
-<script>(function(){var p=document.createElement("div");p.id="e-preload";p.innerHTML='<div style="text-align:center"><div class="e-preload-logo">EUROSFERA</div><div class="e-preload-bar"><span></span></div></div>';(document.body||document.documentElement).appendChild(p);var t=Date.now();function h(){var w=Math.max(0,650-(Date.now()-t));setTimeout(function(){p.classList.add("done");setTimeout(function(){p.remove();},750);},w);}if(document.readyState==="complete")h();else window.addEventListener("load",h);})();</script>
+<script>(function(){var A={goods:"#2563EB",logistics:"#4F46E5",it:"#0891b2",company:"#0D9488",agro:"#16a34a",transfer:"#0369a1",music:"#7c3aed",index:"#3B82F6"};var key=(location.pathname.match(/([a-z0-9-]+)\.html/)||[])[1]||"index";var acc=A[key]||"#3B82F6";var p=document.createElement("div");p.id="e-preload";p.style.setProperty("--pre-accent",acc);p.innerHTML='<div class="e-pre2"><div class="e-pre2-mark">EUROSFERA</div><div class="e-pre2-sub">Ваше представительство в&nbsp;ЕС</div><div class="e-pre2-track"><span class="e-pre2-fill"></span></div><div class="e-pre2-count">0</div></div>';(document.body||document.documentElement).appendChild(p);var fill=p.querySelector(".e-pre2-fill"),cnt=p.querySelector(".e-pre2-count");var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;var mobile=Math.min(innerWidth,innerHeight)<700;var minMs=mobile?700:1100,hard=4500,t0=Date.now(),loaded=false,val=0;window.addEventListener("load",function(){loaded=true;});function done(){p.classList.add("done");document.documentElement.classList.add("e-ready");setTimeout(function(){p.remove();},950);}if(reduce){if(document.readyState==="complete")done();else window.addEventListener("load",done);return;}(function tick(){var el=Date.now()-t0;var done100=(loaded||el>hard)&&el>=minMs;var target=done100?100:Math.min(90,(el/minMs)*90);val+=(target-val)*0.18;var s=Math.round(val);if(done100&&s>=99)s=100;fill.style.width=s+"%";cnt.textContent=s;if(s>=100){setTimeout(done,170);return;}requestAnimationFrame(tick);})();})();</script>
   <div class="bg"></div>
   <div class="wrap">
     <div class="code">404</div>

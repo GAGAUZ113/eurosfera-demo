@@ -38,6 +38,19 @@ const EURO_CONFIG = {
 (function () {
   "use strict";
 
+  /* ---------- 0. Направление страницы + LITE-режим (мобайл/слабые устройства) ---------- */
+  // data-page → каждое направление получает свой цвет (см. enhance.css :root[data-page]).
+  const PAGE_KEY = (location.pathname.match(/([a-z0-9-]+)\.html/) || [])[1] || "index";
+  document.documentElement.setAttribute("data-page", PAGE_KEY);
+  if (document.body) document.body.classList.add("page-" + PAGE_KEY);
+  // LITE: телефон, мало ядер/памяти или экономия трафика → не грузим тяжёлый WebGL.
+  const _coarse = matchMedia("(pointer: coarse)").matches;
+  const _small  = Math.min(window.innerWidth, window.innerHeight) < 760;
+  const _weak   = (navigator.hardwareConcurrency || 8) < 4 || (navigator.deviceMemory || 8) < 4;
+  const _saveData = !!(navigator.connection && navigator.connection.saveData);
+  window.EURO_LITE = !!(_small || _weak || _saveData);
+  if (window.EURO_LITE) document.documentElement.classList.add("euro-lite");
+
   /* ---------- 1. Анимированные счётчики ---------- */
   function animateCounter(el) {
     const raw = el.textContent.trim();
@@ -272,17 +285,26 @@ const EURO_CONFIG = {
         yPercent: 18, ease: "none",
         scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: true },
       });
-      // плавный въезд заголовков секций
-      document.querySelectorAll(".section-head h2, .about h2").forEach(el => {
-        gsap.from(el, { y: 30, opacity: 0, duration: .7, ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 85%" } });
-      });
+      // ВНИМАНИЕ: появление заголовков делает система .reveal (IntersectionObserver + CSS),
+      // отдельный gsap.from тут НЕ используем — иначе inline opacity:0 конфликтует с .reveal
+      // и заголовок может «застрять» невидимым. Оставляем только безопасный параллакс.
+      // Параллакс — только на десктопе (на телефоне скролл должен быть лёгким)
+      if (!window.EURO_LITE && !_coarse) {
+        document.querySelectorAll(".hero-photo").forEach(el => {
+          gsap.to(el, { yPercent: 24, ease: "none",
+            scrollTrigger: { trigger: el.closest("section,.hero") || el, start: "top top", end: "bottom top", scrub: true } });
+        });
+        const word = document.querySelector(".premium3d-word");
+        if (word) gsap.to(word, { xPercent: 8, ease: "none",
+          scrollTrigger: { trigger: ".premium3d", start: "top top", end: "bottom top", scrub: 1 } });
+      }
     }
   }
 
   // Vanilla-tilt — карточки наклоняются за курсором (сбалансированно)
   function initTilt() {
     if (!window.VanillaTilt || reduceMotion) return;
+    if (matchMedia("(pointer: coarse)").matches) return; // на тач-экранах наклон не нужен (и не плодим glare-слои)
     const cards = document.querySelectorAll(".dir-card, .sw-card, .price-card, .why-card");
     if (cards.length) VanillaTilt.init(cards, { max: 6, speed: 500, scale: 1.02, glare: true, "max-glare": 0.12 });
   }
@@ -445,6 +467,7 @@ const EURO_CONFIG = {
   /* ---------- 12. Lenis — плавная инерционная прокрутка ---------- */
   function initLenis() {
     if (!window.Lenis || reduceMotion) return;
+    if (matchMedia("(pointer: coarse)").matches) return; // на телефоне — родная прокрутка (плавнее, без рывков)
     const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
     function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);

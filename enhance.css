@@ -23,19 +23,33 @@
 .go.t-bars  .e-pf-bars i:nth-child(4){ animation-delay:.18s } .go.t-bars .e-pf-bars i:nth-child(5){ animation-delay:.24s }
 @keyframes pf-bar { to { transform: scaleY(1); } }
 
-/* ===== Прелоадер (заставка при загрузке) ===== */
-#e-preload { position: fixed; inset: 0; z-index: 11000; background: #070b1e; display: grid; place-items: center;
-  transition: opacity .7s ease, visibility .7s; }
-#e-preload.done { opacity: 0; visibility: hidden; }
-.e-preload-logo { font-family: 'Space Grotesk','Inter',sans-serif; font-weight: 700; letter-spacing: 8px;
-  font-size: clamp(22px, 5vw, 42px); text-transform: uppercase;
-  background: linear-gradient(135deg, #fff 30%, rgba(255,255,255,.4)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-  animation: e-pre-pulse 1.6s ease-in-out infinite; }
-@keyframes e-pre-pulse { 0%,100%{ opacity: 1; } 50%{ opacity: .55; } }
-.e-preload-bar { margin: 24px auto 0; width: 170px; height: 2px; background: rgba(255,255,255,.1); border-radius: 2px; overflow: hidden; }
-.e-preload-bar span { display: block; height: 100%; width: 35%; border-radius: 2px;
-  background: linear-gradient(90deg, #3B82F6, #6366F1, #14B8A6); animation: e-pre-load 1.1s ease-in-out infinite; }
-@keyframes e-pre-load { 0%{ transform: translateX(-130%); } 100%{ transform: translateX(360%); } }
+/* ===== Прелоадер v2 — кинематографичная заставка (счётчик 0→100 + штора) ===== */
+#e-preload { position: fixed; inset: 0; z-index: 11000; display: grid; place-items: center; overflow: hidden;
+  --pre-accent: #3B82F6;
+  background: radial-gradient(135% 100% at 50% -12%, rgba(59,130,246,.16), transparent 56%), #06080f;
+  transition: clip-path .85s cubic-bezier(.76,0,.24,1), opacity .45s ease .34s;
+  clip-path: inset(0 0 0 0); will-change: clip-path; }
+#e-preload.done { clip-path: inset(0 0 100% 0); opacity: 0; pointer-events: none; }
+.e-pre2 { width: min(84vw, 520px); text-align: center; position: relative; }
+.e-pre2-mark { font-family: 'Space Grotesk','Inter',sans-serif; font-weight: 700; text-transform: uppercase;
+  font-size: clamp(26px, 7.4vw, 54px); letter-spacing: .22em; line-height: 1;
+  background: linear-gradient(120deg, #fff 22%, var(--pre-accent) 130%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  opacity: 0; transform: translateY(16px); animation: e-pre2-in .9s cubic-bezier(.2,.8,.2,1) .06s forwards; }
+.e-pre2-sub { margin-top: 13px; color: #7b88a8; font-size: clamp(10.5px, 3vw, 13px); letter-spacing: .2em; text-transform: uppercase;
+  opacity: 0; animation: e-pre2-in .9s ease .24s forwards; }
+.e-pre2-track { margin: 28px auto 0; width: min(62vw, 230px); height: 2px; border-radius: 2px;
+  background: rgba(255,255,255,.1); overflow: hidden; }
+.e-pre2-fill { display: block; height: 100%; width: 0%; border-radius: 2px;
+  background: linear-gradient(90deg, var(--pre-accent), #14B8A6); box-shadow: 0 0 14px rgba(59,130,246,.5); transition: width .14s linear; }
+.e-pre2-count { margin-top: 14px; font-family: 'Space Grotesk','Inter',sans-serif; font-variant-numeric: tabular-nums;
+  font-size: clamp(12px, 3.2vw, 14px); letter-spacing: .12em; color: #9fb0d0; }
+.e-pre2-count::after { content: '%'; opacity: .5; margin-left: 2px; }
+@keyframes e-pre2-in { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .e-pre2-mark, .e-pre2-sub { animation: none; opacity: 1; transform: none; }
+  #e-preload { transition: opacity .3s ease; } #e-preload.done { clip-path: none; }
+}
 
 /* ===== Премиум-типографика и воздух (ближе к awwwards) ===== */
 .hero-text h1, .hero .wrap h1 { font-size: clamp(2.7rem, 6.2vw, 4.8rem) !important; letter-spacing: -.04em !important; line-height: 1.04 !important; }
@@ -618,4 +632,149 @@ html.lenis, html.lenis body { height: auto; }
   .e-fab-btn { width: 48px; height: 48px; }
   .e-fab-toggle { width: 54px; height: 54px; }
   .e-form-card { padding: 24px; }
+}
+
+/* =======================================================================
+   EUROSFERA — MOBILE-FIRST + PREMIUM v3  (2026-06-09)
+   Главное: на телефоне НИЧЕГО не обрезается, читаемо и плавно;
+   на десктопе — «вау». Каждое направление — свой цвет (data-page).
+   Подключается последним → переопределяет нужное.
+   ======================================================================= */
+
+/* ---- 0. Анти-overflow и анти-обрезание (ГЛАВНЫЙ ФИКС МОБАЙЛА) ---- */
+html { overflow-x: clip; }
+body { overflow-x: clip; }
+* { -webkit-tap-highlight-color: transparent; }
+h1, h2, h3, h4,
+.hero h1, .premium3d-h1, .premium3d h2, .section-head h2,
+.e-show-text h3, .scene3d-step h3, .car-name, .fab-body h3, .e-organic h2 {
+  overflow-wrap: break-word; word-break: normal; hyphens: auto;
+}
+img, svg, video, canvas, model-viewer, iframe { max-width: 100%; }
+
+/* Гигантский фоновый «водяной знак» — не должен вылезать за края на телефоне */
+@media (max-width: 760px) { .premium3d-word { font-size: 24vw; opacity: .03 !important; } }
+@media (max-width: 480px) { .premium3d-word { display: none; } }
+
+/* ---- 1. Мобильная типографика: крупно, но НЕ гигантски; читаемо ---- */
+@media (max-width: 600px) {
+  .hero-text h1, .hero h1 { font-size: clamp(2.05rem, 8.4vw, 2.7rem) !important; line-height: 1.08 !important; letter-spacing: -.02em !important; }
+  .premium3d h2, .premium3d-h1 { font-size: clamp(2.1rem, 8.8vw, 2.9rem) !important; line-height: 1.08 !important; max-width: 100% !important; }
+  .section-head h2 { font-size: clamp(1.7rem, 7vw, 2.3rem) !important; line-height: 1.12 !important; }
+  .e-show-text h3, .scene3d-step h3 { font-size: clamp(1.45rem, 6.2vw, 1.9rem) !important; }
+  .hero-text .lead, .hero .lead, .section-head p { font-size: clamp(1rem, 4.2vw, 1.1rem) !important; line-height: 1.72 !important; }
+  .e-show-media .e-show-num { font-size: 40px; }
+  /* удобные тап-зоны на телефоне */
+  a, button, .swcat-chip, .car-tabs button, .euro-lang-menu button, .faq-q { touch-action: manipulation; }
+  .dir-link, .swcat-chip, .car-tabs button { min-height: 40px; }
+}
+@media (max-width: 400px) {
+  .hero-text h1, .hero h1 { font-size: clamp(1.9rem, 9vw, 2.4rem) !important; }
+}
+
+/* ---- 2. Премиум scroll-reveal: тоньше и дороже (улучшаем существующий .reveal) ---- */
+.reveal { opacity: 0; transform: translateY(26px); filter: blur(6px);
+  transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1), filter .7s ease; will-change: opacity, transform; }
+.reveal.visible { opacity: 1; transform: none; filter: none; }
+@media (max-width: 600px) { .reveal { transform: translateY(16px); filter: none; transition-duration: .55s; } }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+}
+
+/* Появление слева/справа/масштаб — опциональные модификаторы (можно вешать руками) */
+.reveal.r-left  { transform: translateX(-34px); }
+.reveal.r-right { transform: translateX(34px); }
+.reveal.r-zoom  { transform: scale(.92); filter: blur(4px); }
+.reveal.r-left.visible, .reveal.r-right.visible, .reveal.r-zoom.visible { transform: none; }
+
+/* ---- 3. КАЖДОЕ НАПРАВЛЕНИЕ — СВОЙ ЦВЕТ (по data-page на <html>) ---- */
+/* Меняем бренд-переменные → автоматически перекрашиваются кнопки, ссылки,
+   рамки при наведении, прогресс-бар, чипы, иконки и т.д. Бренд единый, оттенок — свой. */
+:root[data-page="goods"]     { --e-blue:#2563EB; --e-indigo:#3B82F6; --e-teal:#22D3EE; }
+:root[data-page="logistics"] { --e-blue:#4F46E5; --e-indigo:#6366F1; --e-teal:#22D3EE; }
+:root[data-page="it"]        { --e-blue:#0891B2; --e-indigo:#0EA5E9; --e-teal:#22D3EE; }
+:root[data-page="company"]   { --e-blue:#0D9488; --e-indigo:#14B8A6; --e-teal:#38BDF8; }
+:root[data-page="agro"]      { --e-blue:#16A34A; --e-indigo:#22C55E; --e-teal:#14B8A6; }
+:root[data-page="transfer"]  { --e-blue:#0369A1; --e-indigo:#0EA5E9; --e-teal:#D4AF37; }
+:root[data-page="music"]     { --e-blue:#7C3AED; --e-indigo:#A855F7; --e-teal:#EC4899; }
+/* index — фирменный синий (по умолчанию) */
+
+/* Аврора-фон тоже подхватывает цвет направления */
+:root[data-page="logistics"] .e-aurora .a1 { background:#4F46E5; }
+:root[data-page="it"]        .e-aurora .a1 { background:#0891B2; }
+:root[data-page="agro"]      .e-aurora .a1 { background:#16A34A; }
+:root[data-page="agro"]      .e-aurora .a2 { background:#22C55E; }
+:root[data-page="transfer"]  .e-aurora .a1 { background:#0369A1; }
+:root[data-page="music"]     .e-aurora .a1 { background:#7C3AED; }
+:root[data-page="music"]     .e-aurora .a2 { background:#A855F7; }
+:root[data-page="company"]   .e-aurora .a1 { background:#0D9488; }
+
+/* ---- 4. SIGNATURE-АКЦЕНТЫ НАПРАВЛЕНИЙ (своя «фишка» у каждого) ---- */
+/* TRANSFER (люкс): золотое подчёркивание заголовков секций — вытекает при появлении */
+:root[data-page="transfer"] .section-head h2 { position: relative; display: inline-block; }
+:root[data-page="transfer"] .section-head h2::after {
+  content:''; position:absolute; left:0; bottom:-14px; height:2px; width:0;
+  background: linear-gradient(90deg, #D4AF37, transparent); transition: width 1s cubic-bezier(.2,.8,.2,1) .2s; }
+:root[data-page="transfer"] .section-head.visible h2::after,
+:root[data-page="transfer"] .reveal.visible.section-head h2::after { width:140px; }
+
+/* MUSIC: живой эквалайзер-полоски в «оверлайнах» секций (чистый CSS) */
+:root[data-page="music"] .section-head .overline::before,
+:root[data-page="music"] .overline.eq::before {
+  content:''; display:inline-block; vertical-align:middle; margin-right:10px;
+  width:22px; height:14px;
+  background:
+    linear-gradient(#A855F7,#A855F7) 0 100%/3px 40% no-repeat,
+    linear-gradient(#EC4899,#EC4899) 6px 100%/3px 90% no-repeat,
+    linear-gradient(#7C3AED,#7C3AED) 12px 100%/3px 60% no-repeat,
+    linear-gradient(#A855F7,#A855F7) 18px 100%/3px 100% no-repeat;
+  animation: eq-bounce 1s ease-in-out infinite; }
+@keyframes eq-bounce { 0%,100%{ background-size:3px 40%,3px 90%,3px 60%,3px 100%; } 50%{ background-size:3px 100%,3px 30%,3px 95%,3px 45%; } }
+
+/* IT: мерцающая «дата-сетка» как фон премиум-блока (лёгкая) */
+:root[data-page="it"] .premium3d::before {
+  content:''; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.5;
+  background-image:
+    linear-gradient(rgba(34,211,238,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,211,238,.05) 1px, transparent 1px);
+  background-size: 46px 46px; -webkit-mask: radial-gradient(70% 60% at 50% 40%, #000, transparent 75%); mask: radial-gradient(70% 60% at 50% 40%, #000, transparent 75%); }
+
+/* AGRO: акцентные слова «прорастают» снизу (для .ac в заголовках) */
+:root[data-page="agro"] .reveal .ac { display:inline-block; }
+
+/* COMPANY: «печать доверия» — у чисел стат-банда мягкое появление с поворотом */
+:root[data-page="company"] .e-statband .num { will-change: transform; }
+
+/* ---- 5. МОБИЛЬНАЯ ПРОИЗВОДИТЕЛЬНОСТЬ ---- */
+@media (max-width: 760px) {
+  /* лёгкая аврора (тяжёлый blur — дорого на телефоне) */
+  .e-aurora span { filter: blur(60px); opacity: .12; }
+  /* длинные секции рендерим по мере подхода — меньше работы браузеру */
+  .section { content-visibility: auto; contain-intrinsic-size: 1px 1200px; }
+  /* 3D-канвасы: глобус/лента приглушаем (если всё же рисуются) */
+  .premium3d-canvas { opacity: .85; }
+}
+/* Слабые/тач-устройства: статичный постер вместо тяжёлого WebGL-героя IT */
+html.euro-lite .premium3d {
+  background: radial-gradient(115% 90% at 50% 0%, rgba(34,211,238,.16), transparent 60%),
+              linear-gradient(160deg, #0a1430, #06080f);
+}
+html.euro-lite .premium3d-canvas { display: none; }
+/* scene3d без WebGL → аккуратный вертикальный стек шагов (а не пустая высокая секция) */
+html.euro-lite .scene3d { height: auto !important; }
+html.euro-lite .scene3d-sticky { position: static; height: auto; display: block; overflow: visible; padding: 8px 0; }
+html.euro-lite .scene3d-steps { min-height: 0; max-width: 100%; }
+html.euro-lite .scene3d-step { position: static; inset: auto; opacity: 1; transform: none; pointer-events: auto; margin-bottom: 30px; }
+html.euro-lite .scene3d-canvas { display: none; }
+html.euro-lite .scene3d-progress { display: none; }
+
+/* ---- 6. Тач: убираем hover-«залипания», крупнее основные кнопки ---- */
+@media (hover: none) {
+  .dir-card::after { display: none; }            /* блик на тач не нужен */
+  .e-brand:hover { transform: none; }
+}
+@media (max-width: 600px) {
+  .btn-primary, .btn-cta, .cta-btn, .e-submit, .swcat-req { min-height: 46px; }
+  .e-fab { right: 16px; bottom: 16px; }
+  .e-top { left: 16px; bottom: 16px; }
 }
