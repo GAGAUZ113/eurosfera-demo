@@ -182,6 +182,33 @@
       };
     },
 
+    // --- ТОВАРЫ: облако коробок собирается в идеальный куб (хаос → порядок) ---
+    cube() {
+      const BLUE = 0x3b82f6, CYAN = 0x22d3ee, IND = 0x6366f1;
+      root.rotation.x = -0.35; root.scale.setScalar(0.95);
+      const cubes = [], N = 3, S = 0.9, gap = 1.02;
+      for (let x = 0; x < N; x++) for (let y = 0; y < N; y++) for (let z = 0; z < N; z++) {
+        const col = [BLUE, CYAN, IND][(x + y + z) % 3];
+        const c = box(S, S, S, 0x0a1530, col, 0.85);
+        c.userData.home = new THREE.Vector3((x - (N - 1) / 2) * gap, (y - (N - 1) / 2) * gap, (z - (N - 1) / 2) * gap);
+        c.userData.scatter = new THREE.Vector3((Math.random() - 0.5) * 9, (Math.random() - 0.5) * 9, (Math.random() - 0.5) * 9);
+        c.userData.spin = new THREE.Vector3(Math.random() * 6, Math.random() * 6, Math.random() * 6);
+        c.position.copy(c.userData.scatter);
+        root.add(c); cubes.push(c);
+      }
+      addField(0x2563eb);
+      return function (p, t) {
+        const a = easeInOut(p);                  // 0 — рассыпано, 1 — собрано в куб
+        cubes.forEach(c => {
+          const h = c.userData.home, s = c.userData.scatter, sp = c.userData.spin;
+          c.position.set(s.x + (h.x - s.x) * a, s.y + (h.y - s.y) * a, s.z + (h.z - s.z) * a);
+          c.rotation.set(sp.x * (1 - a), sp.y * (1 - a), sp.z * (1 - a));
+        });
+        root.rotation.y = t * 0.3 + p * Math.PI;
+        root.rotation.x = -0.35 + Math.sin(p * Math.PI) * 0.12;
+      };
+    },
+
     // --- ТРАНСФЕР: колесо/диск разбирается по слоям и крутится ---
     wheel() {
       const GOLD = 0xffd27a, STEEL = 0xcbd5e1, SKY = 0x38bdf8, BLUE = 0x0ea5e9;
