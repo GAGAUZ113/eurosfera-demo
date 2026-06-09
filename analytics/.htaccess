@@ -1,0 +1,12 @@
+# Защита данных аналитики: запретить прямой доступ к базе и служебным файлам
+<FilesMatch "\.(sqlite|sqlite3|db|log)$">
+  Require all denied
+</FilesMatch>
+<Files "_logger.php">
+  Require all denied
+</Files>
+# Папку с базой тоже закрываем
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^data/ - [F]
+</IfModule>
