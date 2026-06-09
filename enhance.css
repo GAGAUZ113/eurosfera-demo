@@ -801,3 +801,35 @@ html.euro-lite .scene3d-progress { display: none; }
   .e-fab { right: 16px; bottom: 16px; }
   .e-top { left: 16px; bottom: 16px; }
 }
+
+/* =======================================================================
+   EUROSFERA — АНИМАЦИИ v4 (2026-06-09): подчёркивание заголовков, штамп чисел,
+   декодирование текста (IT). Всё — своё, лёгкое, mobile-safe, не ломает контент.
+   ======================================================================= */
+
+/* --- Акцент-подчёркивание под заголовком секции «вырастает» при прокрутке --- */
+.section-head { position: relative; }
+.section-head h2 { position: relative; }
+.section-head h2::after {
+  content: ''; position: absolute; left: 50%; bottom: -16px; width: 62px; height: 3px; border-radius: 3px;
+  background: linear-gradient(90deg, var(--e-blue), var(--e-teal));
+  transform: translateX(-50%) scaleX(0); transform-origin: center;
+  transition: transform .75s cubic-bezier(.2,.85,.25,1) .12s; box-shadow: 0 0 14px rgba(59,130,246,.35); }
+.section-head.head-in h2::after { transform: translateX(-50%) scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .section-head h2::after { transition: none; transform: translateX(-50%) scaleX(1); }
+}
+
+/* --- COMPANY: числа стат-банда «штампуются» при появлении --- */
+:root[data-page="company"] .e-statband.head-in .num { animation: e-stamp .65s cubic-bezier(.2,1.25,.3,1) both; }
+:root[data-page="company"] .e-statband.head-in .num:nth-child(1){ animation-delay:.0s }
+@keyframes e-stamp { 0%{ transform: scale(.45) rotate(-5deg); opacity:0; } 55%{ transform: scale(1.07); opacity:1; } 100%{ transform: none; } }
+
+/* --- IT: курсор-«каретка» у декодируемого текста (scramble) --- */
+.is-scrambling::after { content:'▮'; margin-left:2px; color: var(--e-blue); animation: e-caret .5s steps(1) infinite; }
+@keyframes e-caret { 50%{ opacity:0; } }
+
+/* --- Лёгкое «всплывание» карточек-направлений по очереди (десктоп, через reveal) --- */
+@media (min-width: 861px) {
+  .dir-cards .dir-card.reveal { transition-delay: calc(var(--i, 0) * .06s); }
+}

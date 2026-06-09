@@ -488,6 +488,61 @@ const EURO_CONFIG = {
     document.addEventListener("mouseout", e => { if (e.target.closest && e.target.closest(hot)) ring.classList.remove("hot"); });
   }
 
+  /* ---------- 11b. Анимации v4: подчёркивание заголовков + штамп чисел ---------- */
+  (function headReveal() {
+    const targets = document.querySelectorAll(".section-head, .e-statband");
+    if (!targets.length || !("IntersectionObserver" in window)) {
+      targets.forEach(t => t.classList.add("head-in")); return; // фолбэк — сразу показать
+    }
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("head-in"); obs.unobserve(e.target); } });
+    }, { threshold: 0.25, rootMargin: "0px 0px -40px 0px" });
+    targets.forEach(t => io.observe(t));
+  })();
+  // порядковый индекс карточек направлений (для лёгкой каскадной задержки)
+  document.querySelectorAll(".dir-cards .dir-card").forEach((c, i) => c.style.setProperty("--i", i));
+
+  /* ---------- 11c. IT: эффект «декодирования» текста (scramble) ---------- */
+  (function decodeText() {
+    if (PAGE_KEY !== "it" || reduceMotion || window.EURO_LITE) return;
+    const GLYPHS = "!<>-_\\/[]{}=+*?#01ABCDEF%$";
+    function scramble(el) {
+      const finalText = (el.getAttribute("data-final") || el.textContent || "").trim();
+      if (!finalText) return;
+      el.setAttribute("data-final", finalText);
+      const len = finalText.length, dur = 620 + len * 22, start = performance.now();
+      el.classList.add("is-scrambling");
+      function tick(now) {
+        const p = Math.min((now - start) / dur, 1), reveal = Math.floor(p * len);
+        let out = "";
+        for (let i = 0; i < len; i++) {
+          const ch = finalText[i];
+          out += (i < reveal || ch === " ") ? ch : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+        }
+        el.textContent = out;
+        if (p < 1) requestAnimationFrame(tick);
+        else { el.textContent = finalText; el.classList.remove("is-scrambling"); } // ВСЕГДА садимся на исходный текст
+      }
+      requestAnimationFrame(tick);
+    }
+    const eyebrow = document.querySelector(".premium3d-eyebrow");
+    function runEyebrow() { if (eyebrow) scramble(eyebrow); }
+    const rootEl = document.documentElement;
+    if (rootEl.classList.contains("e-ready")) runEyebrow();
+    else {
+      const mo = new MutationObserver(() => { if (rootEl.classList.contains("e-ready")) { mo.disconnect(); runEyebrow(); } });
+      mo.observe(rootEl, { attributes: true, attributeFilter: ["class"] });
+      setTimeout(runEyebrow, 5000);
+    }
+    // надписи-оверлайны декодируются при прокрутке в зону видимости
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((es, obs) => {
+        es.forEach(e => { if (e.isIntersecting) { scramble(e.target); obs.unobserve(e.target); } });
+      }, { threshold: 0.7 });
+      document.querySelectorAll(".overline, .scene3d-eyebrow").forEach(el => { if (el !== eyebrow) io.observe(el); });
+    }
+  })();
+
   /* ---------- 12. Lenis — плавная инерционная прокрутка ---------- */
   function initLenis() {
     if (!window.Lenis || reduceMotion) return;
