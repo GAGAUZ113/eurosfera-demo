@@ -385,6 +385,23 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
   </div>
 </section>
 
+<!-- WOW-3D: 3D-куб товаров разлетается на скролле -->
+<section class="scene3d" id="wow3d" data-scene="cube">
+  <div class="scene3d-sticky">
+    <div class="scene3d-canvas" id="wow3d-canvas"></div>
+    <div class="scene3d-inner wrap">
+      <div class="scene3d-eyebrow">Как мы закупаем</div>
+      <div class="scene3d-steps">
+        <div class="scene3d-step"><div class="num">01 / Запрос</div><h3>Говорите, что нужно</h3><p>Любой товар, бренд или оборудование из ЕС — присылаете список или ссылку.</p></div>
+        <div class="scene3d-step"><div class="num">02 / Поиск</div><h3>Находим у поставщиков</h3><p>Подбираем напрямую у европейских производителей и дистрибьюторов — лучшие условия.</p></div>
+        <div class="scene3d-step"><div class="num">03 / Закупка</div><h3>Покупаем в евро от EU-юрлица</h3><p>Оплата и документы от европейской компании — легально и прозрачно.</p></div>
+        <div class="scene3d-step"><div class="num">04 / Поставка</div><h3>Консолидируем и везём</h3><p>Собираем заказ на складе и доставляем получателю в Центральной Азии.</p></div>
+      </div>
+      <div class="scene3d-progress"><span></span><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</section>
+
 <!-- CATEGORIES -->
 <div class="section-divider"></div>
 <section class="section section-alt" id="categories">
@@ -748,5 +765,7 @@ reveals.forEach(el=>revealObserver.observe(el));
 </script>
 <script src="enhance.js?v=0609l" defer></script>
 <script src="i18n.js?v=0609l" defer></script>
+<script src="lib/three.min.js"></script>
+<script src="wow3d.js?v=0609l"></script>
 </body>
 </html>

@@ -181,6 +181,72 @@
         root.rotation.y = -0.4 + p * 0.8 + t * 0.05;
       };
     },
+
+    // --- ТРАНСФЕР: колесо/диск разбирается по слоям и крутится ---
+    wheel() {
+      const GOLD = 0xffd27a, STEEL = 0xcbd5e1, SKY = 0x38bdf8, BLUE = 0x0ea5e9;
+      root.rotation.x = -0.12; root.scale.setScalar(1.0);
+      const tire = glow(new THREE.TorusGeometry(1.8, 0.45, 14, 36), 0x0a0f24, BLUE, 0.75); root.add(tire);
+      const rim = cyl(1.45, 1.45, 0.5, 0x10243f, STEEL); rim.rotation.x = Math.PI / 2; root.add(rim);
+      const disc = cyl(1.0, 1.0, 0.12, 0x14233f, SKY); disc.rotation.x = Math.PI / 2; root.add(disc);
+      const hub = cyl(0.32, 0.32, 0.7, 0x2a2410, GOLD); hub.rotation.x = Math.PI / 2; root.add(hub);
+      const spokes = [];
+      for (let i = 0; i < 5; i++) { const s = box(0.16, 2.5, 0.16, 0x10243f, GOLD, 0.85); s.rotation.z = i * (Math.PI * 2 / 5); root.add(s); spokes.push(s); }
+      const layers = [tire, rim, disc, hub];
+      tire.userData.ex = new THREE.Vector3(0, 0, -1.3); rim.userData.ex = new THREE.Vector3(0, 0, -0.4);
+      disc.userData.ex = new THREE.Vector3(0, 0, 1.0); hub.userData.ex = new THREE.Vector3(0, 0, 1.9);
+      layers.forEach(l => l.userData.home = l.position.clone());
+      spokes.forEach(s => { s.userData.ex = new THREE.Vector3(0, 0, -0.4); s.userData.home = s.position.clone(); });
+      addField(0x2563eb);
+      return function (p, t) {
+        const e = easeInOut(p);
+        layers.concat(spokes).forEach(pt => { const h = pt.userData.home, ex = pt.userData.ex; pt.position.set(h.x + ex.x * e, h.y + ex.y * e, h.z + ex.z * e); });
+        root.rotation.z = t * 0.5 + p * Math.PI * 1.6;
+        root.rotation.y = Math.sin(p * Math.PI) * 0.5;
+      };
+    },
+
+    // --- ФИРМА: компания «строится» из блоков снизу вверх ---
+    tower() {
+      const TEAL = 0x2dd4bf, SKY = 0x38bdf8, GOLD = 0xffd27a;
+      root.rotation.x = -0.12; root.scale.setScalar(0.92);
+      const blocks = [], n = 6;
+      for (let i = 0; i < n; i++) {
+        const w = 2.2 - i * 0.22;
+        const b = box(w, 0.5, w, 0x07201d, i % 2 ? SKY : TEAL, 0.85);
+        b.userData.home = new THREE.Vector3(0, -1.6 + i * 0.62, 0);
+        b.userData.from = new THREE.Vector3((Math.sin(i * 2.3)) * 3.5, -1.6 + i * 0.62 + 4 + i * 0.6, (Math.cos(i * 1.7)) * 3.5);
+        root.add(b); blocks.push(b);
+      }
+      const flag = cyl(0.09, 0.09, 1.1, 0x2a2410, GOLD); flag.position.set(0, -1.6 + n * 0.62 + 0.55, 0);
+      flag.userData.home = flag.position.clone(); flag.userData.from = flag.userData.home.clone().add(new THREE.Vector3(0, 5, 0)); root.add(flag);
+      addField(0x14b8a6);
+      function lerp(o, a) { const h = o.userData.home, f = o.userData.from; o.position.set(f.x + (h.x - f.x) * a, f.y + (h.y - f.y) * a, f.z + (h.z - f.z) * a); }
+      return function (p, t) {
+        blocks.forEach((b, i) => { const a = easeInOut(Math.min(Math.max((p - i * 0.09) / 0.42, 0), 1)); lerp(b, a); b.rotation.y = (1 - a) * 1.6; });
+        lerp(flag, easeInOut(Math.min(Math.max((p - 0.7) / 0.3, 0), 1)));
+        root.rotation.y = t * 0.25 + p * 0.6;
+      };
+    },
+
+    // --- ТОВАРЫ: 3D-куб товаров (3×3×3) разлетается и собирается ---
+    cube() {
+      const BLUE = 0x3b82f6, CYAN = 0x22d3ee, IND = 0x818cf8;
+      root.rotation.x = -0.25; root.scale.setScalar(1.0);
+      const cubes = [], gap = 0.74, s = 0.6;
+      for (let x = -1; x <= 1; x++) for (let y = -1; y <= 1; y++) for (let z = -1; z <= 1; z++) {
+        const c = box(s, s, s, 0x0a1230, [BLUE, CYAN, IND][(x + y + z + 3) % 3], 0.8);
+        c.userData.home = new THREE.Vector3(x * gap, y * gap, z * gap);
+        c.userData.dir = new THREE.Vector3(x, y, z);
+        c.position.copy(c.userData.home); root.add(c); cubes.push(c);
+      }
+      addField(0x2563eb);
+      return function (p, t) {
+        const e = easeInOut(p) * 2.3;
+        cubes.forEach(c => { const h = c.userData.home, d = c.userData.dir; c.position.set(h.x + d.x * e, h.y + d.y * e, h.z + d.z * e); c.rotation.y = e * 0.4; });
+        root.rotation.y = t * 0.35 + p * Math.PI; root.rotation.x = -0.25 + Math.sin(p * Math.PI) * 0.2;
+      };
+    },
   };
 
   const build = builders[SCENE] || builders.container;
