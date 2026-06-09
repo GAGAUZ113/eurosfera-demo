@@ -158,10 +158,19 @@
   background: linear-gradient(180deg, var(--e-card-2), var(--e-card)); border: 1px solid rgba(255,255,255,.08);
   transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s; }
 .fab-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.45); border-color: rgba(59,130,246,.4); }
-.fab-photo { height: 170px; background-image: linear-gradient(160deg, rgba(10,15,44,.25), rgba(10,15,44,.55)), var(--img, linear-gradient(135deg,#13204a,#0d1233));
-  background-size: cover; background-position: center; position: relative; }
-.fab-logo { position: absolute; inset: 0; display: grid; place-items: center; font-family: 'Space Grotesk','Inter',sans-serif;
-  font-weight: 700; font-size: 30px; letter-spacing: 1px; color: #fff; text-shadow: 0 4px 18px rgba(0,0,0,.5); }
+/* Брендовая карточка фабрики: фирменный цвет (--fab) + глубина + лёгкая «фактура», без чужих фото/логотипов */
+.fab-photo { height: 168px; position: relative; overflow: hidden;
+  background-image:
+    radial-gradient(120% 140% at 18% 0%, rgba(255,255,255,.14), transparent 55%),
+    linear-gradient(150deg, var(--fab, #1b2550) 0%, #0a0f24 120%); }
+.fab-photo::before { content: ''; position: absolute; inset: 0; opacity: .5; pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,.16) 1px, transparent 1.6px); background-size: 16px 16px;
+  -webkit-mask: linear-gradient(180deg, #000, transparent 80%); mask: linear-gradient(180deg, #000, transparent 80%); }
+.fab-photo::after { content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%; pointer-events: none;
+  background: linear-gradient(115deg, transparent, rgba(255,255,255,.14), transparent); transform: skewX(-18deg); transition: left .8s ease; }
+.fab-card:hover .fab-photo::after { left: 130%; }
+.fab-logo { position: absolute; inset: 0; display: grid; place-items: center; z-index: 1; font-family: 'Space Grotesk','Inter',sans-serif;
+  font-weight: 700; font-size: 30px; letter-spacing: 1.5px; color: #fff; text-shadow: 0 4px 18px rgba(0,0,0,.5); text-align: center; padding: 0 14px; }
 .fab-body { padding: 20px 22px 24px; }
 .fab-flag { font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
 .fab-body h3 { font-family: 'Space Grotesk','Inter',sans-serif; font-size: 22px; margin-bottom: 8px; }
@@ -658,18 +667,28 @@ img, svg, video, canvas, model-viewer, iframe { max-width: 100%; }
 
 /* ---- 1. Мобильная типографика: крупно, но НЕ гигантски; читаемо ---- */
 @media (max-width: 600px) {
-  .hero-text h1, .hero h1 { font-size: clamp(2.05rem, 8.4vw, 2.7rem) !important; line-height: 1.08 !important; letter-spacing: -.02em !important; }
-  .premium3d h2, .premium3d-h1 { font-size: clamp(2.1rem, 8.8vw, 2.9rem) !important; line-height: 1.08 !important; max-width: 100% !important; }
-  .section-head h2 { font-size: clamp(1.7rem, 7vw, 2.3rem) !important; line-height: 1.12 !important; }
-  .e-show-text h3, .scene3d-step h3 { font-size: clamp(1.45rem, 6.2vw, 1.9rem) !important; }
-  .hero-text .lead, .hero .lead, .section-head p { font-size: clamp(1rem, 4.2vw, 1.1rem) !important; line-height: 1.72 !important; }
-  .e-show-media .e-show-num { font-size: 40px; }
+  /* Заголовки заметно компактнее — без «гигантизма» на телефоне (.hero .wrap h1 — высокая специфичность, перекрываем) */
+  .hero-text h1, .hero h1, .hero .wrap h1 { font-size: clamp(1.7rem, 7vw, 2.15rem) !important; line-height: 1.1 !important; letter-spacing: -.02em !important; }
+  .premium3d h2, .premium3d-h1 { font-size: clamp(1.7rem, 7.2vw, 2.2rem) !important; line-height: 1.1 !important; max-width: 100% !important; }
+  .section-head h2 { font-size: clamp(1.45rem, 5.6vw, 1.85rem) !important; line-height: 1.14 !important; }
+  .e-show-text h3, .scene3d-step h3, .e-organic h2 { font-size: clamp(1.25rem, 5vw, 1.55rem) !important; }
+  .dir-card h3, .fab-body h3, .swcat-name, .car-name, .e-sol h3, .price-card h3, .why-card h3 { font-size: clamp(1.05rem, 4.4vw, 1.22rem) !important; }
+  /* Текст — компактный, но читаемый (~15-16px) */
+  .hero-text .lead, .hero .lead { font-size: clamp(.95rem, 3.7vw, 1.05rem) !important; line-height: 1.68 !important; }
+  .section-head p, .dir-card p, .fab-body p, .swcat-desc, .e-show-text p, .e-sol p, .car-desc, .about p, .scene3d-step p { font-size: clamp(.9rem, 3.5vw, .98rem) !important; line-height: 1.62 !important; }
+  .overline { font-size: 11px !important; }
+  .e-show-media .e-show-num { font-size: 36px; }
+  /* Плотнее по вертикали — меньше «воздуха», компактнее на телефоне */
+  .section { padding-top: 46px !important; padding-bottom: 46px !important; }
+  .section-head { margin-bottom: 28px !important; }
   /* удобные тап-зоны на телефоне */
   a, button, .swcat-chip, .car-tabs button, .euro-lang-menu button, .faq-q { touch-action: manipulation; }
   .dir-link, .swcat-chip, .car-tabs button { min-height: 40px; }
 }
 @media (max-width: 400px) {
-  .hero-text h1, .hero h1 { font-size: clamp(1.9rem, 9vw, 2.4rem) !important; }
+  .hero-text h1, .hero h1, .hero .wrap h1 { font-size: clamp(1.55rem, 7.6vw, 1.95rem) !important; }
+  .premium3d h2, .premium3d-h1 { font-size: clamp(1.55rem, 7.6vw, 2rem) !important; }
+  .section-head h2 { font-size: clamp(1.35rem, 6vw, 1.7rem) !important; }
 }
 
 /* ---- 2. Премиум scroll-reveal: тоньше и дороже (улучшаем существующий .reveal) ---- */

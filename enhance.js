@@ -276,9 +276,21 @@ const EURO_CONFIG = {
   // GSAP — кинематографичное появление шапки + лёгкий параллакс
   function initGSAP() {
     if (!window.gsap || reduceMotion) return;
-    gsap.from(".hero .hero-badge, .hero h1, .hero .lead, .hero p, .hero .hero-btns, .hero .hero-vendors", {
-      y: 26, opacity: 0, duration: .8, stagger: .12, ease: "power3.out",
-    });
+    // Hero «въезжает» РОВНО когда штора прелоадера поднимается (класс e-ready) — иначе
+    // анимация играла бы под заставкой и её не видно. Фолбэк-таймер на случай, если e-ready не пришёл.
+    const heroEls = ".hero .hero-badge, .hero h1, .hero .lead, .hero p, .hero .hero-btns, .hero .hero-vendors";
+    let heroPlayed = false;
+    function heroIn() {
+      if (heroPlayed) return; heroPlayed = true;
+      gsap.from(heroEls, { y: 30, opacity: 0, duration: .9, stagger: .12, ease: "power3.out", clearProps: "all" });
+    }
+    const rootEl = document.documentElement;
+    if (rootEl.classList.contains("e-ready")) heroIn();
+    else {
+      const mo = new MutationObserver(() => { if (rootEl.classList.contains("e-ready")) { mo.disconnect(); heroIn(); } });
+      mo.observe(rootEl, { attributes: true, attributeFilter: ["class"] });
+      setTimeout(() => { mo.disconnect(); heroIn(); }, 5000); // страховка: не оставить hero невидимым
+    }
     if (window.ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
       gsap.to("#particles", {
@@ -354,6 +366,9 @@ const EURO_CONFIG = {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     if (/^https?:\/\//i.test(href) && href.indexOf(location.host) === -1) return; // внешняя ссылка
     if (!/\.html(\?|#|$)/.test(href)) return; // только переходы на наши страницы
+    // Та же страница (якорь / ссылка на саму себя) — НЕ показываем шторку, иначе синий экран зависает
+    let dest; try { dest = new URL(href, location.href); } catch (_) { return; }
+    if (dest.pathname === location.pathname && dest.search === location.search) return;
     e.preventDefault();
     const key = ((href.match(/([a-z0-9-]+)\.html/) || [])[0]) || "index.html";
     const v = PF[key] || ["t-fade", "#0a0f2c"];
@@ -361,6 +376,10 @@ const EURO_CONFIG = {
     pageFade.className = "e-pagefade go " + v[0];
     setTimeout(() => { location.href = href; }, 560);
   }, true);
+  // ВАЖНО: сбрасываем шторку при каждом показе страницы — в т.ч. при возврате «Назад»
+  // из bfcache (иначе страница восстанавливается с уже активной шторкой = зависший синий экран).
+  window.addEventListener("pageshow", () => { pageFade.className = "e-pagefade"; });
+  window.addEventListener("pagehide", () => { pageFade.className = "e-pagefade"; });
 
   /* ---------- 8. Премиум-полировка: прогресс, аврора, магнитные кнопки ---------- */
   // Индикатор прокрутки
