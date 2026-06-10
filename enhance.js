@@ -9,7 +9,8 @@ const EURO_CONFIG = {
   // Контакты (используются в виджете и форме)
   whatsapp: "359892098460",             // номер без + и пробелов
   telegram: "https://t.me/gagauz13",    // ссылка на Telegram (заявки идут сюда)
-  email:    "a.tukan@euro.s.bg",        // заявки приходят на этот email
+  email:    "sale@euro.s.bg",           // публичная почта (показывается в контактах)
+  leads:    "a.tukan@euro.s.bg,sale@euro.s.bg", // КУДА слать заявки (обе почты)
   phone:    "+359 89 209 84 60",
 
   // === КУДА ИДУТ ЗАЯВКИ ===
@@ -203,10 +204,10 @@ const EURO_CONFIG = {
       if (!j.success) throw new Error(j.message || "web3forms");
       return true;
     }
-    // 4) запасной вариант без настройки — открыть почтовый клиент с заполненным письмом
+    // 4) запасной вариант без настройки — письмо на ОБЕ почты (заявки дублируются)
     const subject = encodeURIComponent("Заявка с сайта EUROSFERA");
     const body = encodeURIComponent(leadText(data));
-    window.location.href = "mailto:" + C.email + "?subject=" + subject + "&body=" + body;
+    window.location.href = "mailto:" + (C.leads || C.email) + "?subject=" + subject + "&body=" + body;
     return true;
   }
 

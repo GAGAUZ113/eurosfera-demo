@@ -163,6 +163,9 @@
   background-image:
     radial-gradient(120% 140% at 18% 0%, rgba(255,255,255,.14), transparent 55%),
     linear-gradient(150deg, var(--fab, #1b2550) 0%, #0a0f24 120%); }
+.fab-photo.img { background-image: linear-gradient(180deg, rgba(10,15,36,.25), rgba(8,12,30,.82)), var(--img); background-size: cover; background-position: center; }
+.fab-photo.img::before { display: none; }
+.fab-card:hover .fab-photo.img { filter: saturate(1.1); }
 .fab-photo::before { content: ''; position: absolute; inset: 0; opacity: .5; pointer-events: none;
   background-image: radial-gradient(rgba(255,255,255,.16) 1px, transparent 1.6px); background-size: 16px 16px;
   -webkit-mask: linear-gradient(180deg, #000, transparent 80%); mask: linear-gradient(180deg, #000, transparent 80%); }
