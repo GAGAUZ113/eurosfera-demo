@@ -554,6 +554,15 @@ const EURO_CONFIG = {
     window.__lenis = lenis;
     if (window.ScrollTrigger) lenis.on("scroll", () => ScrollTrigger.update());
   }
+  // Цветная вспышка при входе в направление (цвет = --e-indigo, свой у каждого)
+  if (!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) {
+    const fl = document.createElement("div"); fl.className = "e-flash";
+    document.body.appendChild(fl);
+    const flash = () => requestAnimationFrame(() => { fl.classList.add("go"); setTimeout(() => fl.remove(), 950); });
+    if (document.readyState === "complete") setTimeout(flash, 650);
+    else addEventListener("load", () => setTimeout(flash, 650));
+  }
+
   loadScript("lib/lenis.min.js").then(initLenis).catch(() => {});
 
   loadScript("lib/gsap.min.js")
