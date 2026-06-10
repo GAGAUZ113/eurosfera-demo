@@ -230,7 +230,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
 }
 </style>
 <link rel="icon" type="image/png" href="img/logo.png">
-<link rel="stylesheet" href="enhance.css?v=0610b">
+<link rel="stylesheet" href="enhance.css?v=0610c">
 <!--seo-->
 <meta name="keywords" content="купить товары в Европе, стройматериалы из ЕС, керамогранит, плитка, Cersanit, Opoczno, Grohe, Cerrad, Kospel, электроника оптом, промышленное оборудование, импорт из Европы">
 <meta name="robots" content="index, follow">
@@ -297,40 +297,125 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
   </div>
 </section>
 
-<!-- BENTO -->
+<!-- BUY SHOWCASE: что мы закупаем — наглядная анимационная презентация -->
 <div class="section-divider"></div>
-<section class="section">
+<section class="section" id="buy">
   <div class="wrap">
     <div class="section-head">
       <div class="overline reveal">Витрина</div>
       <h2 class="reveal">Что мы закупаем</h2>
-      <p class="reveal">Любые товары и оборудование от европейских поставщиков</p>
+      <p class="reveal">Пять направлений закупок — всё показано наглядно. Любая позиция от европейских поставщиков под ключ.</p>
     </div>
-    <div class="bento reveal">
-      <div class="bento-item big bento-photo" style="--bg:url('assets/img/dir-construction.jpg')">
-        <h4>Стройматериалы и керамика</h4>
-        <p>Керамогранит, плитка, кровля, сантехника и смеси — прямые поставки от европейских фабрик (Cersanit, Grohe и др.).</p>
-      </div>
-      <div class="bento-item">
-        <div class="bento-ic"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <h4>Электроника</h4><p>Техника и комплектующие</p>
-      </div>
-      <div class="bento-item">
-        <div class="bento-ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 10h16M10 4v16"/></svg></div>
-        <h4>Керамика и сантехника</h4><p>Cersanit, Grohe и др.</p>
-      </div>
-      <div class="bento-item wide bento-photo" style="--bg:url('assets/img/dir-electronics.jpg')">
-        <h4>Электроника и оборудование</h4>
-        <p>Бытовая и промышленная техника, комплектующие, торговое оборудование — под заказ.</p>
-      </div>
-      <div class="bento-item">
-        <div class="bento-ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
-        <h4>Оборудование</h4><p>Промышленное и торговое</p>
-      </div>
-      <div class="bento-item">
-        <div class="bento-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 1 0 18M3 12h18"/></svg></div>
-        <h4>Спецтовары</h4><p>Любая позиция под запрос</p>
-      </div>
+    <div class="buy-grid">
+
+      <!-- 1. Стройматериалы: стена собирается из блоков -->
+      <article class="buy-card buy-build reveal">
+        <div class="buy-stage" aria-hidden="true">
+          <div class="buy-wall">
+            <span class="buy-row"><i style="--b:0"></i><i style="--b:1"></i><i style="--b:2"></i><i style="--b:3"></i></span>
+            <span class="buy-row"><i style="--b:4"></i><i style="--b:5"></i><i style="--b:6"></i></span>
+            <span class="buy-row"><i style="--b:7"></i><i style="--b:8"></i><i style="--b:9"></i><i style="--b:10"></i></span>
+            <span class="buy-row"><i style="--b:11"></i><i style="--b:12"></i><i style="--b:13"></i></span>
+          </div>
+          <i class="buy-base"></i>
+        </div>
+        <div class="buy-info">
+          <h3>Стройматериалы</h3>
+          <p>Керамогранит, плитка, сантехника, котлы и смеси — напрямую от фабрик ЕС.</p>
+        </div>
+      </article>
+
+      <!-- 2. Электроника: печатная плата, бегущие дорожки, пульс чипа -->
+      <article class="buy-card buy-elec reveal reveal-delay-1">
+        <div class="buy-stage" aria-hidden="true">
+          <svg class="buy-pcb" viewBox="0 0 240 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g class="buy-traces" stroke-linecap="round">
+              <path d="M96 52 H64 V30 H22"/>
+              <path d="M96 66 H40 V96 H14"/>
+              <path d="M96 80 H70 V110 H30"/>
+              <path d="M144 52 H180 V24 H222"/>
+              <path d="M144 66 H198 V92 H230"/>
+              <path d="M144 80 H172 V112 H214"/>
+              <path d="M112 42 V14"/>
+              <path d="M128 42 V14"/>
+              <path d="M112 90 V120"/>
+              <path d="M128 90 V120"/>
+            </g>
+            <g class="buy-pads">
+              <circle cx="22" cy="30" r="3.4"/><circle cx="14" cy="96" r="3.4"/><circle cx="30" cy="110" r="3.4"/>
+              <circle cx="222" cy="24" r="3.4"/><circle cx="230" cy="92" r="3.4"/><circle cx="214" cy="112" r="3.4"/>
+              <circle cx="112" cy="14" r="3"/><circle cx="128" cy="14" r="3"/><circle cx="112" cy="120" r="3"/><circle cx="128" cy="120" r="3"/>
+            </g>
+            <rect class="buy-chip-glow" x="91" y="37" width="58" height="58" rx="11"/>
+            <rect class="buy-chip" x="96" y="42" width="48" height="48" rx="8"/>
+            <text class="buy-chip-txt" x="120" y="71">EU</text>
+          </svg>
+        </div>
+        <div class="buy-info">
+          <h3>Электроника</h3>
+          <p>Техника, комплектующие и промышленное оборудование европейских вендоров.</p>
+        </div>
+      </article>
+
+      <!-- 3. Удобрения / агро: росток прорастает + N-P-K -->
+      <article class="buy-card buy-agro reveal">
+        <div class="buy-stage" aria-hidden="true">
+          <svg class="buy-sprout" viewBox="0 0 240 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line class="buy-soil" x1="62" y1="116" x2="178" y2="116"/>
+            <g class="buy-plant">
+              <path class="buy-stem" d="M120 116 C120 96 116 84 120 64 C121 56 122 51 120 44"/>
+              <path class="buy-leaf buy-leaf-l" d="M120 80 C103 78 93 66 91 51 C108 53 118 63 120 80 Z"/>
+              <path class="buy-leaf buy-leaf-r" d="M120 64 C137 62 147 50 149 35 C132 37 122 47 120 64 Z"/>
+            </g>
+            <g class="buy-bub buy-bub1"><circle cx="80" cy="102" r="9"/><text x="80" y="106">N</text></g>
+            <g class="buy-bub buy-bub2"><circle cx="162" cy="106" r="9"/><text x="162" y="110">P</text></g>
+            <g class="buy-bub buy-bub3"><circle cx="98" cy="110" r="9"/><text x="98" y="114">K</text></g>
+          </svg>
+        </div>
+        <div class="buy-info">
+          <h3>Удобрения и агро</h3>
+          <p>Минеральные удобрения и агрохимия для сельского хозяйства.</p>
+        </div>
+      </article>
+
+      <!-- 4. IT и ПО: орбита вендоров -->
+      <article class="buy-card buy-it reveal reveal-delay-1">
+        <div class="buy-stage" aria-hidden="true">
+          <div class="buy-orbit-wrap">
+            <i class="buy-ring"></i>
+            <span class="buy-hub">&lt;/&gt;</span>
+            <div class="buy-orbit">
+              <span class="buy-sat" style="--a:0deg"><b>Microsoft</b></span>
+              <span class="buy-sat" style="--a:60deg"><b>Adobe</b></span>
+              <span class="buy-sat" style="--a:120deg"><b>Autodesk</b></span>
+              <span class="buy-sat" style="--a:180deg"><b>JetBrains</b></span>
+              <span class="buy-sat" style="--a:240deg"><b>Kaspersky</b></span>
+              <span class="buy-sat" style="--a:300deg"><b>AnyDesk</b></span>
+            </div>
+          </div>
+        </div>
+        <div class="buy-info">
+          <h3>IT и ПО</h3>
+          <p>Официальные лицензии мировых вендоров — поставка на юрлицо.</p>
+        </div>
+      </article>
+
+      <!-- 5. Нефтепродукты: капля и волны -->
+      <article class="buy-card buy-oil reveal reveal-delay-2">
+        <div class="buy-stage" aria-hidden="true">
+          <div class="buy-oilstage">
+            <span class="buy-drop"></span>
+            <span class="buy-ripple buy-rip1"></span>
+            <span class="buy-ripple buy-rip2"></span>
+            <i class="buy-pool"></i>
+          </div>
+        </div>
+        <div class="buy-info">
+          <h3>Нефтепродукты</h3>
+          <p>Масла, смазочные материалы и технические жидкости от производителей ЕС.</p>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -348,11 +433,11 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
       <button class="fab-arrow prev" aria-label="Назад" onclick="document.getElementById('fabSlider').scrollBy({left:-340,behavior:'smooth'})">&lsaquo;</button>
       <div class="fab-slider" id="fabSlider">
         <a class="fab-card" href="https://www.cersanit.com" target="_blank" rel="noopener nofollow">
-          <div class="fab-photo img" style="--img:url('assets/img/fab-cersanit.jpg')"><div class="fab-logo notranslate" translate="no">Cersanit</div></div>
+          <div class="fab-photo img" style="--img:url('assets/img/fab-cersanit.jpg?v=2')"><div class="fab-logo notranslate" translate="no">Cersanit</div></div>
           <div class="fab-body"><div class="fab-flag">🇵🇱 Польша</div><h3>Cersanit</h3><p>Один из крупнейших в Европе производителей керамогранита, плитки и сантехники.</p><span class="fab-cat">Керамика · сантехника</span> <span class="fab-site">Сайт &#8599;</span></div>
         </a>
         <a class="fab-card" href="https://www.opoczno.eu" target="_blank" rel="noopener nofollow">
-          <div class="fab-photo img" style="--img:url('assets/img/fab-opoczno.jpg')"><div class="fab-logo notranslate" translate="no">Opoczno</div></div>
+          <div class="fab-photo img" style="--img:url('assets/img/fab-opoczno.jpg?v=2')"><div class="fab-logo notranslate" translate="no">Opoczno</div></div>
           <div class="fab-body"><div class="fab-flag">🇵🇱 Польша</div><h3>Opoczno</h3><p>Керамическая плитка и керамогранит для пола и стен. Классика европейского качества.</p><span class="fab-cat">Плитка · керамогранит</span> <span class="fab-site">Сайт &#8599;</span></div>
         </a>
         <a class="fab-card" href="https://www.grohe.com" target="_blank" rel="noopener nofollow">
@@ -360,7 +445,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
           <div class="fab-body"><div class="fab-flag">🇩🇪 Германия</div><h3>GROHE</h3><p>Премиальные смесители, душевые системы и инженерная сантехника. Мировой эталон.</p><span class="fab-cat">Смесители · душевые</span> <span class="fab-site">Сайт &#8599;</span></div>
         </a>
         <a class="fab-card" href="https://www.cerrad.com" target="_blank" rel="noopener nofollow">
-          <div class="fab-photo img" style="--img:url('assets/img/fab-cerrad.jpg')"><div class="fab-logo notranslate" translate="no">Cerrad</div></div>
+          <div class="fab-photo img" style="--img:url('assets/img/fab-cerrad.jpg?v=2')"><div class="fab-logo notranslate" translate="no">Cerrad</div></div>
           <div class="fab-body"><div class="fab-flag">🇵🇱 Польша</div><h3>Cerrad</h3><p>Керамогранит, клинкер и фасадная плитка. Современные коллекции для фасадов и интерьера.</p><span class="fab-cat">Керамогранит · фасады</span> <span class="fab-site">Сайт &#8599;</span></div>
         </a>
         <a class="fab-card" href="https://www.kospel.pl" target="_blank" rel="noopener nofollow">
@@ -372,15 +457,15 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
           <div class="fab-body"><div class="fab-flag">🇵🇱 Польша</div><h3>Ferro</h3><p>Смесители, сантехническая арматура, насосы и комплектующие для инженерных систем.</p><span class="fab-cat">Арматура · насосы</span> <span class="fab-site">Сайт &#8599;</span></div>
         </a>
         <a class="fab-card" href="https://www.tubadzin.com" target="_blank" rel="noopener nofollow">
-          <div class="fab-photo img" style="--img:url('assets/img/fab-tubadzin.jpg')"><div class="fab-logo notranslate" translate="no">Tubądzin</div></div>
+          <div class="fab-photo img" style="--img:url('assets/img/fab-tubadzin.jpg?v=2')"><div class="fab-logo notranslate" translate="no">Tubądzin</div></div>
           <div class="fab-body"><div class="fab-flag">🇵🇱 Польша</div><h3>Tubądzin</h3><p>Премиальная керамическая плитка и керамогранит, дизайнерские коллекции для интерьера.</p><span class="fab-cat">Плитка · дизайн</span> <span class="fab-site">Сайт &#8599;</span></div>
         </a>
         <a class="fab-card" href="https://www.aparici.com" target="_blank" rel="noopener nofollow">
-          <div class="fab-photo img" style="--img:url('assets/img/fab-aparici.jpg')"><div class="fab-logo notranslate" translate="no">Aparici</div></div>
+          <div class="fab-photo img" style="--img:url('assets/img/fab-aparici.jpg?v=2')"><div class="fab-logo notranslate" translate="no">Aparici</div></div>
           <div class="fab-body"><div class="fab-flag">🇪🇸 Испания</div><h3>Aparici</h3><p>Испанский керамогранит и плитка премиум-класса — фактуры под мрамор, камень и дерево.</p><span class="fab-cat">Керамогранит · премиум</span> <span class="fab-site">Сайт &#8599;</span></div>
         </a>
         <article class="fab-card">
-          <div class="fab-photo img" style="--img:url('assets/img/fab-cerrol.jpg')"><div class="fab-logo notranslate" translate="no">Cerrol</div></div>
+          <div class="fab-photo img" style="--img:url('assets/img/fab-cerrol.jpg?v=2')"><div class="fab-logo notranslate" translate="no">Cerrol</div></div>
           <div class="fab-body"><div class="fab-flag">🇵🇱 Польша</div><h3>Cerrol</h3><p>Керамическая плитка и керамогранит. Поставляем коллекции под запрос.</p><span class="fab-cat">Плитка · керамика</span></div>
         </article>
         <article class="fab-card">
