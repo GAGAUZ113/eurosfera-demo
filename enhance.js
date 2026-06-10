@@ -561,3 +561,21 @@ const EURO_CONFIG = {
   loadScript("lib/vanilla-tilt.min.js").then(initTilt).catch(() => {});
   loadScript("lib/typed.umd.js").then(initTyped).catch(() => {});
 })();
+
+/* ---------- Google Analytics 4 (опционально) ----------
+   Чтобы включить GA4: задай свой идентификатор в любой странице ДО enhance.js:
+   <script>window.EURO_GA4_ID="G-XXXXXXXXXX";</script>
+   Тогда здесь подгрузится gtag и пойдёт сбор (источник перехода, страна, устройство).
+   Работает и на статике (GitHub Pages), и на хостинге. Для EU нужен баннер-согласие. */
+(function () {
+  "use strict";
+  var ID = window.EURO_GA4_ID;
+  if (!ID || !/^G-[A-Z0-9]+$/i.test(ID)) return;
+  var s = document.createElement("script"); s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=" + ID;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag("js", new Date());
+  window.gtag("config", ID, { anonymize_ip: true });
+})();

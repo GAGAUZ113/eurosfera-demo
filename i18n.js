@@ -41,6 +41,21 @@
     }
   }
 
+  // --- маленький тост обратной связи (перевод зависит от доступности Google) ---
+  function toast(msg, ms) {
+    let t = document.getElementById("euro-toast");
+    if (!t) {
+      t = document.createElement("div"); t.id = "euro-toast";
+      t.style.cssText = "position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:99999;" +
+        "background:rgba(8,12,30,.96);color:#fff;border:1px solid rgba(99,102,241,.4);border-radius:12px;" +
+        "padding:12px 18px;font:500 14px/1.4 system-ui,sans-serif;max-width:88vw;text-align:center;" +
+        "box-shadow:0 12px 40px rgba(0,0,0,.5);backdrop-filter:blur(8px)";
+      document.body.appendChild(t);
+    }
+    t.textContent = msg; t.style.opacity = "1";
+    clearTimeout(t._tm); if (ms) t._tm = setTimeout(() => { t.style.opacity = "0"; }, ms);
+  }
+
   // --- Google Translate init ---
   window.googleTranslateElementInit = function () {
     try {
@@ -61,14 +76,19 @@
     const s = document.createElement("script");
     s.id = "gt-script";
     s.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    // Если Google-переводчик недоступен (нет интернета / заблокирован в регионе) — честно скажем,
+    // а не оставим пользователя в недоумении «почему не переводится».
+    s.onerror = function () { toast("Перевод недоступен: нет связи с Google. Нужен интернет или VPN.", 6000); };
     document.head.appendChild(s);
   }
 
   function apply(lang) {
     localStorage.setItem("euro_lang", lang);
     if (lang === "ru") { clearGtCookie(); location.reload(); return; }
+    const L = LANGS.find(x => x.c === lang);
+    toast("Переводим на " + (L ? L.n : lang) + "…");   // мгновенный отклик на тап
     setGtCookie("/ru/" + lang);
-    location.reload();
+    setTimeout(function () { location.reload(); }, 200);
   }
 
   // --- переключатель в шапке ---
