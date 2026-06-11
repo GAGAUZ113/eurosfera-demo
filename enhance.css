@@ -1101,37 +1101,39 @@ h1, h2, h3, .section-head h2, .hero h1, .hero .wrap h1, .premium3d-h1, .premium3
 .phone-mask a { color:inherit; text-decoration:none; }
 .cta-phone .phone-mask { font-size:clamp(1.1rem,2.2vw,1.45rem); justify-content:center; }
 
-/* — Кинематографичная подача авто (реальные фото, scroll-сцена) — */
+/* — Премиум-витрина авто (реальное фото на весь кадр, мягкий зум на скролле) — */
 .va-intro { padding-bottom:0 !important; }
-.vip-arrival { position:relative; height:300vh; }
-.va-sticky { position:sticky; top:0; height:100vh; overflow:hidden; display:flex; flex-direction:column;
-  background:radial-gradient(120% 90% at 50% 28%, rgba(30,58,138,.18), transparent 60%); }
-.va-stage { position:relative; flex:1 1 auto; min-height:0; }
-.va-car { position:absolute; inset:8% 5% 6%; background-image:var(--img);
-  background-size:contain; background-position:center bottom; background-repeat:no-repeat;
-  will-change:transform,opacity; filter:drop-shadow(0 42px 56px rgba(0,0,0,.65)); }
-.va-glow { position:absolute; left:50%; bottom:13%; width:62%; height:30%; transform:translateX(-50%);
-  background:radial-gradient(closest-side, rgba(59,130,246,.30), transparent 72%); filter:blur(34px); pointer-events:none; z-index:-1; }
-.va-captions { position:relative; flex:0 0 auto; height:150px; }
-.va-cap { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-start; align-items:center;
-  text-align:center; padding:0 22px; opacity:0; transform:translateY(18px); pointer-events:none;
-  transition:opacity .55s cubic-bezier(.2,.7,.2,1), transform .55s cubic-bezier(.2,.7,.2,1); }
+.vip-arrival { position:relative; height:200vh; }
+.va-sticky { position:sticky; top:0; height:100vh; overflow:hidden; background:#06182a; }
+.va-stage { position:absolute; inset:0; }
+.va-car { position:absolute; inset:0; background-image:var(--img);
+  background-size:cover; background-position:center 42%; background-repeat:no-repeat;
+  transform-origin:center 45%; will-change:transform; }
+.va-shade { position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:
+    linear-gradient(180deg, rgba(6,12,26,.55) 0%, transparent 20%, transparent 50%, rgba(6,12,26,.94) 100%),
+    radial-gradient(120% 80% at 50% 38%, transparent 52%, rgba(6,12,26,.5) 100%); }
+.va-cap { position:absolute; left:0; right:0; bottom:11%; padding:0 24px; text-align:center; z-index:2;
+  opacity:0; transform:translateY(18px); pointer-events:none;
+  transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1); }
 .va-cap.on { opacity:1; transform:none; }
-.va-step { color:var(--e-blue,#3b82f6); font-weight:700; letter-spacing:.16em; text-transform:uppercase; font-size:12.5px; margin-bottom:10px; }
-.va-cap h3 { font-family:'Space Grotesk','Inter',sans-serif; font-size:clamp(1.35rem,3.2vw,2.1rem); margin-bottom:8px; letter-spacing:-.02em; }
-.va-cap p { color:#94A3B8; max-width:540px; margin:0 auto; line-height:1.6; font-size:clamp(.95rem,1.5vw,1.08rem); }
-.va-progress { flex:0 0 auto; width:150px; height:3px; margin:0 auto 30px; background:rgba(148,163,184,.22); border-radius:3px; overflow:hidden; }
+.va-step { display:inline-block; color:#fff; background:rgba(59,130,246,.92); font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; font-size:11.5px; padding:5px 13px; border-radius:999px; margin-bottom:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.35); }
+.va-cap h3 { font-family:'Space Grotesk','Inter',sans-serif; font-size:clamp(1.5rem,3.6vw,2.4rem); margin-bottom:8px; letter-spacing:-.02em; color:#fff; }
+.va-cap p { color:#cbd5e1; max-width:560px; margin:0 auto; line-height:1.6; font-size:clamp(.95rem,1.5vw,1.1rem); }
+.va-progress { position:absolute; left:50%; bottom:4.5%; transform:translateX(-50%); width:150px; height:3px;
+  background:rgba(255,255,255,.22); border-radius:3px; overflow:hidden; z-index:3; }
 .va-progress i { display:block; height:100%; width:0%; background:var(--e-blue,#3b82f6); transition:width .12s linear; }
 @media (max-width:600px){
-  .vip-arrival { height:260vh; }
-  .va-car { inset:6% 3% 4%; }
-  .va-captions { height:178px; }
+  .vip-arrival { height:170vh; }
+  .va-cap { bottom:14%; }
 }
 @media (prefers-reduced-motion: reduce){
   .vip-arrival { height:auto; }
-  .va-sticky { position:relative; height:auto; padding:30px 0; }
-  .va-stage { height:46vh; }
-  .va-car { transform:none !important; opacity:1 !important; }
-  .va-cap { position:relative; opacity:1; transform:none; margin-bottom:18px; }
+  .va-sticky { position:relative; height:62vh; }
+  .va-car { transform:none !important; }
+  .va-cap[data-stage="0"] { opacity:1; transform:none; }
+  .va-cap[data-stage="1"], .va-cap[data-stage="2"] { display:none; }
   .va-progress { display:none; }
 }
