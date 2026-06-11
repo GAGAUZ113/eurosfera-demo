@@ -1108,7 +1108,12 @@ h1, h2, h3, .section-head h2, .hero h1, .hero .wrap h1, .premium3d-h1, .premium3
 .va-stage { position:absolute; inset:0; }
 .va-car { position:absolute; inset:0; background-image:var(--img);
   background-size:cover; background-position:center 42%; background-repeat:no-repeat;
-  transform-origin:center 45%; will-change:transform; }
+  transform-origin:center 45%; will-change:transform; transition:opacity .7s ease; }
+/* видео-слой (подключается, когда появляется файл assets/video/vclass-arrival.mp4) */
+.va-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 45%;
+  opacity:0; transition:opacity .7s ease; z-index:0; pointer-events:none; }
+.va-has-video .va-video { opacity:1; }
+.va-has-video .va-car { opacity:0; }
 .va-shade { position:absolute; inset:0; pointer-events:none; z-index:1;
   background:
     linear-gradient(180deg, rgba(6,12,26,.55) 0%, transparent 20%, transparent 50%, rgba(6,12,26,.94) 100%),

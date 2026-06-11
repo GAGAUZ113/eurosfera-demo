@@ -226,7 +226,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
 }
 </style>
 <link rel="icon" type="image/png" href="img/logo.png">
-<link rel="stylesheet" href="enhance.css?v=0611b">
+<link rel="stylesheet" href="enhance.css?v=0611c">
 <!--seo-->
 <meta name="keywords" content="премиум трансфер по Европе, VIP перевозки, Mercedes S-Class Maybach V-Class, трансфер из аэропорта, бизнес-джет, аренда авто с водителем">
 <meta name="robots" content="index, follow">
@@ -333,36 +333,37 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
   </div>
 </section>
 
-<!-- PREMIUM SHOWCASE — V-Class, реальное фото, мягкий зум на скролле -->
+<!-- PREMIUM SHOWCASE — премиум-автопарк Mercedes (фото-заставка + ИИ-видео V-Class по готовности) -->
 <div class="section-divider"></div>
 <section class="section va-intro">
   <div class="wrap">
     <div class="section-head">
       <div class="overline reveal">Премиум-автопарк</div>
-      <h2 class="reveal">Mercedes V-Class — для встречи гостей</h2>
-      <p class="reveal">Просторный VIP-минивэн до 7 пассажиров. Встречаем в аэропорту и подаём точно к вашему времени.</p>
+      <h2 class="reveal">Mercedes представительского класса</h2>
+      <p class="reveal">S-Class, Maybach и V-Class — встречаем в аэропорту и подаём точно к вашему времени.</p>
     </div>
   </div>
 </section>
-<section class="vip-arrival" id="vip-arrival" aria-label="Mercedes V-Class">
+<section class="vip-arrival" id="vip-arrival" aria-label="Премиум-автопарк Mercedes">
   <div class="va-sticky">
     <div class="va-stage">
-      <div class="va-car" style="--img:url('assets/img/car-vclass.jpg')" role="img" aria-label="Mercedes V-Class"></div>
+      <video class="va-video" muted loop playsinline preload="none" data-src="assets/video/vclass-arrival.mp4" aria-hidden="true"></video>
+      <div class="va-car" style="--img:url('assets/img/car-sclass.jpg')" role="img" aria-label="Mercedes S-Class"></div>
       <div class="va-shade"></div>
       <div class="va-cap on" data-stage="0">
-        <span class="va-step">Mercedes V-Class</span>
-        <h3>Встречаем гостей в аэропорту</h3>
-        <p>Водитель с табличкой у выхода, помощь с багажом, подача точно к рейсу.</p>
+        <span class="va-step">Премиум-автопарк</span>
+        <h3>Mercedes под вашу задачу</h3>
+        <p>S-Class и Maybach для деловых встреч, V-Class до 7 гостей — подберём класс под число пассажиров и багаж.</p>
       </div>
       <div class="va-cap" data-stage="1">
-        <span class="va-step">До 7 пассажиров</span>
-        <h3>Простор и приватность</h3>
-        <p>Отдельные кресла, климат, Wi-Fi и тишина — комфорт бизнес-уровня для всей группы.</p>
+        <span class="va-step">Встреча 24/7</span>
+        <h3>Подача в аэропорт</h3>
+        <p>Водитель с табличкой у выхода, помощь с багажом, подача точно к рейсу.</p>
       </div>
       <div class="va-cap" data-stage="2">
-        <span class="va-step">24/7 по Европе</span>
+        <span class="va-step">По всей Европе</span>
         <h3>Доставим вовремя</h3>
-        <p>Город или межгород — спланируем маршрут и подадим машину минута в минуту.</p>
+        <p>Город или межгород — спланируем маршрут и привезём с комфортом и конфиденциальностью.</p>
       </div>
     </div>
     <div class="va-progress"><i></i></div>
@@ -737,7 +738,7 @@ const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(e=>{if
 reveals.forEach(el=>revealObserver.observe(el));
 </script>
 <script src="shaderbg.js?v=0610b"></script>
-<script src="enhance.js?v=0611b" defer></script>
+<script src="enhance.js?v=0611c" defer></script>
 <script src="i18n.js?v=0610b" defer></script>
 <script src="lib/three.min.js"></script>
 <script src="wow3d.js?v=0610b"></script>
@@ -791,7 +792,7 @@ window.addEventListener('load', function () {
   });
 });
 </script>
-<script src="arrival.js?v=0611b" defer></script>
+<script src="arrival.js?v=0611c" defer></script>
 <img src="analytics/px.php" width="1" height="1" alt="" style="position:absolute;left:-9999px;pointer-events:none" referrerpolicy="no-referrer-when-downgrade">
 </body>
 </html>
