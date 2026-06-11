@@ -1142,3 +1142,32 @@ h1, h2, h3, .section-head h2, .hero h1, .hero .wrap h1, .premium3d-h1, .premium3
   .va-cap[data-stage="1"], .va-cap[data-stage="2"] { display:none; }
   .va-progress { display:none; }
 }
+
+/* — Террасный керамогранит: вид + врезка фактуры + свойства + тренды — */
+.terr-hero { position:relative; border-radius:22px; overflow:hidden; min-height:340px; margin-bottom:22px;
+  background-image:linear-gradient(180deg, rgba(6,12,26,.12) 0%, rgba(6,12,26,.55) 55%, rgba(6,12,26,.88) 100%), var(--img);
+  background-size:cover; background-position:center; box-shadow:0 24px 60px rgba(0,0,0,.45); }
+.terr-hero-tile { position:absolute; top:18px; right:18px; width:132px; height:132px; border-radius:14px;
+  background-image:var(--img); background-size:cover; background-position:center;
+  border:2px solid rgba(255,255,255,.55); box-shadow:0 12px 30px rgba(0,0,0,.5); }
+.terr-hero-cap { position:absolute; left:0; bottom:0; padding:28px 30px; max-width:640px; }
+.terr-badge { display:inline-block; background:var(--e-blue,#3b82f6); color:#fff; font-weight:700; font-size:12px;
+  letter-spacing:.04em; padding:5px 12px; border-radius:999px; margin-bottom:12px; box-shadow:0 6px 18px rgba(0,0,0,.35); }
+.terr-hero-cap h3 { font-family:'Space Grotesk','Inter',sans-serif; font-size:clamp(1.4rem,3vw,2rem); color:#fff; margin-bottom:8px; letter-spacing:-.02em; }
+.terr-hero-cap p { color:#dbe4f0; font-size:15px; line-height:1.55; max-width:520px; }
+@media (max-width:600px){ .terr-hero{ min-height:300px; } .terr-hero-tile{ width:94px; height:94px; top:14px; right:14px; } .terr-hero-cap{ padding:20px; } }
+
+.terr-feats { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:38px; }
+.terr-feat { background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(148,163,184,.16);
+  border-radius:14px; padding:18px 14px; text-align:center; }
+.terr-feat b { display:block; font-family:'Space Grotesk','Inter',sans-serif; font-size:1.55rem; color:#fff; letter-spacing:-.02em; }
+.terr-feat span { display:block; font-size:12.5px; color:#94A3B8; margin-top:5px; }
+@media (max-width:600px){ .terr-feats{ grid-template-columns:repeat(2,1fr); gap:10px; } }
+
+.terr-sub { font-family:'Space Grotesk','Inter',sans-serif; font-size:1.25rem; color:#cbd5e1; margin:0 0 18px; text-align:center; letter-spacing:.01em; }
+.terr-thick { color:#94A3B8; font-size:13.5px; margin:20px auto 0; max-width:760px; text-align:center; line-height:1.6; }
+.terr-thick b { color:#cbd5e1; }
+.terr-looks { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:24px; }
+.terr-looks span { font-size:12.5px; font-weight:600; color:#cbd5e1; border:1px solid rgba(148,163,184,.28); padding:6px 14px; border-radius:999px;
+  transition:border-color .25s, color .25s; }
+.terr-looks span:hover { border-color:var(--e-blue,#3b82f6); color:#fff; }
