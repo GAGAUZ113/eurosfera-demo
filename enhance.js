@@ -589,3 +589,101 @@ const EURO_CONFIG = {
   window.gtag("js", new Date());
   window.gtag("config", ID, { anonymize_ip: true });
 })();
+
+/* ============================================================
+   ДОБАВЛЕНО 2026-06-11 — микро-звуки UI + телефон под «дымкой»
+   ============================================================ */
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Микро-звуки (WebAudio, без файлов) ---------- */
+  var SND = (function () {
+    var ctx = null, muted = false;
+    try { muted = localStorage.getItem("euro_snd") === "off"; } catch (e) {}
+
+    function ensure() {
+      if (reduce || muted) return null;
+      if (!ctx) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
+        try { ctx = new AC(); } catch (e) { return null; }
+      }
+      if (ctx.state === "suspended") { try { ctx.resume(); } catch (e) {} }
+      return ctx;
+    }
+    // одна нота: частота, длительность(с), тип, громкость, задержка(с)
+    function note(f, d, type, g, delay) {
+      var c = ensure(); if (!c) return;
+      var t0 = c.currentTime + (delay || 0);
+      var osc = c.createOscillator(), gain = c.createGain();
+      osc.type = type || "sine"; osc.frequency.value = f;
+      gain.gain.setValueAtTime(0.0001, t0);
+      gain.gain.exponentialRampToValueAtTime(g || 0.04, t0 + 0.008);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + d);
+      osc.connect(gain); gain.connect(c.destination);
+      osc.start(t0); osc.stop(t0 + d + 0.02);
+    }
+    return {
+      get muted() { return muted; },
+      setMuted: function (v) {
+        muted = v;
+        try { localStorage.setItem("euro_snd", v ? "off" : "on"); } catch (e) {}
+      },
+      click: function () { note(660, 0.06, "sine", 0.035); note(990, 0.05, "sine", 0.025, 0.012); },
+      enter: function () { note(520, 0.10, "triangle", 0.04); note(780, 0.12, "triangle", 0.03, 0.05); },
+      reveal: function () { note(1180, 0.05, "sine", 0.03); },
+      send: function () { note(523, 0.10, "sine", 0.04); note(659, 0.10, "sine", 0.04, 0.07); note(784, 0.16, "sine", 0.045, 0.14); }
+    };
+  })();
+  window.EuroSnd = SND;
+
+  /* кнопка вкл/выкл звука (над «Наверх», слева) */
+  var sndBtn = document.createElement("button");
+  sndBtn.className = "e-snd" + (SND.muted ? " muted" : "");
+  sndBtn.setAttribute("aria-label", SND.muted ? "Включить звук" : "Выключить звук");
+  var ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>';
+  var OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m23 9-6 6M17 9l6 6"/></svg>';
+  sndBtn.innerHTML = SND.muted ? OFF : ON;
+  document.body.appendChild(sndBtn);
+  sndBtn.addEventListener("click", function () {
+    var willMute = !SND.muted;
+    SND.setMuted(willMute);
+    sndBtn.classList.toggle("muted", willMute);
+    sndBtn.innerHTML = willMute ? OFF : ON;
+    sndBtn.setAttribute("aria-label", willMute ? "Включить звук" : "Выключить звук");
+    if (!willMute) SND.click(); // подтверждаем включение тихим тиком
+  });
+  addEventListener("scroll", function () { sndBtn.classList.toggle("show", scrollY > 600); }, { passive: true });
+
+  /* значимые клики → микро-звук (делегирование) */
+  document.addEventListener("click", function (e) {
+    if (e.target.closest(".phone-mask")) return;            // у телефона свой звук
+    if (e.target.closest(".cta-btn, .e-fab-btn, [data-open-form]")) SND.click();
+    else if (e.target.closest(".dir-link, .dir-card")) SND.enter();
+  }, true);
+  document.addEventListener("submit", function () { SND.send(); }, true);
+
+  /* ---------- Телефон под «дымкой»: раскрытие по клику ---------- */
+  var PHONE_IC = '<svg class="pm-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.5 15.5 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.2 2.2z"/></svg>';
+  function initPhone(el) {
+    var enc = el.getAttribute("data-p"); if (!enc) return;
+    el.innerHTML = PHONE_IC + '<span class="pm-num">+359 •• ••• •• ••</span><span class="pm-hint">Показать номер</span>';
+    el.setAttribute("role", "button");
+    el.setAttribute("tabindex", "0");
+    function reveal() {
+      if (el.classList.contains("revealed")) return;
+      var dec; try { dec = atob(enc); } catch (e) { return; }
+      var parts = dec.split("|");
+      var tel = parts[0], show = parts[1] || parts[0];
+      el.classList.add("revealed");
+      el.innerHTML = PHONE_IC + '<a href="tel:' + tel + '"><span class="pm-num">' + show + "</span></a>";
+      SND.reveal();
+    }
+    el.addEventListener("click", reveal);
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); reveal(); }
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".phone-mask[data-p]"), initPhone);
+})();

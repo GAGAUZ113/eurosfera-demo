@@ -1028,3 +1028,110 @@ html.euro-lite .scene3d-progress { display: none; }
   .buy-drop { opacity: 0; }
   .buy-ripple { opacity: 0; }
 }
+
+/* ============================================================
+   ДОБАВЛЕНО 2026-06-11 — фабрики-плитки, ходовые позиции,
+   адаптивные переносы, звук, телефон-«дымка», подача авто
+   ============================================================ */
+
+/* — Брендовая плитка фабрики с фирменной SVG-иллюстрацией (Ferro, TECE) — */
+.fab-tile { background:
+    radial-gradient(120% 100% at 28% -10%, rgba(255,255,255,.20), transparent 55%),
+    linear-gradient(155deg, var(--fab,#2a3566) 0%, #0a0f24 130%) !important; }
+.fab-art { position:absolute; inset:0; margin:auto; width:62%; height:62%; color:#fff; opacity:.34;
+    filter:drop-shadow(0 8px 20px rgba(0,0,0,.4)); pointer-events:none;
+    transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s; }
+.fab-card:hover .fab-art { transform:scale(1.07) rotate(-2deg); opacity:.5; }
+.fab-tile .fab-logo { text-shadow:0 4px 26px rgba(0,0,0,.55); }
+
+/* — Ходовые позиции: террасная плитка / керамогранит 2.0 — */
+.tiles-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.tile-card { background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    border:1px solid rgba(148,163,184,.16); border-radius:18px; padding:24px;
+    transition:transform .4s, border-color .4s, box-shadow .4s; }
+.tile-card:hover { transform:translateY(-6px); border-color:rgba(59,130,246,.4); box-shadow:0 20px 50px rgba(0,0,0,.4); }
+.tile-vis { position:relative; height:120px; display:grid; place-items:center; margin-bottom:18px; }
+.tile-slab { display:block; border-radius:8px; position:relative;
+    background:linear-gradient(135deg,#cdd6e4 0%,#9aa7bd 45%,#c3cdde 55%,#8b97ad 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 14px 26px rgba(0,0,0,.45); }
+.tile-slab::after { content:''; position:absolute; inset:0; border-radius:8px; opacity:.5;
+    background:repeating-linear-gradient(115deg, rgba(255,255,255,.10) 0 2px, transparent 2px 9px); }
+.tile-60 { width:96px; height:96px; }
+.tile-120 { width:150px; height:78px; }
+.tile-thick { position:absolute; right:8px; bottom:6px; font-size:12px; font-weight:700; letter-spacing:.02em;
+    color:#0a0f24; background:var(--e-blue,#3b82f6); padding:3px 9px; border-radius:999px; box-shadow:0 6px 16px rgba(0,0,0,.35); }
+.tile-card h3 { font-family:'Space Grotesk','Inter',sans-serif; font-size:1.45rem; margin-bottom:8px; letter-spacing:-.01em; }
+.tile-card p { color:#94A3B8; font-size:14.5px; line-height:1.6; margin-bottom:14px; }
+.tile-tags { display:flex; flex-wrap:wrap; gap:7px; }
+.tile-tags span { font-size:12px; font-weight:600; color:#cbd5e1; border:1px solid rgba(148,163,184,.28);
+    padding:4px 11px; border-radius:999px; }
+.tiles-note { text-align:center; color:#94A3B8; font-size:15px; max-width:720px; margin:26px auto 0; line-height:1.65; }
+@media (max-width:860px){ .tiles-grid{ grid-template-columns:1fr; gap:16px; } }
+
+/* — Грамотные переносы: балансировка заголовков, аккуратные абзацы — */
+h1, h2, h3, .section-head h2, .hero h1, .hero .wrap h1, .premium3d-h1, .premium3d h2,
+.scene3d-step h3, .e-show-text h3, .e-organic h2, .car-name, .fab-body h3, .tile-card h3, .va-cap h3 {
+  text-wrap: balance;
+}
+.section-head p, .hero .lead, .hero-text .lead, p.lead, .scene3d-step p, .tiles-note, .va-cap p {
+  text-wrap: pretty;
+}
+
+/* — Кнопка звука (над «Наверх», слева внизу) — */
+.e-snd { position:fixed; left:22px; bottom:76px; z-index:8500;
+  width:46px; height:46px; border-radius:12px; border:1px solid var(--e-line);
+  background:rgba(13,18,51,.85); backdrop-filter:blur(8px); color:#fff; cursor:pointer;
+  display:grid; place-items:center; opacity:0; transform:translateY(12px); pointer-events:none; transition:all .25s; }
+.e-snd.show { opacity:1; transform:translateY(0); pointer-events:auto; }
+.e-snd:hover { border-color:var(--e-blue); color:var(--e-blue); }
+.e-snd svg { width:22px; height:22px; }
+.e-snd.muted { color:#64748b; }
+@media (max-width:600px){ .e-snd{ left:14px; bottom:66px; width:42px; height:42px; } }
+
+/* — Телефон под «дымкой» от ботов (раскрытие по клику, как в Telegram) — */
+.phone-mask { display:inline-flex; align-items:center; gap:8px; cursor:pointer; user-select:none;
+  font-weight:600; -webkit-tap-highlight-color:transparent; color:inherit; }
+.phone-mask .pm-ic { width:16px; height:16px; flex:0 0 auto; opacity:.9; }
+.phone-mask .pm-num { letter-spacing:.04em; filter:blur(5px); opacity:.65; transition:filter .5s ease, opacity .5s ease; }
+.phone-mask .pm-hint { font-size:12.5px; font-weight:600; opacity:.85; border-bottom:1px dashed currentColor; padding-bottom:1px; }
+.phone-mask:hover .pm-hint { opacity:1; }
+.phone-mask.revealed { cursor:default; }
+.phone-mask.revealed .pm-num { filter:none; opacity:1; }
+.phone-mask.revealed .pm-hint { display:none; }
+.phone-mask a { color:inherit; text-decoration:none; }
+.cta-phone .phone-mask { font-size:clamp(1.1rem,2.2vw,1.45rem); justify-content:center; }
+
+/* — Кинематографичная подача авто (реальные фото, scroll-сцена) — */
+.va-intro { padding-bottom:0 !important; }
+.vip-arrival { position:relative; height:300vh; }
+.va-sticky { position:sticky; top:0; height:100vh; overflow:hidden; display:flex; flex-direction:column;
+  background:radial-gradient(120% 90% at 50% 28%, rgba(30,58,138,.18), transparent 60%); }
+.va-stage { position:relative; flex:1 1 auto; min-height:0; }
+.va-car { position:absolute; inset:8% 5% 6%; background-image:var(--img);
+  background-size:contain; background-position:center bottom; background-repeat:no-repeat;
+  will-change:transform,opacity; filter:drop-shadow(0 42px 56px rgba(0,0,0,.65)); }
+.va-glow { position:absolute; left:50%; bottom:13%; width:62%; height:30%; transform:translateX(-50%);
+  background:radial-gradient(closest-side, rgba(59,130,246,.30), transparent 72%); filter:blur(34px); pointer-events:none; z-index:-1; }
+.va-captions { position:relative; flex:0 0 auto; height:150px; }
+.va-cap { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-start; align-items:center;
+  text-align:center; padding:0 22px; opacity:0; transform:translateY(18px); pointer-events:none;
+  transition:opacity .55s cubic-bezier(.2,.7,.2,1), transform .55s cubic-bezier(.2,.7,.2,1); }
+.va-cap.on { opacity:1; transform:none; }
+.va-step { color:var(--e-blue,#3b82f6); font-weight:700; letter-spacing:.16em; text-transform:uppercase; font-size:12.5px; margin-bottom:10px; }
+.va-cap h3 { font-family:'Space Grotesk','Inter',sans-serif; font-size:clamp(1.35rem,3.2vw,2.1rem); margin-bottom:8px; letter-spacing:-.02em; }
+.va-cap p { color:#94A3B8; max-width:540px; margin:0 auto; line-height:1.6; font-size:clamp(.95rem,1.5vw,1.08rem); }
+.va-progress { flex:0 0 auto; width:150px; height:3px; margin:0 auto 30px; background:rgba(148,163,184,.22); border-radius:3px; overflow:hidden; }
+.va-progress i { display:block; height:100%; width:0%; background:var(--e-blue,#3b82f6); transition:width .12s linear; }
+@media (max-width:600px){
+  .vip-arrival { height:260vh; }
+  .va-car { inset:6% 3% 4%; }
+  .va-captions { height:178px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .vip-arrival { height:auto; }
+  .va-sticky { position:relative; height:auto; padding:30px 0; }
+  .va-stage { height:46vh; }
+  .va-car { transform:none !important; opacity:1 !important; }
+  .va-cap { position:relative; opacity:1; transform:none; margin-bottom:18px; }
+  .va-progress { display:none; }
+}
