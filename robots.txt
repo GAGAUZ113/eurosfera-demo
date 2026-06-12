@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gagauz113.github.io/eurosfera-demo/sitemap.xml
+Sitemap: https://euro.s.bg/sitemap.xml
