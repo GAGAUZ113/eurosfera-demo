@@ -9,7 +9,10 @@ require __DIR__ . '/_logger.php';
 
 /* === КУДА СЛАТЬ === */
 $TO   = 'a.tukan@euro.s.bg';
-$FROM = 'site@euro.s.bg';   // ящик, существующий на хостинге (иначе письмо уйдёт в спам)
+$FROM = 'a.tukan@euro.s.bg';   // существующий ящик домена — лучшая доставляемость, без нового почтового аккаунта
+
+/* безопасность: из браузера запуск только с ключом; крон (CLI) работает всегда */
+if (PHP_SAPI !== 'cli' && (($_GET['key'] ?? '') !== 'euro2026xZ')) { http_response_code(403); exit('forbidden'); }
 
 $since = gmdate('Y-m-d H:i:s', time() - 86400);  // последние 24 часа
 $today = gmdate('d.m.Y');
