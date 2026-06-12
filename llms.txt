@@ -9,6 +9,7 @@ Email (заявки): sale@euro.s.bg
 Языки сайта: ru, en, de, pl, bg, uk, ro, es, tg
 
 ## Направления и страницы
+- Полный каталог товаров и услуг (19 позиций, фильтр по категориям): https://euro.s.bg/catalog.html
 - Стройматериалы, керамогранит (террасный 20 мм, крупный формат): https://euro.s.bg/keramogranit.html , https://euro.s.bg/goods.html
 - Инсталляции TECE (Германия): https://euro.s.bg/tece.html
 - Электроника и промышленное оборудование
