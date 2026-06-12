@@ -8,4 +8,8 @@
   <url><loc>https://euro.s.bg/agro.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://euro.s.bg/transfer.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://euro.s.bg/music.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://euro.s.bg/en/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://euro.s.bg/de/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://euro.s.bg/pl/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://euro.s.bg/bg/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
