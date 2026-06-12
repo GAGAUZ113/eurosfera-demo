@@ -12,4 +12,8 @@
   <url><loc>https://euro.s.bg/de/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://euro.s.bg/pl/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://euro.s.bg/bg/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://euro.s.bg/uk/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://euro.s.bg/ro/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://euro.s.bg/es/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://euro.s.bg/tg/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

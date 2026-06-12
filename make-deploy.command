@@ -5,7 +5,7 @@ OUT="eurosfera-deploy.zip"
 rm -f "$OUT"
 zip -r "$OUT" \
   *.html *.css *.js *.php sitemap.xml robots.txt \
-  en de pl bg lib assets img analytics \
+  en de pl bg uk ro es tg lib assets img analytics \
   -x "*.DS_Store" \
   -x "make-deploy.command" \
   >/dev/null
