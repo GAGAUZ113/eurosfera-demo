@@ -4,7 +4,7 @@ cd "$(dirname "$0")" || exit 1
 OUT="eurosfera-deploy.zip"
 rm -f "$OUT"
 zip -r "$OUT" \
-  *.html *.css *.js sitemap.xml robots.txt \
+  *.html *.css *.js *.php sitemap.xml robots.txt \
   lib assets img analytics \
   -x "*.DS_Store" \
   -x "make-deploy.command" \

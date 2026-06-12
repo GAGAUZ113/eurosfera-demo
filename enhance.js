@@ -12,6 +12,7 @@ const EURO_CONFIG = {
   email:    "sale@euro.s.bg",           // публичная почта (показывается в контактах)
   leads:    "a.tukan@euro.s.bg,sale@euro.s.bg", // КУДА слать заявки (обе почты)
   phone:    "+359 89 209 84 60",
+  lead_php: "/lead.php",   // серверный приём заявок (PHP на хостинге) — ОСНОВНОЙ способ: номер + маршрутизация + письмо
 
   // === КУДА ИДУТ ЗАЯВКИ ===
   // Способ 1 (РЕКОМЕНДУЕТСЯ): через наш Telegram-бот по webhook (n8n или свой сервер).
@@ -175,6 +176,16 @@ const EURO_CONFIG = {
 
   async function sendLead(data) {
     const C = EURO_CONFIG;
+    // 0) серверный обработчик lead.php — ОСНОВНОЙ (письмо прямо с сайта + номер заявки)
+    if (C.lead_php) {
+      const r = await fetch(C.lead_php, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, page: location.href }),
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !j.success) throw new Error("lead.php " + r.status);
+      return j.ticket || true;   // вернём номер заявки
+    }
     // 1) webhook (n8n → Telegram-бот) — приоритет
     if (C.lead_webhook) {
       const r = await fetch(C.lead_webhook, {
@@ -219,10 +230,12 @@ const EURO_CONFIG = {
     if (data.botcheck) return; // honeypot
     btn.disabled = true; btn.textContent = "Отправляем…";
     try {
-      await sendLead(data);
+      const ticket = await sendLead(data);
       formEl.reset();
       formMsg.className = "e-form-msg ok";
-      formMsg.textContent = "✓ Спасибо! Заявка отправлена. Мы свяжемся с вами в ближайшее время.";
+      formMsg.textContent = "✓ Спасибо! Заявка принята"
+        + (typeof ticket === "string" && ticket ? " — № " + ticket : "")
+        + ". Мы свяжемся с вами в ближайшее время.";
       if (window.gtag) gtag("event", "generate_lead", { method: "form" });
     } catch (err) {
       formMsg.className = "e-form-msg err";
