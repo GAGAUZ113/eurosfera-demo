@@ -1,6 +1,12 @@
 # EUROSFERA — загрузка на хостинг (SuperHosting.BG)
 
-Пошагово для публикации на **поддомен** euro.s.bg (на основном домене уже стоит WordPress — поверх НЕ лить!).
+> 🟢 **ОПУБЛИКОВАНО 2026-06-12** на ГЛАВНЫЙ домен **https://euro.s.bg** (не поддомен).
+> Старый WordPress перенесён в `public_html/OLD_WP/` (НЕ удалён — для отката). Почта euro.s.bg не тронута.
+> Залито по FTP (lftp) аккаунтом **`deploy3@euro.s.bg`** (каталог `public_html`, сервер `ftp.euro.s.bg`),
+> пароль — в Связке ключей Мака: `security find-generic-password -s claude-ftp-eurosbgn -a deploy3 -w`.
+> **Обновить сайт в будущем:** правки → `bash make-deploy.command` → `lftp ... mirror -R /tmp/euro_site .`
+> (распаковав свежий `eurosfera-deploy.zip` в `/tmp/euro_site`).
+> ⚠️ FTP-аккаунты `deploy` и `deploy2` — пустые/лишние, удалить (у `deploy` пароль засветился в логах).
 
 ---
 
