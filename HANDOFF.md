@@ -5,10 +5,10 @@
 
 ## 🟢🟢 ТЕКУЩЕЕ СОСТОЯНИЕ на 2026-06-13 (окно 3f4c076d) — САЙТ ЖИВОЙ + SEO РАСКРУЧИВАЕТСЯ
 
-**Сайт опубликован: https://euro.s.bg** (SuperHosting cPanel). Обновление сайта — по FTP:
-`deploy3@euro.s.bg` (сервер `ftp.euro.s.bg`, каталог `public_html`), пароль в Связке ключей Мака:
-`security find-generic-password -s claude-ftp-eurosbgn -a deploy3 -w`. Заливка: распаковать
-`eurosfera-deploy.zip` в `/tmp/euro_site` → `lftp ... mirror -R /tmp/euro_site .` (ssl-allow true; verify-cert no; passive).
+**Сайт опубликован: https://euro.s.bg** (SuperHosting cPanel).
+⛔ **FTP (порты 21+22) закрыты CSF-фаерволом для всех внешних IP** — `lftp` и SFTP не работают совсем.
+✅ Единственный способ деплоя: **cPanel File Manager** через браузер по адресу `https://ftp.euro.s.bg:2083`.
+FTP аккаунт `deploy3`, пароль: `security find-generic-password -s claude-ftp-eurosbgn -a deploy3 -w`.
 Старый WordPress → `public_html/OLD_WP/` (откат). Почта euro.s.bg НЕ тронута.
 
 Сделано за 2026-06-12 (всё ЖИВОЕ на euro.s.bg, закоммичено, IndexNow-ключ `b1770b9b0d4ac7fe66f5bb4bd541e56e`):
