@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://euro.s.bg/index.html</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://euro.s.bg/goods.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://euro.s.bg/logistics.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://euro.s.bg/it.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://euro.s.bg/company.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://euro.s.bg/agro.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://euro.s.bg/transfer.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://euro.s.bg/music.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://euro.s.bg/keramogranit.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://euro.s.bg/tece.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://euro.s.bg/catalog.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://euro.s.bg/</loc><lastmod>2026-06-13</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://euro.s.bg/catalog.html</loc><lastmod>2026-06-13</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://euro.s.bg/goods.html</loc><lastmod>2026-06-13</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://euro.s.bg/it.html</loc><lastmod>2026-06-13</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://euro.s.bg/logistics.html</loc><lastmod>2026-06-13</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://euro.s.bg/company.html</loc><lastmod>2026-06-13</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://euro.s.bg/agro.html</loc><lastmod>2026-06-13</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://euro.s.bg/transfer.html</loc><lastmod>2026-06-13</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://euro.s.bg/keramogranit.html</loc><lastmod>2026-06-13</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://euro.s.bg/tece.html</loc><lastmod>2026-06-12</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://euro.s.bg/music.html</loc><lastmod>2026-06-12</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://euro.s.bg/en/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://euro.s.bg/de/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://euro.s.bg/pl/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
